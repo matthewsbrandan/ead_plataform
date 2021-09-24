@@ -10,12 +10,12 @@
 
 ## COMO CRIAR UM PROJETO LARAVEL
   - Com todas as ferramentas acima instaladas, podemos utilizar o composer para criar nosso projeto.
-  ``` composer create-project laravel/laravel example-app ```
+    - ``` composer create-project laravel/laravel example-app ```
   - [video-criação-do-projeto](https://watch.screencastify.com/v/pDT7ckEXBu7S4kCYkPy1)
 
 ## EXECUTANDO PROJETO
   - Com a base do projeto instalada no passo anterior, e com o arquivo aberto no Visual Studio Code como pasta raiz, podemos executar o comando de start do laravel:
-  ``` php artisan serve ```   
+    - ``` php artisan serve ```   
   - [video-startando-o-projeto](https://watch.screencastify.com/v/x4fMa459P9zBL16iN1mn)
 
 ## CRIANDO AS PRIMEIRAS PÁGINAS
@@ -45,13 +45,25 @@
 
 ## SUBINDO UM NOVO PROJETO PARA O GIT
   - Para subir a aplicação para o git é bem fácil, basta acessar sua conta no github, clicar em novo repositório, determinar a privacidade, e seguir a lista de comandos que ele retorna que são basicamente:
-    - git init (para iniciar o versionamento de código)
-    - git add . (para adicionar todas as alterações)
-    - git commit -m "Para dar um nome para o marco que você fez"
-    - git branch (para nomer qual é o ramo principal do projeto)
-    - git remote (para indicar o endereço remoto que você fará o upload)
-    - git push (para subir todas as suas atualizações)
+    - ``` git init ``` (para iniciar o versionamento de código)
+    - ``` git add . ``` (para adicionar todas as alterações)
+    - ``` git commit -m ``` "Para dar um nome para o marco que você fez"
+    - ``` git branch ``` (para nomer qual é o ramo principal do projeto)
+    - ``` git remote ``` (para indicar o endereço remoto que você fará o upload)
+    - ``` git push ``` (para subir todas as suas atualizações)
   - [video-publicando-no-github](https://watch.screencastify.com/v/qzrHDp9sFCq2ACaFo250)
 
+## CLONANDO UMA APLICAÇÃO DO GITHUB
+  - Para fazer o clone da aplicação do github é bem fácil:
+    - basta acessar o repositório
+    - copiar o código,
+    - fazer o git clone na sua máquina.
+  - Com a aplicação na sua máquina, você irá precisar instalar as dependências da aplicação. Para isso, basta executar o comando:
+    - ``` composer install ```
+  - Depois das dependências instaladas, você irá criar o seu arquivo ``` .env ```.
+    - Para criar esse arquivo, você irá copiar os dados do ``` .env.example ``` irá alterar as configurações do banco de dados, como fizemos na seção de configuração de banco, e irá execytar i comando abaixo para gerar a chave da aplicação:
+      - ``` php artisan key:generate ```
+  - [video-clonando-app-do-github](https://watch.screencastify.com/v/YjoVmlLj0yT1GrKC5AEr)
+  
 ## REFERENCIAS
 [Laravel-Documentation](https://laravel.com/docs/8.x)
