@@ -1,5 +1,12 @@
-# EAD PLATAFORM
-  - Desenvolvimento de Plataform de Ensino a Distância voltada ao ensino fundamental.
+# INTRODUÇÃO AO LARAVEL
+  - Essa aplicação é um overview do Framework Laravel e das principais funcionalidades que utilizaremos para o desenvolvimento do Projeto Integrador Univesp.
+
+## TELAS
+  ![LANDING](/public/landing.png)
+  ![LOGIN](/public/login.png)
+  ![LOGIN-MESSAGES](/public/login-messages.png)
+  ![REGISTER](/public/register.png)
+  ![HOME](/public/home.png)
 
 ## REQUISITOS
   - XAMPP (https://www.apachefriends.org/pt_br/index.html)
