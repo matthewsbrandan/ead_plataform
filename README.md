@@ -2,10 +2,15 @@
   - Essa aplicação é um overview do Framework Laravel e das principais funcionalidades que utilizaremos para o desenvolvimento do Projeto Integrador Univesp.
 
 ## TELAS
+  - **LANDING**
   ![LANDING](/public/landing.png)
+  - **LOGIN**
   ![LOGIN](/public/login.png)
+  - **LOGIN-MESSAGES**
   ![LOGIN-MESSAGES](/public/login-messages.png)
+  - **REGISTER**
   ![REGISTER](/public/register.png)
+  - **HOME**
   ![HOME](/public/home.png)
 
 ## REQUISITOS
