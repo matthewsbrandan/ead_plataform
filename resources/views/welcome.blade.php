@@ -5,183 +5,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EAD PLATAFORM</title>
-    <style>
-        /* BEGIN:: INITIALIZE */
-        *{
-            padding: 0;
-            margin: 0;
-            box-sizing: border-box;
-            font-family: Helvetica;
-        }
-        ::-webkit-scrollbar{
-            width: 6px;
-        }
-        ::-webkit-scrollbar-thumb{
-            background: #dde;
-        }
-        ::-webkit-scrollbar-track{
-            background: #fff;
-        }
-        a{
-            text-decoration: none;
-            color: inherit;
-        }
-        ul{
-            list-style: none;
-            padding-left: 0;
-        }
-        /* END:: INITIALIZE | BEGIN:: UTILS */
-        .paragraph{
-            font-weight: 300;
-            opacity: .8;
-        }
-        .btn-primary{
-            background: #192A88;
-            color: white;
-
-            height: 3.2rem;
-            width: 9.2rem;
-            
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        /* END:: UTILS | BEGIN:: HEADER */
-        .header-main{
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-
-            background: #fff;
-
-            height: 7rem;
-
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 1;
-        }
-        .header-main .container{
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-
-            width: 90%;
-            margin: auto;
-        }
-        .header-main .logo{
-            display: flex;
-            gap: .4rem;
-        }
-        .header-main .navbar{
-            display: flex;
-            gap: 1rem;
-            align-items: center;
-        }
-        .header-main .navbar ul{
-            display: flex;
-            align-items: center;
-            gap: 2.5rem;
-        }
-        .header-main .navbar ul li{
-            font-weight: bold;
-        }
-        /* END:: HEADER | BEGIN:: MAIN */
-        main{
-            position: relative;
-            margin-top: 7rem;
-            width: 100%;
-        }
-        main > section {
-            width: 90%;
-            margin: auto;
-        }
-        /* END:: MAIN | BEGIN:: SECTION ABSOLUTE */        
-        .section-absolute > img{
-            position: fixed;
-            right: 5%;  
-            z-index: -1;
-
-            object-fit: cover;
-
-            width: 60%;
-            height: calc(100vh - 7rem);
-        }
-        /* END:: SECTION ABSOLUTE | BEGIN:: SECTION MAIN*/
-        .section-main{
-            display: flex;
-            height: 100vh;
-        }
-        .section-main .content{
-            background: #FFE0D6;
-            width: 35%;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            justify-content: center;
-            padding: 3rem;
-            gap: 1rem;
-        }
-        .section-main .content h2{
-            font-size: 3.5rem;
-            line-height: 1;
-            letter-spacing: .01rem;
-        }
-        .section-main .content p{
-            font-size: 1.4rem;
-        }
-        .section-main > img{
-            object-fit: cover;
-        }        
-        /* END:: SECTION MAIN | BEGIN:: SECTION WHAT DO YOU TEACH*/
-        .section-what-teach{
-            display: grid;
-            grid-template-columns: 3fr 7fr;
-            background: #fff;
-
-            padding: 5rem 1.4rem;
-        }
-        .section-what-teach p{
-            font-size: 1rem;
-            line-height: 1.6;
-            margin: 1.6rem 0;
-        }
-        .section-what-teach .content-matters{
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            margin: auto;
-        }
-        .section-what-teach .content-matters > div{
-            max-width: 17rem;
-
-            display: flex;
-            flex-direction: column;
-            gap: .6rem;
-        }
-        .section-what-teach .content-matters strong{
-            font-size: 1.3rem;
-        }
-        .section-what-teach .content-matters .matter{
-            background: #dde;
-
-            width: 280px;
-            height: 280px;
-
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        /* END:: SECTION WHAT DO YOU TEACH | BEGIN:: */
-    </style>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Display:wght@100;200;300;400;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="{{ asset('assets/css/global.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/welcome.css') }}">
 </head>
 <body>
     <header class="header-main">
         <div class="container">
             <div class="logo">
-            <svg preserveAspectRatio="xMidYMid meet" id="comp-k8x5jfyesvgcontent" data-bbox="36.8 60.7 126.3 75" viewBox="36.8 60.7 126.3 75" height="14" width="19" xmlns="http://www.w3.org/2000/svg" data-type="color" role="img" aria-labelledby="comp-k8x5jfye-svgtitle"><title id="comp-k8x5jfye-svgtitle">Homepage</title><g><path d="M144.1 124.9V60.7H55.9v64.1l-19.1 6.6v4.3h126.3v-4.3l-19-6.5zm-6-.1H61.9V67.4h76.3v57.4z" fill="#8f98ff" data-color="1"></path><path fill="#192a88" d="M138.2 67.4v57.5H61.9V67.4h76.3z" data-color="2"></path></g></svg>
-                <span>Online Lessons</span>
+                <svg preserveAspectRatio="xMidYMid meet" id="comp-k8x5jfyesvgcontent" data-bbox="36.8 60.7 126.3 75" viewBox="36.8 60.7 126.3 75" height="35" width="44" xmlns="http://www.w3.org/2000/svg" data-type="color" role="img" aria-labelledby="comp-k8x5jfye-svgtitle"><title id="comp-k8x5jfye-svgtitle">Homepage</title><g><path d="M144.1 124.9V60.7H55.9v64.1l-19.1 6.6v4.3h126.3v-4.3l-19-6.5zm-6-.1H61.9V67.4h76.3v57.4z" fill="#8f98ff" data-color="1"></path><path fill="#192a88" d="M138.2 67.4v57.5H61.9V67.4h76.3z" data-color="2"></path></g></svg>
+                <span>EAD Plataform</span>
             </div>
             <nav class="navbar">
                 <ul>
@@ -242,8 +79,35 @@
                 </div>
             </div>
         </section>
-        <section></section>
-        <section></section>
+        <section class="section-testimonial">
+            <div class="container">
+                <div class="content">
+                    <p>“I'm a testimonial. Click to edit me and add text that says something nice about you and your services. Let your customers review you and tell their friends how great you are.”</p>
+                    <strong>Lisa, Dina's mom</strong>
+                </div>
+            </div>
+        </section>
     </main>
+    <footer>
+        <div class="container">
+            <div class="logo">
+                <svg preserveAspectRatio="xMidYMid meet" id="comp-k8x5jfyesvgcontent" data-bbox="36.8 60.7 126.3 75" viewBox="36.8 60.7 126.3 75" height="35" width="44" xmlns="http://www.w3.org/2000/svg" data-type="color" role="img" aria-labelledby="comp-k8x5jfye-svgtitle"><title id="comp-k8x5jfye-svgtitle">Homepage</title><g><path d="M144.1 124.9V60.7H55.9v64.1l-19.1 6.6v4.3h126.3v-4.3l-19-6.5zm-6-.1H61.9V67.4h76.3v57.4z" fill="#8f98ff" data-color="1"></path><path fill="#192a88" d="M138.2 67.4v57.5H61.9V67.4h76.3z" data-color="2"></path></g></svg>
+                <span>EAD Plataform</span>
+            </div>
+            <div class="wrapper">
+                <ul>
+                    <li>About</li>
+                    <li>Book a Lesson</li>
+                    <li>Packages</li>
+                    <li>Materials</li>
+                </ul>
+                <ul>
+                    <li>info@mysite.com</li>
+                    <li>123-456-7890</li>
+                </ul>
+                <em>© {{ \Carbon\Carbon::now()->format('Y') }} - PI Univesp.</em>
+            </div>
+        </div>
+    </footer>
 </body>
 </html>

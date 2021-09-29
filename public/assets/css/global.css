@@ -1,0 +1,42 @@
+/* BEGIN:: INITIALIZE */
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  /* font-family: Helvetica; */
+  font-family: 'Noto Sans Display', sans-serif;
+}
+::-webkit-scrollbar{
+  width: 6px;
+}
+::-webkit-scrollbar-thumb{
+  background: #dde;
+}
+::-webkit-scrollbar-track{
+  background: #fff;
+}
+a{
+  text-decoration: none;
+  color: inherit;
+}
+ul{
+  list-style: none;
+  padding-left: 0;
+}
+/* END:: INITIALIZE | BEGIN:: UTILS */
+.paragraph{
+  font-weight: 300;
+  opacity: .8;
+}
+.btn-primary{
+  background: #192A88;
+  color: white;
+
+  height: 3.2rem;
+  width: 9.2rem;
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+/* END:: UTILS */
