@@ -24,7 +24,7 @@
     ['name' => 'Voltar', 'href' => route('index')]
   ]])
   <main>
-    <form method="POST" action="{{ route('redefine_password') }}" onSubmit="return submitLoad();">
+    <form method="POST" action="{{ route('send_redefine_password') }}" onSubmit="return submitLoad();">
       {{ csrf_field() }}
       <h1>Esqueci minha Senha</h1>
       <div class="form-group {{ session()->has('auth-error-type') &&  session()->get('auth-error-type') == 'email' ? 'have-error':''}}">
@@ -44,5 +44,13 @@
   </main>
   @include('public_layout.footer')
   @include('utils.loading')
+  @include('utils.modalMessage')
+  <script>
+    $(function(){
+      @if(session()->has('message'))
+        showMessage("{!! session()->get('message') !!}");
+      @endif
+    })
+  </script>
 </body>
 </html>

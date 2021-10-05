@@ -30,4 +30,8 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'sender' => [
+        'secret_key' => env('SENDER_SECRET_KEY'),
+        'api_url' => env('SENDER_API_URL'),
+    ],
 ];

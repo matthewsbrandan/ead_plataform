@@ -33,6 +33,7 @@
       @yield('content')
     </div>
     @include('utils.search-box')
+    @include('utils.modalMessage')
   </main>
   <script>
     $(function(){
@@ -46,6 +47,9 @@
         let breadcrumbs = paths.map(path => `<li>${path}</li>`).join('');
         $('#navbar .breadcrumbs').html(breadcrumbs);
       }
+      @if(session()->has('message'))
+        showMessage("{!! session()->get('message') !!}");
+      @endif
     })
   </script>
   @yield('script')

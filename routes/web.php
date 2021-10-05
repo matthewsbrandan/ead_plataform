@@ -31,7 +31,13 @@ Route::get('/esqueci-minha-senha',
 )->name('forgot_password');
 Route::post('/solicitando-redefinicao-de-senha',
   'App\Http\Controllers\UserController@sendRedefinePassword'
+)->name('send_redefine_password');
+Route::get('/redefinicao-de-senha/{email}&{token}',
+  'App\Http\Controllers\UserController@redefinePassword'
 )->name('redefine_password');
+Route::post('/redefinindo-senha',
+  'App\Http\Controllers\UserController@storePassword'
+)->name('store_password');
 // END:: FORGOT PASSWORD
 
 Route::middleware(['auth'])->group(function() {
