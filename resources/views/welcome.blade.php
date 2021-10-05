@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EAD PLATAFORM</title>
+    <title>{{ config('app.name') }}</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,25 +12,11 @@
     
     <link rel="stylesheet" href="{{ asset('assets/css/global.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/welcome.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/public_layout/header.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/public_layout/footer.css') }}">
 </head>
 <body>
-    <header class="header-main">
-        <div class="container">
-            <div class="logo">
-                <svg preserveAspectRatio="xMidYMid meet" id="comp-k8x5jfyesvgcontent" data-bbox="36.8 60.7 126.3 75" viewBox="36.8 60.7 126.3 75" height="35" width="44" xmlns="http://www.w3.org/2000/svg" data-type="color" role="img" aria-labelledby="comp-k8x5jfye-svgtitle"><title id="comp-k8x5jfye-svgtitle">Homepage</title><g><path d="M144.1 124.9V60.7H55.9v64.1l-19.1 6.6v4.3h126.3v-4.3l-19-6.5zm-6-.1H61.9V67.4h76.3v57.4z" fill="#8f98ff" data-color="1"></path><path fill="#192a88" d="M138.2 67.4v57.5H61.9V67.4h76.3z" data-color="2"></path></g></svg>
-                <span>EAD Plataform</span>
-            </div>
-            <nav class="navbar">
-                <ul>
-                    <li>About</li>
-                    <li>Book a Lesson</li>
-                    <li>Packages</li>
-                    <li>Learning Tools</li>
-                    <li>Contact</li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+    @include('public_layout.header')
     <main>
         <section class="section-absolute">
             <img src="https://static.wixstatic.com/media/84770f_1a6698b369e4495ea337d92f496f6fb4~mv2.jpg/v1/fill/w_846,h_738,al_t,q_85,usm_0.66_1.00_0.01/84770f_1a6698b369e4495ea337d92f496f6fb4~mv2.webphttps://static.wixstatic.com/media/84770f_1a6698b369e4495ea337d92f496f6fb4~mv2.jpg/v1/fill/w_846,h_738,al_t,q_85,usm_0.66_1.00_0.01/84770f_1a6698b369e4495ea337d92f496f6fb4~mv2.webp"/>
@@ -39,7 +25,7 @@
             <div class="content">
                 <h2>Private Lessons Online</h2>
                 <p class="paragraph">Don't Miss out While You Are Away From School</p>
-                <a href="#" class="btn-primary">Book a Lesson</a>
+                <a href="{{ route('login') }}" class="btn-primary">Acessar a Plataforma</a>
             </div>
         </section>
         <section class="section-what-teach">
@@ -88,26 +74,6 @@
             </div>
         </section>
     </main>
-    <footer>
-        <div class="container">
-            <div class="logo">
-                <svg preserveAspectRatio="xMidYMid meet" id="comp-k8x5jfyesvgcontent" data-bbox="36.8 60.7 126.3 75" viewBox="36.8 60.7 126.3 75" height="35" width="44" xmlns="http://www.w3.org/2000/svg" data-type="color" role="img" aria-labelledby="comp-k8x5jfye-svgtitle"><title id="comp-k8x5jfye-svgtitle">Homepage</title><g><path d="M144.1 124.9V60.7H55.9v64.1l-19.1 6.6v4.3h126.3v-4.3l-19-6.5zm-6-.1H61.9V67.4h76.3v57.4z" fill="#8f98ff" data-color="1"></path><path fill="#192a88" d="M138.2 67.4v57.5H61.9V67.4h76.3z" data-color="2"></path></g></svg>
-                <span>EAD Plataform</span>
-            </div>
-            <div class="wrapper">
-                <ul>
-                    <li>About</li>
-                    <li>Book a Lesson</li>
-                    <li>Packages</li>
-                    <li>Materials</li>
-                </ul>
-                <ul>
-                    <li>info@mysite.com</li>
-                    <li>123-456-7890</li>
-                </ul>
-                <em>© {{ \Carbon\Carbon::now()->format('Y') }} - PI Univesp.</em>
-            </div>
-        </div>
-    </footer>
+    @include('public_layout.footer')
 </body>
 </html>

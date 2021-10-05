@@ -1,0 +1,69 @@
+#loading {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 9999999;
+  display: none;
+  background: rgba(0, 0, 20, 0.6);
+}
+
+#loading .content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: .3rem;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  height: 100%;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+
+#loading span {
+  text-align: center;
+  color: #ddd;
+}
+
+#loading small {
+  text-align: center;
+  color: #bbb;
+}
+
+#loading .spinner {
+  border: 5px solid #999;
+  border-left-color: #333;
+  border-radius: 50%;
+  -webkit-box-shadow: 0 0 60px rgba(200, 200, 200, 0.5);
+          box-shadow: 0 0 60px rgba(200, 200, 200, 0.5);
+  height: 40px;
+  width: 40px;
+  -webkit-animation: spin 1s linear infinite;
+          animation: spin 1s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  to {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  to {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+/*# sourceMappingURL=loading.css.map */

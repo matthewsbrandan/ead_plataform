@@ -1,0 +1,134 @@
+#sidebar {
+  color: #334;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 15rem;
+  z-index: 1;
+  -webkit-box-shadow: 0 0 15px #0001;
+          box-shadow: 0 0 15px #0001;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: space-between;
+      -ms-flex-align: space-between;
+          align-items: space-between;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+#sidebar .logo {
+  height: 3.6rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+  font-size: 1.2rem;
+}
+
+#sidebar #list-routes {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+  overflow-y: auto;
+  height: calc(100vh - 3.5rem);
+}
+
+#sidebar #list-routes::-webkit-scrollbar-thumb {
+  background: #eef;
+}
+
+#sidebar #list-routes::-webkit-scrollbar-track {
+  background: #fff;
+}
+
+#sidebar #list-routes > li > a {
+  padding: 1rem 1.4rem;
+}
+
+#sidebar #list-routes > li {
+  margin: .4rem;
+}
+
+#sidebar #list-routes > li > a {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: .4rem;
+}
+
+#sidebar #list-routes li.active {
+  background: #aad2;
+  border-radius: .8rem;
+  font-weight: bold;
+}
+
+#sidebar .content-avatar {
+  padding: 1rem 1.4rem .4rem;
+}
+
+#sidebar .content-avatar img {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  -webkit-box-shadow: 0 0 0 #0002;
+          box-shadow: 0 0 0 #0002;
+}
+
+#sidebar .content-avatar .dropdown {
+  display: none;
+  position: absolute;
+  bottom: 1.5rem;
+  left: 4rem;
+  background: #fff;
+  -webkit-box-shadow: 0 0 15px #0002;
+          box-shadow: 0 0 15px #0002;
+  border: 1px solid #eef;
+  padding: 1rem 0;
+  border-radius: .4rem;
+  min-width: 10rem;
+}
+
+#sidebar .content-avatar .dropdown ul li a {
+  display: block;
+  padding: .4rem 1rem;
+  -webkit-transition: .2s;
+  transition: .2s;
+}
+
+#sidebar .content-avatar .dropdown ul li a:hover {
+  background: #eef;
+}
+
+#sidebar:not(.expanded) {
+  width: 5rem;
+}
+
+#sidebar:not(.expanded) .show-if-expanded {
+  display: none;
+}
+
+#close-sidebar {
+  display: none;
+  position: fixed;
+  top: 1rem;
+  left: 15.8rem;
+}
+/*# sourceMappingURL=sidebar.css.map */
