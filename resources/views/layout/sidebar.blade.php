@@ -24,6 +24,12 @@
         <span class="show-if-expanded">Chats</span>
       </a>
     </li>
+    <li id="sidebar-categorias">
+      <a href="{{ route('category.index') }}">
+        <svg title="Categorias" alt="Categorias" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: #445;transform: ;msFilter:;"><path d="M10 3H4a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1zm10 10h-6a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-6a1 1 0 0 0-1-1zM17 3c-2.206 0-4 1.794-4 4s1.794 4 4 4 4-1.794 4-4-1.794-4-4-4zM7 13c-2.206 0-4 1.794-4 4s1.794 4 4 4 4-1.794 4-4-1.794-4-4-4z"></path></svg>
+        <span class="show-if-expanded">Categorias</span>
+      </a>
+    </li>
     <li>
       <a href="javascript: showSearchBox();">
         <svg title="Pesquisar" alt="Pesquisar" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: #445;transform: ;msFilter:;"><path d="M10 18a7.952 7.952 0 0 0 4.897-1.688l4.396 4.396 1.414-1.414-4.396-4.396A7.952 7.952 0 0 0 18 10c0-4.411-3.589-8-8-8s-8 3.589-8 8 3.589 8 8 8zm0-14c3.309 0 6 2.691 6 6s-2.691 6-6 6-6-2.691-6-6 2.691-6 6-6z"></path></svg>
@@ -32,7 +38,10 @@
     </li>
   </ul>
   <div class="content-avatar">
-    <img src="https://github.com/matthewsbrandan.png" onclick="$(this).next().next().toggle('slow')"/>
+    <img
+      src="{{ auth()->user()->thumbnail ?? asset('assets/images/user-default.jpeg') }}"
+      onclick="$(this).next().next().toggle('slow')"
+    />
     <span class="show-if-expanded text-ellipsis" style="
       vertical-align: 11px;
       padding: .3rem;

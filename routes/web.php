@@ -13,8 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function(){ return view('welcome'); })->name('index');
-
+Route::get('/', 'App\Http\Controllers\HomeController@welcome')->name('index');
 // BEGIN:: REGISTER
 Route::get('/cadastrar', 'App\Http\Controllers\UserController@create')->name('register');
 Route::post('/cadastrar/salvar', 'App\Http\Controllers\UserController@store')->name('user.store');
@@ -54,5 +53,12 @@ Route::middleware(['auth'])->group(function() {
   Route::name('user.')->group(function(){
     Route::get('/perfil', 'App\Http\Controllers\UserController@profile')->name('profile');
     Route::get('/notificacoes', 'App\Http\Controllers\UserController@notification')->name('notification');
+  });
+
+  Route::name('category.')->group(function(){
+    Route::get('/categorias', 'App\Http\Controllers\CategoryController@index')->name('index');
+    Route::get('/categorias/nova', 'App\Http\Controllers\CategoryController@create')->name('create');
+    Route::get('/categorias/editar', 'App\Http\Controllers\CategoryController@edit')->name('edit');
+    Route::post('/categorias/salvar/{id?}', 'App\Http\Controllers\CategoryController@store')->name('store');
   });
 });
