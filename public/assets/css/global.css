@@ -50,4 +50,10 @@ ul{
   overflow: hidden;
   text-overflow: ellipsis;
 }
+.badge{
+  padding: .2rem .6rem;
+  font-size: .7rem;
+  border-radius: 999rem;
+  background: #99a;
+}
 /* END:: UTILS */

@@ -57,7 +57,7 @@
 <div id="modalMessage">
   <div class="overlay">
     <div class="container">
-      <header>CMS</header>
+      <header>{{ config('app.name') }}</header>
       <section></section>
       <button class="closeModal" type="button" onclick="$('#modalMessage').hide();">x</button>
     </div>

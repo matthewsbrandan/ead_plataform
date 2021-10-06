@@ -1,0 +1,73 @@
+.form-custom {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: .8rem;
+  margin: auto;
+  width: 20rem;
+}
+
+.form-custom .form-group {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.form-custom .form-group input, .form-custom .form-group textarea {
+  height: 3.2rem;
+  min-width: 9.2rem;
+  padding: 1rem;
+  border: 1px solid #eef;
+}
+
+.form-custom .form-group input:focus-within, .form-custom .form-group textarea:focus-within {
+  border-bottom: 2px solid #667;
+}
+
+.form-custom .form-group textarea {
+  height: auto;
+}
+
+.form-custom .form-group .error-message {
+  display: none;
+  font-size: .75rem;
+  color: #d39;
+}
+
+.form-custom .form-group.have-error input, .form-custom .form-group.have-error textarea {
+  border-bottom: 2px solid #d39;
+}
+
+.form-custom .form-group.have-error .error-message {
+  display: block;
+}
+
+.form-custom .link-group {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  gap: .4rem;
+}
+
+.form-custom .link-group a {
+  margin-top: -.5rem;
+  font-size: .85rem;
+  color: #667;
+}
+/*# sourceMappingURL=form.css.map */

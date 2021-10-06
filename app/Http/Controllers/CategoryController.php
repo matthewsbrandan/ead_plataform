@@ -12,6 +12,7 @@ class CategoryController extends Controller
         $this->take = 20;
     }
     public function index($skip = 0, $responseInArray = false){
+        $this->adminOnly();
         $categories = Category::orderBy('num_courses','desc')
             ->skip($skip)
             ->take($this->take)
@@ -26,13 +27,20 @@ class CategoryController extends Controller
 
         return view('category.index',['categories' => $categories, 'total' => $total]);
     }
-    public function create(){
-        // return view('category.create');
+    public function edit($id){
+        $this->adminOnly();
+        if(!$category = Category::whereId($id)->first()) return redirect()->back()->with(
+            'message', 'Categoria não encontrada'
+        );
+        return view('category.edit',['category' => $category]);
     }
-    public function edit(){
-        // return view('category.edit');
-    }
-    public function store($id = null){
-        // $data = [];
+    public function store(Request $request, $id = null){
+        $this->adminOnly();
+        $data = [
+            'title',
+            'slug',
+            'description',
+            'wallpaper',
+        ];
     }
 }

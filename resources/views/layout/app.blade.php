@@ -24,9 +24,10 @@
       margin-left: 15rem;
     }
     #main{
-      padding: 1.4rem;
+      padding: 1.4rem 2rem;
     }
   </style>
+  @yield('style')
 </head>
 <body>
   <main id="root">

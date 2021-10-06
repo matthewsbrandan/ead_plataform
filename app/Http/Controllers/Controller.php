@@ -12,4 +12,11 @@ use Illuminate\Support\Facades\Hash;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+
+    public function adminOnly(){
+        if(auth()->user()->type !== 'admin') throw new \Exception(
+            'Você não tem permissão para acessar está página'
+        );
+        return true;
+    }
 }

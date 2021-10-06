@@ -57,8 +57,7 @@ Route::middleware(['auth'])->group(function() {
 
   Route::name('category.')->group(function(){
     Route::get('/categorias', 'App\Http\Controllers\CategoryController@index')->name('index');
-    Route::get('/categorias/nova', 'App\Http\Controllers\CategoryController@create')->name('create');
-    Route::get('/categorias/editar', 'App\Http\Controllers\CategoryController@edit')->name('edit');
+    Route::get('/categorias/editar/{id}', 'App\Http\Controllers\CategoryController@edit')->name('edit');
     Route::post('/categorias/salvar/{id?}', 'App\Http\Controllers\CategoryController@store')->name('store');
   });
 });
