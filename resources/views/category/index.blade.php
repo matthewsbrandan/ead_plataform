@@ -61,4 +61,5 @@
     </div>
   </div>
   @include('category.partials.modalNewCategory')
+  @include('utils.loading')
 @endsection
