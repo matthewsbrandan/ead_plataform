@@ -42,6 +42,30 @@ class UserController extends Controller
             auth()->user()->name.',<br/>Bem vindo(a) ao '. config('app.name')
         );
     }
+    public function changeType($type){
+        auth()->user()->update(['type' => $type]);
+        return redirect()->back()->with('message','Perfil atualizado com sucesso');
+    }
+    public function update(Request $request){
+        $data = [
+            'name' => $request->name
+        ];
+
+        if($request->file('thumbnail')){
+            $path = "uploads/profile/";
+            ['names' => $names,'errors' => $errors] = $this->uploadImages([$request->file('thumbnail')],$path);
+    
+            if(count($errors) > 0 || count($names) == 0) return redirect()->back()->with(
+                'message', 'Houve um erro ao fazer o upload da imagem'
+            );
+    
+            $thumbnail = $names[0];
+            $data+= ['thumbnail' => $thumbnail];
+        }
+
+        auth()->user()->update($data);
+        return redirect()->back()->with('message','Perfil atualizado com sucesso!');
+    }
     public function profile(){
         return view('user.profile');
     }

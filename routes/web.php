@@ -51,7 +51,11 @@ Route::middleware(['auth'])->group(function() {
   });
 
   Route::name('user.')->group(function(){
-    Route::get('/perfil', 'App\Http\Controllers\UserController@profile')->name('profile');
+    Route::name('profile.')->group(function(){
+      Route::get('/perfil', 'App\Http\Controllers\UserController@profile')->name('index');
+      Route::get('/perfil/atualizar-tipo/{type}', 'App\Http\Controllers\UserController@changeType')->name('change_type');
+      Route::post('/perfil/atualizar', 'App\Http\Controllers\UserController@update')->name('update');
+    });
     Route::get('/notificacoes', 'App\Http\Controllers\UserController@notification')->name('notification');
   });
 

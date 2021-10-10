@@ -21,18 +21,14 @@
           flex-direction: column;
 }
 
-.form-custom .form-group input,
-.form-custom .form-group textarea,
-.form-custom .form-group.form-control{
+.form-custom .form-group input, .form-custom .form-group textarea {
   height: 3.2rem;
   min-width: 9.2rem;
   padding: 1rem;
   border: 1px solid #eef;
 }
 
-.form-custom .form-group input:focus-within,
-.form-custom .form-group textarea:focus-within,
-.form-custom .form-group.form-control:focus-within {
+.form-custom .form-group input:focus-within, .form-custom .form-group textarea:focus-within {
   border-bottom: 2px solid #667;
 }
 
@@ -46,8 +42,7 @@
   color: #d39;
 }
 
-.form-custom .form-group.have-error input
-.form-custom .form-group.have-error textarea {
+.form-custom .form-group.have-error input, .form-custom .form-group.have-error textarea {
   border-bottom: 2px solid #d39;
 }
 

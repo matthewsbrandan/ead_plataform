@@ -1,0 +1,90 @@
+.content-profile {
+  margin-top: 2rem;
+}
+
+.content-profile .content-thumbnail {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 1.5rem;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.content-profile .content-thumbnail img {
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
+  -webkit-box-shadow: 0 0 0 #0002;
+          box-shadow: 0 0 0 #0002;
+}
+
+.content-profile .content-thumbnail .user-type {
+  border: 1px solid #ccd;
+  border-radius: 99rem;
+  color: #99a;
+  background: #eef4;
+}
+
+.content-profile .content-thumbnail .user-type a {
+  width: 5.8rem;
+  height: 2.2rem;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  font-weight: 600;
+}
+
+.content-profile .content-thumbnail .user-type a.active {
+  color: #556;
+  background: #fff;
+  border-radius: 99rem;
+  width: 7rem;
+  font-weight: 600;
+}
+
+.content-profile .content-thumbnail .user-type a.active.user-type-right {
+  border-left: 2px solid #ccd;
+}
+
+.content-profile .content-thumbnail .user-type a.active.user-type-left {
+  border-right: 2px solid #ccd;
+}
+
+.content-profile .form-custom {
+  margin-top: 2rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  gap: 1rem;
+  width: 100%;
+}
+
+.content-profile .form-custom label {
+  font-size: .7rem;
+}
+
+.content-profile .form-custom .form-group input, .content-profile .form-custom .form-group textarea {
+  border: 0;
+  border-bottom: 2px solid #bbc;
+}
+
+.content-profile .form-custom .form-group input:focus-within, .content-profile .form-custom .form-group textarea:focus-within {
+  border-bottom: 2px solid #667;
+}
+/*# sourceMappingURL=profile.css.map */

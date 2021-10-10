@@ -53,7 +53,15 @@
       @if(session()->has('message'))
         showMessage("{!! session()->get('message') !!}");
       @endif
+      if(localStorage.getItem('sidebar-expanded') === 'expanded'){
+        toggleExpandSidebar($('#sidebar .logo').parent());
+      }
     })
+    function toggleExpandSidebar(elem){
+      localStorage.setItem('sidebar-expanded', elem.parent().hasClass('expanded') ? null:'expanded');
+      elem.parent().toggleClass('expanded');
+      elem.parent().parent().toggleClass('header-expanded');
+    }
   </script>
   @yield('script')
 </body>
