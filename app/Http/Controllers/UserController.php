@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Hash;
 
 use App\Services\SenderService;
 
@@ -65,6 +66,14 @@ class UserController extends Controller
 
         auth()->user()->update($data);
         return redirect()->back()->with('message','Perfil atualizado com sucesso!');
+    }
+    public function changePassword(Request $request){
+        if (Hash::check($request->password, auth()->user()->password)) {
+            $data = ['password' => bcrypt($request->new_password)];
+            auth()->user()->update($data);
+            return redirect()->back()->with('message','Senha alterada com sucesso!');
+        }
+        return redirect()->back()->with('invalid-password','Senha inválida!');
     }
     public function profile(){
         return view('user.profile');

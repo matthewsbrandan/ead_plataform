@@ -55,6 +55,7 @@ Route::middleware(['auth'])->group(function() {
       Route::get('/perfil', 'App\Http\Controllers\UserController@profile')->name('index');
       Route::get('/perfil/atualizar-tipo/{type}', 'App\Http\Controllers\UserController@changeType')->name('change_type');
       Route::post('/perfil/atualizar', 'App\Http\Controllers\UserController@update')->name('update');
+      Route::post('/perfil/atualizar-senha', 'App\Http\Controllers\UserController@changePassword')->name('change_password');
     });
     Route::get('/notificacoes', 'App\Http\Controllers\UserController@notification')->name('notification');
   });

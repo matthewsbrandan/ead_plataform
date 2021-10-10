@@ -34,7 +34,7 @@ ul{
   font-weight: 300;
   opacity: .8;
 }
-.btn-primary{
+.btn-primary,.btn-secondary{
   background: #192A88;
   color: white;
 
@@ -44,6 +44,12 @@ ul{
   display: flex;
   align-items: center;
   justify-content: center;
+  text-align: center;
+}
+.btn-secondary{
+  background: #dde;
+  color: #223;
+  font-weight: 600;
 }
 .text-ellipsis {
   white-space: nowrap;

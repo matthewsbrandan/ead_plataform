@@ -67,7 +67,47 @@
           <button type="submit" class="btn-primary" style="align-self: flex-end;">
             Atualizar
           </button>
+          <button
+            type="button"
+            class="btn-secondary"
+            style="align-self: flex-end;"
+            onclick="$('#form-password').toggle('slow')"
+          >
+            Alterar Senha
+          </button>
         </div>
+      </form>
+      <form
+        method="POST"
+        action="{{ route('user.profile.change_password') }}"
+        onsubmit="return submitLoad()"
+        class="form-custom"
+        id="form-password"
+        style="display: none"
+      >
+        {{ csrf_field() }}
+        <div class="form-group {{ session()->has('invalid-password') ? 'have-error':''}}">
+          <label>Senha Atual:</label>
+          <input
+            type="password"
+            name="password"
+            placeholder="Digite sua Senha Atual..."
+            required
+          />
+          <span class="error-message">Senha inválida</span>
+        </div>
+        <div class="form-group">
+          <label>Nova Senha:</label>
+          <input
+            type="password"
+            name="new_password"
+            placeholder="Digite sua Nova Senha..."
+            required
+          />
+        </div>
+        <button type="submit" class="btn-primary" style="align-self: flex-end;">
+          Alterar Senha
+        </button>
       </form>
     </div>
   </div>
@@ -89,5 +129,11 @@
         }
       }
     }
+    $(function(){
+      @if(session()->has('invalid-password'))
+        $('#form-password').toggle('slow')
+        $('#form-password input[name="password"]').focus();
+      @endif
+    });
   </script>
 @endsection
