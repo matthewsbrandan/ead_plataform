@@ -64,7 +64,7 @@ class CategoryController extends Controller
         $slug = $this->generateSlug($title);
 
         $slugs = Category::select('slug')
-            ->where('slug','like',"%$slug%")
+            ->where('slug','like',"$slug%")
             ->get()
             ->toArray();
 

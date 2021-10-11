@@ -1,7 +1,8 @@
 @extends('layout.app')
 @section('head')
   <title>Home | {{ config('app.name') }}</title>
-@endsection('head')
+  @php  $sidebarActive = 'home' @endphp
+@endsection
 @section('content')
   <div class="container">
     <h1>Home</h1>

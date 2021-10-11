@@ -23,5 +23,14 @@ class Course extends Model
         'raiting',
         'user_id',
         'category_id',
+        'published_at'
     ];
+    protected $dates = ['published_at' => 'd/m/Y'];
+
+    public function students(){
+        return $this->belongsToMany(User::class, 'user_courses', 'course_id', 'user_id');
+    }
+    public function studentsPivot(){
+        return $this->hasMany(UserCourse::class, 'course_id');
+    }
 }

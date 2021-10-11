@@ -60,6 +60,7 @@
 
   .content-avatar{
     padding: 1rem 1.4rem .4rem;
+
     img{
       width: 2rem;
       height: 2rem;
@@ -88,6 +89,11 @@
           background: #eef;
         }
       }
+    }
+
+    &.active img{
+      border: 2px solid #99a;
+      box-shadow: 0 0 15px #0012;
     }
   }
 

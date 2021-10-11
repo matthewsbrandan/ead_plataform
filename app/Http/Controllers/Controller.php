@@ -20,6 +20,13 @@ class Controller extends BaseController
         );
         return true;
     }
+    public function teacherOnly(){
+        if(!in_array(auth()->user()->type,['teacher', 'admin'])) throw new \Exception(
+            'Você não tem permissão para acessar está página'
+        );
+        return true;
+    }
+
     #region LOCAL FUNCTIONS
     protected function generateSlug($str){
         $str = mb_strtolower($str);

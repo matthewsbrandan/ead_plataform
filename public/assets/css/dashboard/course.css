@@ -1,0 +1,80 @@
+.navbar {
+  margin: .6rem 0 1rem;
+  color: #99a;
+}
+
+.navbar li {
+  display: inline-block;
+}
+
+.navbar li a {
+  padding: .4rem 1rem;
+  -webkit-transition: .2s;
+  transition: .2s;
+}
+
+.navbar li a:hover {
+  -webkit-filter: brightness(0.7);
+          filter: brightness(0.7);
+  border-radius: .4rem;
+}
+
+.navbar li.active {
+  font-weight: bold;
+}
+
+.navbar li:first-child a {
+  padding-left: 0;
+}
+
+.container-grid {
+  width: 100%;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.container-grid .form-custom {
+  width: 100%;
+  margin: inherit;
+}
+
+.container-grid .form-custom label {
+  color: #99a;
+  padding-bottom: .2rem;
+  font-size: .7rem;
+}
+
+@media (max-width: 800px) {
+  .container-grid {
+    -ms-grid-columns: 1fr;
+        grid-template-columns: 1fr;
+  }
+}
+
+.content-matters {
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  overflow-x: auto;
+  padding-bottom: .6rem;
+  gap: 1rem;
+}
+
+.content-matters > div {
+  padding: 1rem;
+  border-radius: .5rem;
+  max-width: inherit;
+  -webkit-transition: .2s;
+  transition: .2s;
+}
+
+.content-matters > div:hover, .content-matters > div.active {
+  background: #eef9;
+}
+
+.content-matters::-webkit-scrollbar {
+  height: 2px;
+}
+/*# sourceMappingURL=course.css.map */

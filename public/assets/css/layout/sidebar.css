@@ -117,6 +117,12 @@
   background: #eef;
 }
 
+#sidebar .content-avatar.active img {
+  border: 2px solid #99a;
+  -webkit-box-shadow: 0 0 15px #0012;
+          box-shadow: 0 0 15px #0012;
+}
+
 #sidebar:not(.expanded) {
   width: 5rem;
 }

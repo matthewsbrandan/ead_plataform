@@ -1,41 +1,12 @@
 @extends('layout.app')
 @section('head')
   <title>Categorias | {{ config('app.name') }}</title>
-@endsection('head')
+  @php  $sidebarActive = 'category' @endphp
+@endsection
 @section('style')
   <link rel="stylesheet" href="{{ asset('assets/css/form.css') }}">
-  <style>
-    .content-matters{
-      display: flex;
-      flex-wrap: wrap;
-      gap: 4rem;
-      margin: 1rem auto;
-    }
-    .content-matters > div{
-      max-width: 17rem;
-  
-      display: flex;
-      flex-direction: column;
-      gap: .6rem;
-    }
-    .content-matters strong{
-      font-size: 1.3rem;
-      display: inline-flex;
-      align-items: center;
-      gap: .4rem;
-    }
-    .content-matters .matter{
-      background: #dde;
-  
-      width: 280px;
-      height: 280px;
-  
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-  </style>
-@endsection('style')
+  <link rel="stylesheet" href="{{ asset('assets/css/content-matters.css') }}">
+@endsection
 @section('content')
   <div class="container">
     <div style="display: flex; gap: .4rem; align-items: center;">

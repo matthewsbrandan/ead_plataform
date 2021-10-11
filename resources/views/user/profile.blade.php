@@ -3,7 +3,8 @@
   <title>Perfil | {{ config('app.name') }}</title>
   <link rel="stylesheet" href="{{ asset('assets/css/form.css') }}">
   <link rel="stylesheet" href="{{ asset('assets/css/dashboard/profile.css') }}">
-@endsection('head')
+  @php  $sidebarActive = 'profile' @endphp
+@endsection
 @section('content')
   <div class="container">
     <h1>Perfil</h1>

@@ -17,7 +17,7 @@ class CreateCoursesTable extends Migration
             $table->id();
             $table->string('title');
             $table->string('slug')->unique();
-            $table->string('description');
+            $table->text('description');
             $table->text('wallpaper');
             $table->longText('about')->nullable();
             $table->string('keywords')->nullable();
@@ -28,6 +28,7 @@ class CreateCoursesTable extends Migration
             $table->integer('raiting')->nullable();
             $table->foreignId('user_id')->constrained('users');
             $table->foreignId('category_id')->constrained('categories');
+            $table->timestamp('published_at')->nullable();
             $table->timestamps();
         });
     }

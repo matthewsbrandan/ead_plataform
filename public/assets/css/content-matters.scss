@@ -1,0 +1,32 @@
+.content-matters{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4rem;
+  margin: 1rem auto;
+
+  & > div{
+    max-width: 17rem;
+  
+    display: flex;
+    flex-direction: column;
+    gap: .6rem;
+  }
+
+  strong{
+    font-size: 1.3rem;
+    display: inline-flex;
+    align-items: center;
+    gap: .4rem;
+  }
+
+  .matter{
+    background: #dde;
+  
+    width: 280px;
+    height: 280px;
+  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

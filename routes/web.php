@@ -43,7 +43,15 @@ Route::middleware(['auth'])->group(function() {
   Route::get('/home','App\Http\Controllers\HomeController@index')->name('home');
 
   Route::name('course.')->group(function(){
-    Route::get('/meus-cursos', 'App\Http\Controllers\CourseController@index')->name('index');
+    Route::get('/cursos', 'App\Http\Controllers\CourseController@index')->name('index');
+    Route::get('/cursos/mais{skip?}', 'App\Http\Controllers\CourseController@index')->name('index.more');
+    
+    Route::get('/meus-cursos', 'App\Http\Controllers\CourseController@mine')->name('mine');
+    Route::get('/meus-cursos/mais/{skip?}', 'App\Http\Controllers\CourseController@mine')->name('mine.more');
+
+    Route::get('/novo-cursos', 'App\Http\Controllers\CourseController@create')->name('create');
+    Route::post('/novo-cursos/salvar', 'App\Http\Controllers\CourseController@store')->name('store');
+
   });
   
   Route::name('chat.')->group(function(){

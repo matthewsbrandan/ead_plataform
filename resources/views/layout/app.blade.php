@@ -40,16 +40,6 @@
   </main>
   <script>
     $(function(){
-      const paths = window.location.pathname.split('/');
-      paths.shift();
-      if(paths.length > 0){
-        $(`#sidebar-${paths[0]}`).addClass('active');
-        if(`#sidebar-${paths[0]}` === '#sidebar-pagina'){
-          $('#sidebar-pagina > span').click();
-        }
-        let breadcrumbs = paths.map(path => `<li>${path}</li>`).join('');
-        $('#navbar .breadcrumbs').html(breadcrumbs);
-      }
       @if(session()->has('message'))
         showMessage("{!! session()->get('message') !!}");
       @endif
