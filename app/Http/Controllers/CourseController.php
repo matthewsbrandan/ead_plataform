@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Carbon\Carbon;
+
 use App\Models\Course;
 use App\Models\Category;
 
@@ -13,6 +15,7 @@ class CourseController extends Controller
     public function __construct(){
         $this->take = 10;
     }
+    #region SHOW
     public function index($skip = 0){
         return view('course.index');
     }
@@ -29,7 +32,7 @@ class CourseController extends Controller
     }
     public function mine($skip = 0){
         $this->teacherOnly();
-        $courses = Course::whereUserId(auth()->user()->id)
+        $courses = Course::with('category')->whereUserId(auth()->user()->id)
             ->take($this->take)
             ->skip($skip)
             ->get();
@@ -41,7 +44,20 @@ class CourseController extends Controller
             'courses' => $courses,
         ]);    
     }
+    public function edit($id){
+        $this->teacherOnly();
+        if(!$course = Course::whereId($id)
+            ->whereUserId(auth()->user()->id)
+            ->first()
+        ) return redirect()->back()->with(
+            'message',
+            'Curso não encontrado'
+        );
 
+        dd($course->toArray());
+    }
+    #endregion SHOW
+    #region STORE
     public function store(Request $request){
         $this->teacherOnly();
 
@@ -72,6 +88,29 @@ class CourseController extends Controller
             "Curso criado com sucesso!<br/>Adicione aulas para ele e publique quando quiser!"
         );
     }
+    public function publish($id){
+        $this->teacherOnly();
+
+        if(!$course = Course::whereId($id)
+            ->whereUserId(auth()->user()->id)
+            ->first()
+        ) return redirect()->back()->with(
+            'message',
+            'Curso não encontrado'
+        );
+
+        if($course->published_at) return redirect()->back()->with(
+            'message',
+            'Este curso já foi publicado'
+        );
+
+        $course->update(['published_at' => Carbon::now()]);
+        return redirect()->route('course.mine')->with(
+            'message',
+            'Curso publicado com sucesso'
+        );
+    }
+    #endregion STORE
     #region LOCAL FUNCTIONS
     protected function handleCourseSlug($title){
         $slug = $this->generateSlug($title);

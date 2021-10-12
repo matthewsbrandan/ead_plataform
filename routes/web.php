@@ -44,14 +44,24 @@ Route::middleware(['auth'])->group(function() {
 
   Route::name('course.')->group(function(){
     Route::get('/cursos', 'App\Http\Controllers\CourseController@index')->name('index');
-    Route::get('/cursos/mais{skip?}', 'App\Http\Controllers\CourseController@index')->name('index.more');
+    Route::get('/cursos/mais/{skip}', 'App\Http\Controllers\CourseController@index')->name('index.more');
+    Route::get('/cursos/assistir/{slug}', 'App\Http\Controllers\CourseController@show')->name('show');
     
     Route::get('/meus-cursos', 'App\Http\Controllers\CourseController@mine')->name('mine');
-    Route::get('/meus-cursos/mais/{skip?}', 'App\Http\Controllers\CourseController@mine')->name('mine.more');
+    Route::name('mine.')->group(function(){
+      Route::get('/meus-cursos/mais/{skip}', 'App\Http\Controllers\CourseController@mine')->name('more');
+      Route::get('/meus-cursos/editar/{id}', 'App\Http\Controllers\CourseController@edit')->name('edit');
+      Route::get('/meus-cursos/publicar/{id}', 'App\Http\Controllers\CourseController@publish')->name('publish');
+    });
 
-    Route::get('/novo-cursos', 'App\Http\Controllers\CourseController@create')->name('create');
-    Route::post('/novo-cursos/salvar', 'App\Http\Controllers\CourseController@store')->name('store');
+    Route::get('/novo-curso', 'App\Http\Controllers\CourseController@create')->name('create');
+    Route::post('/novo-curso/salvar', 'App\Http\Controllers\CourseController@store')->name('store');
+  });
 
+  Route::name('lesson.')->group(function(){
+    Route::get('/aulas/{slug}','App\Http\Controllers\LessonController@index')->name('index');
+    Route::get('/nova-aula/{slug}','App\Http\Controllers\LessonController@create')->name('create');
+    Route::post('/nova-aula/{slug}/store','App\Http\Controllers\LessonController@store')->name('store');
   });
   
   Route::name('chat.')->group(function(){

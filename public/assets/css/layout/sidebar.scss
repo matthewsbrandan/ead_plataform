@@ -69,26 +69,9 @@
     }
 
     .dropdown{
-      display: none;
-      position: absolute;
       bottom: 1.5rem;
       left: 4rem;
-      background: #fff;
-      box-shadow: 0 0 15px #0002;
-      border: 1px solid #eef;
-      padding: 1rem 0;
-      border-radius: .4rem;
       min-width: 10rem;
-
-      ul li a{
-        display: block;
-        padding: .4rem 1rem;
-        transition: .2s;
-
-        &:hover{
-          background: #eef;
-        }
-      }
     }
 
     &.active img{

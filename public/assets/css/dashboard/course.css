@@ -77,4 +77,98 @@
 .content-matters::-webkit-scrollbar {
   height: 2px;
 }
+
+.content-courses {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: .4rem;
+}
+
+.content-courses .course {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+  background: #fff;
+  -webkit-box-shadow: 0 0 20px #0002;
+          box-shadow: 0 0 20px #0002;
+  border-radius: .4rem;
+}
+
+.content-courses .course > img {
+  width: 18rem;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: .4rem;
+}
+
+.content-courses .course .title {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  position: relative;
+}
+
+.content-courses .course .title strong {
+  font-size: 1.4rem;
+}
+
+.content-courses .course .title .dropdown {
+  top: 0;
+  right: 1.5rem;
+  min-width: 10rem;
+}
+
+.content-courses .course p {
+  font-size: .8rem;
+  color: #667;
+  max-height: 3.5rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.content-courses .course .badge {
+  display: inline-block;
+  margin: 1.2rem 0 .4rem;
+  font-weight: 600;
+  padding: .4rem 1.4rem;
+}
+
+.content-courses .course .actions {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.content-courses .course .actions > div {
+  color: #667;
+  font-size: .8rem;
+}
+
+.content-courses .course .actions > div span:not(:last-child):after {
+  content: " | ";
+  padding: 0 .5rem;
+}
+
+.content-courses .course .actions .btn-primary {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  height: 2rem;
+}
 /*# sourceMappingURL=course.css.map */

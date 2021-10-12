@@ -93,28 +93,9 @@
 }
 
 #sidebar .content-avatar .dropdown {
-  display: none;
-  position: absolute;
   bottom: 1.5rem;
   left: 4rem;
-  background: #fff;
-  -webkit-box-shadow: 0 0 15px #0002;
-          box-shadow: 0 0 15px #0002;
-  border: 1px solid #eef;
-  padding: 1rem 0;
-  border-radius: .4rem;
   min-width: 10rem;
-}
-
-#sidebar .content-avatar .dropdown ul li a {
-  display: block;
-  padding: .4rem 1rem;
-  -webkit-transition: .2s;
-  transition: .2s;
-}
-
-#sidebar .content-avatar .dropdown ul li a:hover {
-  background: #eef;
 }
 
 #sidebar .content-avatar.active img {
