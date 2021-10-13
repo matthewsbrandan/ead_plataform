@@ -14,19 +14,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Display:wght@100;200;300;400;600;700&display=swap" rel="stylesheet">
   
   <link rel="stylesheet" href="{{ asset('assets/css/global.css') }}">
+  <link rel="stylesheet" href="{{ asset('assets/css/layout/app.css') }}">
   <link rel="stylesheet" href="{{ asset('assets/css/layout/sidebar.css') }}">
   <script type="text/javascript" src="{{ asset('assets/js/jquery.min.js') }}"></script>
-  <style>
-    #main{
-      margin-left: 5rem;
-    }
-    #root.header-expanded #main{
-      margin-left: 15rem;
-    }
-    #main{
-      padding: 1.4rem 2rem;
-    }
-  </style>
   @yield('style')
 </head>
 <body>
@@ -44,7 +34,7 @@
         showMessage("{!! session()->get('message') !!}");
       @endif
       if(localStorage.getItem('sidebar-expanded') === 'expanded'){
-        toggleExpandSidebar($('#sidebar .logo').parent());
+        if(window.innerWidth > 500) toggleExpandSidebar($('#sidebar .logo').parent());
       }
     })
     function toggleExpandSidebar(elem){

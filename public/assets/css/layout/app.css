@@ -1,0 +1,16 @@
+#root #main {
+  margin-left: 5rem;
+  padding: 1.4rem 2rem;
+}
+
+#root.header-expanded #main {
+  margin-left: 15rem;
+}
+
+@media (max-width: 500px) {
+  #root #main {
+    margin-top: 3.8rem !important;
+    margin-left: 0 !important;
+  }
+}
+/*# sourceMappingURL=app.css.map */

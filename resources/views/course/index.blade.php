@@ -18,7 +18,7 @@
               <div>
                 <div class="dropdown">
                   <ul>
-                    <li><a href="{{ route('course.mine.edit',['id' => $course->id]) }}">Configurações</a></li>
+                    <li><a href="{{ route('course.mine.edit',['id' => $course->id]) }}">Editar</a></li>
                     <li><a href="{{ route('lesson.create',['slug' => $course->slug]) }}">Conteúdo</a></li>
                     @if(!$course->published_at)
                       <li><a href="{{ route('course.mine.publish',['id' => $course->id]) }}">Publicar</a></li>

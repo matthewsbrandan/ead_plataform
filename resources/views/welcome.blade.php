@@ -65,5 +65,6 @@
         </section>
     </main>
     @include('public_layout.footer')
+    <script type="text/javascript" src="{{ asset('assets/js/jquery.min.js') }}"></script>
 </body>
 </html>

@@ -65,17 +65,18 @@
               required
             />
           </div>
-          <button type="submit" class="btn-primary" style="align-self: flex-end;">
-            Atualizar
-          </button>
-          <button
-            type="button"
-            class="btn-secondary"
-            style="align-self: flex-end;"
-            onclick="$('#form-password').toggle('slow')"
-          >
-            Alterar Senha
-          </button>
+          <div class="button-group">
+            <button type="submit" class="btn-primary">
+              Atualizar
+            </button>
+            <button
+              type="button"
+              class="btn-secondary"
+              onclick="$('#form-password').toggle('slow')"
+            >
+              Alterar Senha
+            </button>
+          </div>
         </div>
       </form>
       <form
@@ -106,9 +107,11 @@
             required
           />
         </div>
-        <button type="submit" class="btn-primary" style="align-self: flex-end;">
-          Alterar Senha
-        </button>
+        <div class="button-group">
+          <button type="submit" class="btn-primary" style="align-self: flex-end;">
+            Alterar Senha
+          </button>
+        </div>
       </form>
     </div>
   </div>
