@@ -91,6 +91,10 @@
       border-radius: .4rem;
     }
 
+    > div{
+      flex: 1;
+    }
+    
     .title{
       display: flex;
       justify-content: space-between;
