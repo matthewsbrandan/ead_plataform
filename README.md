@@ -30,5 +30,8 @@
   - A configuração do banco de dados acontece dentro do arquivo .env, e toda a criação de tabelas são controladas pelas migrations.
   - [video-configurando-banco-de-dados](https://watch.screencastify.com/v/weRMz3N3xfAW5rEVpjDo)
 
+## RESPONSIVIDADE DO SITE
+  - [video-responsive](https://watch.screencastify.com/v/mnRCqOEcyI7BJAliPGL7)
+  
 ## REFERENCIAS
 [Laravel-Documentation](https://laravel.com/docs/8.x)

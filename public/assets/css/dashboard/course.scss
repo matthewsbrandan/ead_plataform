@@ -94,14 +94,19 @@
     > div{
       flex: 1;
     }
-    
+
     .title{
       display: flex;
       justify-content: space-between;
       position: relative;
-      
-      strong{
-        font-size: 1.4rem;
+
+      > div:first-child{
+        display: flex;
+        align-items: center;
+
+        strong{
+          font-size: 1.4rem;
+        }
       }
 
       .dropdown{
@@ -146,6 +151,50 @@
         height: 2rem;
       }
     }
+  }
+}
+.fill-quality{
+  margin-left: 1rem;
+  position: relative;
+  cursor: pointer;
+
+  .points{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 2rem;
+    height: 2rem;
+
+    
+    border-radius: 50%;
+    border: 3px solid #99a;
+    color: #667;
+
+    font-weight: 600;
+    font-size: .8rem;
+  }
+
+  .missions{
+    display: none;
+
+    background: #fff;
+    box-shadow: 0 0 20px #0012;
+    padding: 1rem;
+    border-radius: .4rem;
+
+    list-style: inherit;
+    padding-left: 2.4rem;
+    font-size: .8rem;
+
+    position: absolute;
+
+    width: 20rem;
+    color: #445;
+  }
+
+  &:hover .missions{
+    display: inherit;
   }
 }
 @media (max-width: 750px){
