@@ -14,8 +14,9 @@
       method="POST"
       enctype="multipart/form-data"
       action="{{ route('course.store') }}"
-    >
-      {{ csrf_field() }}
+      onsubmit="return handleValidateForm();"
+      >
+        {{ csrf_field() }}
       <div class="container-grid">
         <div class="form-custom">
           <div class="form-group">
@@ -61,7 +62,6 @@
               id="course-wallpaper"
               onchange="handleMirrorFileImg(event,$(this).prev())"
               style="display: none;"
-              required
             />
           </label>
         </div>
@@ -151,6 +151,13 @@
           file.readAsDataURL(files[index]);
         }
       }
+    }
+    function handleValidateForm(){
+      if(!$('#course-wallpaper').val()){
+        showMessage("Adicione uma imagem!");
+        return false;
+      }
+      return true;
     }
   </script>
 @endsection
