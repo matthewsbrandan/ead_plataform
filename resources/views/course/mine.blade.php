@@ -14,7 +14,19 @@
           <img src="{{ $course->wallpaper }}" alt="{{ $course->title }}"/>
           <div>
             <div class="title">
-              <strong>{{ $course->title }}</strong>
+              <div>
+                <strong>{{ $course->title }}</strong>
+                <div class="fill-quality">
+                  @php $fillQuality = $course->fillQuality(); @endphp
+                  <span class="points">{{ $fillQuality->points }}</span>
+                  <ul class="missions">
+                    @foreach($fillQuality->missions as $mission)
+                      <li>{{$mission}}</li>
+                    @endforeach
+                  </ul>
+                </div>
+              </div>
+
               <div>
                 <div class="dropdown">
                   <ul>

@@ -50,4 +50,42 @@ class Course extends Model
 
         return $strDate;
     }
+
+    public function durationInMinutes(){
+        $hours = $this->duration->format('H');
+        $minutes = $this->duration->format('i');
+        return ($hours*60) + $minutes;
+    }
+    public function fillQuality(){
+        /** PONTUAÇÃO
+         * 'title' +  'description' +  'wallpaper' = 30 (obrigatórios)
+         * 'about' = 20
+         * 'keywords' = 10
+         * 'presentation_url' = 20
+         * 'duration' = 10
+         * 'num_classes' = 10        
+         */
+        $points = 30;
+        $missions = [];
+        if($this->about) $points+=20;
+        else $missions[]= "Preencha a sessão 'sobre' em seu curso para conseguir mais 20 pontos";
+
+        if($this->keywords) $points+=10;
+        else $missions[]= "Adicione palavras chaves para encontrarmos seu curso mais facilmente, e ganhe mais 10 pontos";
+        
+        if($this->presentation_url) $points+=20;
+        else $missions[]= "Adicione um vídeo de apresentação para ganhar mais 20 pontos";
+    
+        $minutes = $this->durationInMinutes();
+        if($minutes > 10) $points+=10;
+        else $missions[]= "Seu curso está com $minutes minuto(s) até agora, quando chegar a 10min terá mais 10 pontos como recompensa";
+
+        if($this->num_classes > 2) $points+=10;
+        else $missions[]= "Adicione pelo menos 2 aulas ao seu curso para conseguir mais 10 pontos";
+
+        return (object)[
+            'points' => $points,
+            'missions' => $missions
+        ];
+    }
 }

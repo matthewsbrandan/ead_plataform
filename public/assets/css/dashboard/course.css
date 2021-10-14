@@ -125,7 +125,16 @@
   position: relative;
 }
 
-.content-courses .course .title strong {
+.content-courses .course .title > div:first-child {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.content-courses .course .title > div:first-child strong {
   font-size: 1.4rem;
 }
 
@@ -177,6 +186,50 @@
   display: -ms-inline-flexbox;
   display: inline-flex;
   height: 2rem;
+}
+
+.fill-quality {
+  margin-left: 1rem;
+  position: relative;
+  cursor: pointer;
+}
+
+.fill-quality .points {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  border: 3px solid #99a;
+  color: #667;
+  font-weight: 600;
+  font-size: .8rem;
+}
+
+.fill-quality .missions {
+  display: none;
+  background: #fff;
+  -webkit-box-shadow: 0 0 20px #0012;
+          box-shadow: 0 0 20px #0012;
+  padding: 1rem;
+  border-radius: .4rem;
+  list-style: inherit;
+  padding-left: 2.4rem;
+  font-size: .8rem;
+  position: absolute;
+  width: 20rem;
+  color: #445;
+}
+
+.fill-quality:hover .missions {
+  display: inherit;
 }
 
 @media (max-width: 750px) {
