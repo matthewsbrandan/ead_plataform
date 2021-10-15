@@ -71,48 +71,56 @@
         display: block;
         font-size: 1.2rem;
       ">Selecione a Categoria/Matéria do Curso:</strong>
-      <div class="content-matters">
-        @if($categoryOuthers)
-          <?php $category_default = $categoryOuthers; ?>
-          <div
-            class="card-matter {{ $category_default->id == $categoryOuthers->id ? 'active':''}}"
-            onclick="handleSelectCategory($categoryOuthers->id, '{{ $categoryOuthers->title }}', $(this))"
-          >
-            <strong style="font-size: 1rem;">{{$categoryOuthers->title}}</strong>
-            <div class="matter">
-              <img src="{{$categoryOuthers->wallpaper}}" alt="{{$categoryOuthers->title}}" style="
-                max-width: 12rem;
-                max-height: 20rem;
-                object-fit: cover;
-              "/>
+      <div class="scroll-matters">
+        <button type="button" class="button-arrow arrow-left" onclick="handleScrollMatters()">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: #445;transform: ;msFilter:;"><path d="m4.431 12.822 13 9A1 1 0 0 0 19 21V3a1 1 0 0 0-1.569-.823l-13 9a1.003 1.003 0 0 0 0 1.645z"></path></svg>
+        </button>
+        <div class="content-matters">
+          @if($categoryOuthers)
+            <?php $category_default = $categoryOuthers; ?>
+            <div
+              class="card-matter {{ $category_default->id == $categoryOuthers->id ? 'active':''}}"
+              onclick="handleSelectCategory($categoryOuthers->id, '{{ $categoryOuthers->title }}', $(this))"
+            >
+              <strong style="font-size: 1rem;">{{$categoryOuthers->title}}</strong>
+              <div class="matter">
+                <img src="{{$categoryOuthers->wallpaper}}" alt="{{$categoryOuthers->title}}" style="
+                  max-width: 12rem;
+                  max-height: 20rem;
+                  object-fit: cover;
+                "/>
+              </div>
+              <small class="paragraph">{{ $categoryOuthers->description }}</small>
             </div>
-            <small class="paragraph">{{ $categoryOuthers->description }}</small>
-          </div>
-        @endif
-        @foreach($categories as $category)
-          <?php if(!isset($category_default)) $category_default = $category; ?>
-          <div 
-            class="card-matter {{ $category_default->id == $category->id ? 'active':''}}"
-            onclick="handleSelectCategory({{ $category->id }}, '{{ $category->title }}', $(this))"
-          >
-            <strong style="font-size: 1rem;">{{$category->title}}</strong>
-            <div class="matter">
-              <img src="{{$category->wallpaper}}" alt="{{$category->title}}" style="
-                max-width: 12rem;
-                max-height: 20rem;
-                object-fit: cover;
-              "/>
+          @endif
+          @foreach($categories as $category)
+            <?php if(!isset($category_default)) $category_default = $category; ?>
+            <div 
+              class="card-matter {{ $category_default->id == $category->id ? 'active':''}}"
+              onclick="handleSelectCategory({{ $category->id }}, '{{ $category->title }}', $(this))"
+            >
+              <strong style="font-size: 1rem;">{{$category->title}}</strong>
+              <div class="matter">
+                <img src="{{$category->wallpaper}}" alt="{{$category->title}}" style="
+                  max-width: 12rem;
+                  max-height: 20rem;
+                  object-fit: cover;
+                "/>
+              </div>
+              <small class="paragraph">{{ $category->description }}</small>
             </div>
-            <small class="paragraph">{{ $category->description }}</small>
-          </div>
-        @endforeach
-        <input
-          type="hidden"
-          name="category_id"
-          id="course-category-id"
-          value="{{ $category_default->id }}"
-          required
-        />
+          @endforeach
+          <input
+            type="hidden"
+            name="category_id"
+            id="course-category-id"
+            value="{{ $category_default->id }}"
+            required
+          />
+        </div>
+        <button type="button" class="button-arrow arrow-right" onclick="handleScrollMatters(true)">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: #445;transform: ;msFilter:;"><path d="M5.536 21.886a1.004 1.004 0 0 0 1.033-.064l13-9a1 1 0 0 0 0-1.644l-13-9A1 1 0 0 0 5 3v18a1 1 0 0 0 .536.886z"></path></svg>
+        </button>
       </div>
       <strong style="
         margin: 1.2rem 0 2rem;
@@ -154,10 +162,16 @@
     }
     function handleValidateForm(){
       if(!$('#course-wallpaper').val()){
+        window.scrollTo(0, 0);
         showMessage("Adicione uma imagem!");
         return false;
       }
       return true;
+    }
+    function handleScrollMatters(next = false){
+      let jump = $('.content-matters').children().width();
+      let currentPosition = $('.content-matters').scrollLeft();
+      $('.content-matters').scrollLeft(next ? currentPosition + jump : currentPosition - jump);
     }
   </script>
 @endsection

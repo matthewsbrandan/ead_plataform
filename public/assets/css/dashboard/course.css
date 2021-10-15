@@ -238,6 +238,31 @@
   display: inherit;
 }
 
+.scroll-matters {
+  width: 100%;
+  position: relative;
+}
+
+.scroll-matters .button-arrow {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  padding: .2rem;
+  opacity: .2;
+}
+
+.scroll-matters .button-arrow.arrow-left {
+  left: 0;
+}
+
+.scroll-matters .button-arrow.arrow-right {
+  right: 0;
+}
+
+.scroll-matters .button-arrow:hover {
+  opacity: .8;
+}
+
 @media (max-width: 750px) {
   .content-courses .course {
     -webkit-box-orient: vertical;

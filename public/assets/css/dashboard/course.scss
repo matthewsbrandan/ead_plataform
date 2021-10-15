@@ -197,6 +197,27 @@
     display: inherit;
   }
 }
+.scroll-matters{
+  width: 100%;
+  position: relative;
+  
+  .button-arrow{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+
+    padding: .2rem;
+    opacity: .2;
+
+    &.arrow-left{ left: 0; }
+    &.arrow-right{ right: 0; }
+
+    &:hover{
+      opacity: .8;
+    }
+  }
+}
+
 @media (max-width: 750px){
   .content-courses{
     .course{
