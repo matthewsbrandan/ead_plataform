@@ -16,4 +16,8 @@ class Category extends Model
         'wallpaper',
         'num_courses',
     ];
+
+    public function courses(){
+        return $this->hasMany(Course::class, 'category_id');
+    }
 }

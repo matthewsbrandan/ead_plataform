@@ -1,0 +1,42 @@
+#sidebar{
+  position: relative;
+
+  .wrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+  
+    box-shadow: 0 0 15px #0001;
+    
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    width: 3.5rem;
+
+    padding: .4rem 0;
+
+    .sidebar-list{
+      width: 100%;
+
+      li{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: .8rem .6rem;
+
+        border-width: 2px;
+
+        &.active, &:hover{
+          border-right: 2px solid #192A88;
+          border-radius: 2px;
+          background: #eef;
+          svg{ fill: #192A88 !important; }
+        }
+        &:hover:not(.active){
+          opacity: .6;
+        }
+      }
+    }
+  }
+}

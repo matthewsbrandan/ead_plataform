@@ -20,14 +20,16 @@ class CreateLessonsTable extends Migration
             $table->longText('content')->nullable();
             $table->text('url')->nullable();
             $table->time('duration')->default('00:00:00.0000000');
+            $table->enum('type',['video','article','archive']);
             $table->integer('num_views')->default(0);
             $table->integer('num_comments')->default(0);
             $table->integer('rating')->nullable();
             $table->string('breadcrumbs')->nullable();
             $table->integer('depth')->default(0);
+            $table->integer('index')->default(0);
             $table->foreignId('user_id')->constrained('users');
-            $table->foreignId('course_id')->constrained('courses');
-            $table->foreignId('section_id')->nullable()->constrained('sections');
+            $table->foreignId('course_id')->constrained('courses')->onDelete('cascade');
+            $table->foreignId('section_id')->nullable()->constrained('sections')->onDelete('cascade');
             $table->timestamps();
         });
     }

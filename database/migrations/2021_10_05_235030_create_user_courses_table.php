@@ -17,6 +17,7 @@ class CreateUserCoursesTable extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained('users');
             $table->foreignId('course_id')->constrained('courses');
+            $table->foreignId('current_lesson_id')->nullable()->constrained('lessons');
             $table->boolean('completed')->default(false);
             $table->integer('rating')->nullable();
             $table->timestamps();

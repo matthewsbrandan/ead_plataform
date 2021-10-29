@@ -1,0 +1,16 @@
+#root {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 3.5rem auto;
+      grid-template-columns: 3.5rem auto;
+      grid-template-areas: 'sidebar content';
+}
+
+#root #sidebar {
+  grid-area: 'sidebar';
+}
+
+#root #main {
+  grid-area: 'content';
+}
+/*# sourceMappingURL=app.css.map */

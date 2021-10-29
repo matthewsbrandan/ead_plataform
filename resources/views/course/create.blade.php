@@ -15,8 +15,8 @@
       enctype="multipart/form-data"
       action="{{ route('course.store') }}"
       onsubmit="return handleValidateForm();"
-      >
-        {{ csrf_field() }}
+    >
+      {{ csrf_field() }}
       <div class="container-grid">
         <div class="form-custom">
           <div class="form-group">

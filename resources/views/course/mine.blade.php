@@ -54,7 +54,7 @@
                   <span>Publicado em {{ $course->published_at->format('d/m/Y') }}</span>
                 @endif
               </div>
-              <a class="btn-primary" href="{{ route('lesson.index',['slug' => $course->slug]) }}">Acessar</a>
+              <a class="btn-primary" href="{{ route('class.show',['slug' => $course->slug]) }}">Acessar</a>
             </div>
           </div>
         </div>

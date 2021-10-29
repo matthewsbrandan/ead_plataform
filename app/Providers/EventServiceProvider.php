@@ -7,6 +7,13 @@ use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Event;
 
+use App\Models\Course;
+use App\Observers\CourseObserver;
+use App\Models\Lesson;
+use App\Observers\LessonObserver;
+use App\Models\Section;
+use App\Observers\SectionObserver;
+
 class EventServiceProvider extends ServiceProvider
 {
     /**
@@ -25,8 +32,9 @@ class EventServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
-    {
-        //
+    public function boot(){
+        Course::observe(CourseObserver::class);
+        Lesson::observe(LessonObserver::class);
+        Section::observe(SectionObserver::class);
     }
 }

@@ -16,7 +16,7 @@ class CreateUserLessonsTable extends Migration
         Schema::create('user_lessons', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users');
-            $table->foreignId('lesson_id')->constrained('lessons');
+            $table->foreignId('lesson_id')->constrained('lessons')->onDelete('cascade');
             $table->integer('rating')->nullable();
             $table->boolean('view')->default(false);
             $table->timestamps();
@@ -26,7 +26,7 @@ class CreateUserLessonsTable extends Migration
     /**
      * Reverse the migrations.
      *
-     * @return void
+     * @return void'
      */
     public function down()
     {

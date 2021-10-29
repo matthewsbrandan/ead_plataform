@@ -42,22 +42,22 @@
   gap: 1rem;
 }
 
-.container-grid .form-custom {
-  width: 100%;
-  margin: inherit;
-}
-
-.container-grid .form-custom label {
-  color: #99a;
-  padding-bottom: .2rem;
-  font-size: .7rem;
-}
-
 @media (max-width: 800px) {
   .container-grid {
     -ms-grid-columns: 1fr;
         grid-template-columns: 1fr;
   }
+}
+
+.form-custom {
+  width: 100%;
+  margin: inherit;
+}
+
+.form-custom label {
+  color: #99a;
+  padding-bottom: .2rem;
+  font-size: .7rem;
 }
 
 .content-matters {

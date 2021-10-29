@@ -42,16 +42,22 @@ Route::post('/redefinindo-senha',
 Route::middleware(['auth'])->group(function() {
   Route::get('/home','App\Http\Controllers\HomeController@index')->name('home');
 
+  Route::name('class.')->group(function(){
+    Route::get('/curso/apresentacao/{slug}', 'App\Http\Controllers\ClassController@index')->name('index');
+    Route::get('/aulas/{slug}/{id?}','App\Http\Controllers\ClassController@show')->name('show');
+  });
+
   Route::name('course.')->group(function(){
     Route::get('/cursos', 'App\Http\Controllers\CourseController@index')->name('index');
     Route::get('/cursos/mais/{skip}', 'App\Http\Controllers\CourseController@index')->name('index.more');
-    Route::get('/cursos/assistir/{slug}', 'App\Http\Controllers\CourseController@show')->name('show');
     
     Route::get('/meus-cursos', 'App\Http\Controllers\CourseController@mine')->name('mine');
     Route::name('mine.')->group(function(){
       Route::get('/meus-cursos/mais/{skip}', 'App\Http\Controllers\CourseController@mine')->name('more');
       Route::get('/meus-cursos/editar/{id}', 'App\Http\Controllers\CourseController@edit')->name('edit');
+      Route::post('/meus-cursos/editar/salvar', 'App\Http\Controllers\CourseController@update')->name('update');
       Route::get('/meus-cursos/publicar/{id}', 'App\Http\Controllers\CourseController@publish')->name('publish');
+      Route::get('/meus-cursos/delete/{id}', 'App\Http\Controllers\CourseController@delete')->name('delete');
     });
 
     Route::get('/novo-curso', 'App\Http\Controllers\CourseController@create')->name('create');
@@ -59,9 +65,16 @@ Route::middleware(['auth'])->group(function() {
   });
 
   Route::name('lesson.')->group(function(){
-    Route::get('/aulas/{slug}','App\Http\Controllers\LessonController@index')->name('index');
     Route::get('/nova-aula/{slug}','App\Http\Controllers\LessonController@create')->name('create');
-    Route::post('/nova-aula/{slug}/store','App\Http\Controllers\LessonController@store')->name('store');
+    
+    Route::name('class.')->group(function(){
+      Route::get('/nova-aula/{slug}/aula/{section_id?}/{type?}',
+        'App\Http\Controllers\LessonController@class'
+      )->name('create');
+      Route::post('/nova-aula/{slug}/aula/salvar',
+        'App\Http\Controllers\LessonController@store'
+      )->name('store');
+    });
   });
   
   Route::name('chat.')->group(function(){
@@ -82,5 +95,10 @@ Route::middleware(['auth'])->group(function() {
     Route::get('/categorias', 'App\Http\Controllers\CategoryController@index')->name('index');
     Route::get('/categorias/editar/{id}', 'App\Http\Controllers\CategoryController@edit')->name('edit');
     Route::post('/categorias/salvar/{id?}', 'App\Http\Controllers\CategoryController@store')->name('store');
+  });
+
+  Route::name('section.')->group(function(){
+    Route::post('/secao/salvar','App\Http\Controllers\SectionController@store')->name('store');
+    Route::get('/secao/excluir/{id}','App\Http\Controllers\SectionController@delete')->name('delete');
   });
 });

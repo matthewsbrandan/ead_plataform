@@ -32,19 +32,18 @@
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
 
-  .form-custom{
-    width: 100%;
-    margin: inherit;
-
-    label{
-      color: #99a;
-      padding-bottom: .2rem;
-      font-size: .7rem;
-    }
-  }
-
   @media (max-width: 800px){
     &{ grid-template-columns: 1fr; }
+  }
+}
+.form-custom{
+  width: 100%;
+  margin: inherit;
+
+  label{
+    color: #99a;
+    padding-bottom: .2rem;
+    font-size: .7rem;
   }
 }
 .content-matters{

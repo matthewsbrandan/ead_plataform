@@ -1,0 +1,237 @@
+.container {
+  padding: 1rem 1.6rem 2rem;
+}
+
+.container .content .header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.container .content .header .actions {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: .4rem;
+}
+
+.container .content .header .actions .porcentage {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  color: #889;
+  border: 2px solid #889;
+  border-radius: 50%;
+  width: 2rem;
+  height: 2rem;
+  font-size: .6rem;
+}
+
+.container .content .header .actions .porcentage small {
+  font-size: .4rem;
+}
+
+.container .content .header .actions button {
+  -webkit-transition: .2s;
+  transition: .2s;
+  padding: .4rem;
+  border-radius: .4rem;
+  font-weight: 600;
+}
+
+.container .content .header .actions button:hover {
+  background: #dde;
+}
+
+.container .content .container-lesson {
+  display: -ms-grid;
+  display: grid;
+      grid-template-areas: 'lessonContent lessonNav';
+  -ms-grid-columns: auto 20rem;
+      grid-template-columns: auto 20rem;
+  margin-top: 1rem;
+}
+
+.current-lesson {
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+  grid-area: lessonContent;
+}
+
+.current-lesson #lesson-container {
+  -webkit-box-shadow: 0 0 15px #0001;
+          box-shadow: 0 0 15px #0001;
+  border: 1px solid #eef;
+  border-radius: .4rem;
+  padding: 1rem;
+  height: calc(100vh - 8rem);
+  overflow: auto;
+  color: #334;
+}
+
+.current-lesson #lesson-container .list-archive {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: 100%;
+  overflow-y: auto;
+}
+
+.current-lesson #lesson-container .list-archive .archive-item {
+  display: block;
+  padding: .4rem;
+}
+
+.current-lesson #lesson-container .list-archive .archive-item a {
+  text-decoration: underline;
+  color: #99a;
+}
+
+.current-lesson #lesson-container .list-archive .archive-item p {
+  font-size: .9rem;
+}
+
+.current-lesson .lesson-options {
+  margin: 1.4rem 0 1rem;
+}
+
+.current-lesson .lesson-options .lesson-option-item {
+  display: inline;
+  padding: .4rem .8rem;
+  -webkit-transition: .2s;
+  transition: .2s;
+}
+
+.current-lesson .lesson-options .lesson-option-item.active {
+  font-weight: bold;
+  border-bottom: 2px solid #334;
+}
+
+.current-lesson .lesson-options .lesson-option-item:hover {
+  border-bottom: 2px solid #334;
+}
+
+.current-lesson .lesson-options .lesson-option-item:hover:not(.active) {
+  font-weight: 600;
+}
+
+.current-lesson .toggle-option {
+  display: none;
+}
+
+.nav-lesson {
+  grid-area: 'lessonNav';
+  padding: .6rem 0 .6rem 1.4rem;
+  max-height: calc(100vh - 8rem);
+  overflow-y: auto;
+}
+
+.nav-lesson .lesson-list .section-item .header {
+  padding: 1rem .8rem;
+  border-radius: 1rem;
+  background: #eef;
+}
+
+.nav-lesson .lesson-list .section-item .lesson-list {
+  padding: .2rem 0 .2rem .2rem;
+  border-left: 1px solid #eef;
+  margin: .2rem 0 .2rem .8rem;
+}
+
+.nav-lesson .lesson-list .lesson-item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: .5rem .6rem;
+  -webkit-transition: .2s;
+  transition: .2s;
+}
+
+.nav-lesson .lesson-list .lesson-item > div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: .4rem;
+}
+
+.nav-lesson .lesson-list .lesson-item time {
+  color: #667;
+  font-size: .8rem;
+}
+
+.nav-lesson .lesson-list .lesson-item:hover {
+  background: #eef9;
+}
+
+.nav-lesson .lesson-list .lesson-item.active {
+  background: #eef9;
+  font-weight: 600;
+}
+
+#lesson-about .about-details {
+  margin-top: -.2rem;
+  margin-bottom: .4rem;
+}
+
+#lesson-about .about-details > span {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: .8rem;
+  gap: .2rem;
+}
+
+#lesson-about .about-details > span + span {
+  margin: 0 .4rem;
+}
+
+#lesson-about .about-details > span svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+@media (max-width: 900px) {
+  .container .content .container-lesson {
+        grid-template-areas: 'lessonNav' 'lessonContent';
+    -ms-grid-columns: auto;
+        grid-template-columns: auto;
+  }
+  .nav-lesson {
+    padding-left: 0;
+  }
+}
+/*# sourceMappingURL=room.css.map */

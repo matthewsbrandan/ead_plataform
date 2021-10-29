@@ -18,9 +18,10 @@ class CreateSectionsTable extends Migration
             $table->string('title');
             $table->string('breadcrumbs')->nullable();
             $table->integer('depth')->default(0);
+            $table->integer('index')->default(0);
             $table->integer('num_children')->default(0);
-            $table->foreignId('section_id')->nullable()->constrained('sections');
-            $table->foreignId('course_id')->constrained('courses');
+            $table->foreignId('section_id')->nullable()->constrained('sections')->onDelete('cascade');
+            $table->foreignId('course_id')->constrained('courses')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -1,0 +1,211 @@
+.button-group-add {
+  margin-top: 1.5rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: .4rem;
+}
+
+#content-lessons {
+  margin: 1.5rem 0;
+}
+
+#content-lessons .section .header {
+  background: #dde;
+  border-radius: 1px solid #dde;
+  border-radius: .4rem;
+  padding: .8rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#content-lessons .section .header strong {
+  text-transform: uppercase;
+}
+
+#content-lessons .section .header .button-group {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: .4rem;
+}
+
+#content-lessons .section .header .button-group button {
+  min-width: -webkit-fit-content;
+  min-width: -moz-fit-content;
+  min-width: fit-content;
+  max-width: 100%;
+  border-radius: .4rem;
+  height: 2rem;
+}
+
+#content-lessons .section .header .button-group button.btn-secondary {
+  background: #eef !important;
+}
+
+#content-lessons .section .content {
+  padding: .5rem;
+  color: #666677;
+}
+
+#content-lessons .section .content li {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 1rem;
+  background: #dde2;
+  border-radius: .4rem;
+  -webkit-transition: .2s;
+  transition: .2s;
+}
+
+#content-lessons .section .content li > div:not(.section) {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  gap: .4rem;
+}
+
+#content-lessons .section .content li:hover {
+  background: #dde6;
+}
+
+#content-lessons .section .content li .section {
+  width: 100%;
+}
+
+.create-class .navbar {
+  margin: .6rem 0 1rem;
+  color: #99a;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  overflow-y: hidden;
+  overflow-x: auto;
+}
+
+.create-class .navbar::-webkit-scrollbar {
+  height: 2px;
+}
+
+.create-class .navbar li a {
+  padding: .4rem 1rem;
+  white-space: nowrap;
+  -webkit-transition: .2s;
+  transition: .2s;
+}
+
+.create-class .navbar li a:hover {
+  -webkit-filter: brightness(0.7);
+          filter: brightness(0.7);
+  border-radius: .4rem;
+}
+
+.create-class .navbar li.active {
+  font-weight: bold;
+}
+
+.create-class .navbar li:first-child a {
+  padding-left: 0;
+}
+
+.create-class .form-custom {
+  width: 100%;
+  margin: inherit;
+}
+
+.create-class .form-custom label {
+  color: #99a;
+  padding-bottom: .2rem;
+  font-size: .7rem;
+}
+
+.create-class #embed {
+  min-height: 60vh !important;
+}
+
+.create-class .container-archives {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: .4rem;
+}
+
+.create-class .container-archives .wrapper-archive {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: .4rem;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.create-class .container-archives .wrapper-archive .btn-secondary {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  min-width: -webkit-fit-content;
+  min-width: -moz-fit-content;
+  min-width: fit-content;
+  border-radius: 0.4rem;
+  -ms-flex-item-align: end;
+      align-self: flex-end;
+}
+
+.create-class .container-archives .wrapper-archive .content-archive {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: .4rem;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+
+.create-class .container-archives .wrapper-archive .content-archive .form-group {
+  min-width: calc(50% - .4rem);
+}
+
+@media (max-width: 820px) {
+  .create-class .container-archives .content-archive .form-group {
+    min-width: calc(100% - .4rem) !important;
+  }
+  .create-class .container-archives .wrapper-archive .btn-secondary {
+    -ms-flex-item-align: center !important;
+        -ms-grid-row-align: center !important;
+        align-self: center !important;
+  }
+}
+/*# sourceMappingURL=lesson.css.map */

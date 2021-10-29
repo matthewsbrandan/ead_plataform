@@ -51,10 +51,15 @@ ul{
   color: #223;
   font-weight: 600;
 }
+.btn-clean{ background: transparent; }
+.btn-svg{ font-size: 0; }
 .text-ellipsis {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+.text-gray-500{
+  color: #99a;
 }
 .badge{
   padding: .2rem .6rem;

@@ -30,6 +30,9 @@ class Course extends Model
         'duration',
     ];
 
+    public function teacher(){
+        return $this->belongsTo(User::class, 'user_id');
+    }
     public function students(){
         return $this->belongsToMany(User::class, 'user_courses', 'course_id', 'user_id');
     }
@@ -38,6 +41,37 @@ class Course extends Model
     }
     public function category(){
         return $this->belongsTo(Category::class, 'category_id');
+    }
+    public function sections(){
+        return $this->hasMany(Section::class, 'course_id');
+    }
+    public function lessons(){
+        return $this->hasMany(Lesson::class, 'course_id');
+    }
+    public function classes(){
+        $classes = [];
+        foreach($this->sections as $section){
+            $section->classes = [];
+            if($section->sections->count() > 0 || $section->lessons->count() > 0){
+                $section->classes = $this->handleSubClasses($section);
+            }
+
+            $classes[]= [
+                'index' => $section->index,
+                'type' => 'section',
+                'data' => $section
+            ];
+        }
+        foreach($this->lessons as $lesson){
+            $classes[]= [
+                'index' => $lesson->index,
+                'type' => 'lesson',
+                'data' => $lesson
+            ];
+        }
+
+        $classes = $this->array_orderby($classes, 'index');
+        return $classes;
     }
 
     public function formatDuration(){
@@ -50,7 +84,6 @@ class Course extends Model
 
         return $strDate;
     }
-
     public function durationInMinutes(){
         $hours = $this->duration->format('H');
         $minutes = $this->duration->format('i');
@@ -87,5 +120,45 @@ class Course extends Model
             'points' => $points,
             'missions' => $missions
         ];
+    }
+
+    protected function array_orderby(){
+        $args = func_get_args();
+        $data = array_shift($args);
+        foreach ($args as $n => $field) {
+            if (is_string($field)) {
+                $tmp = array();
+                foreach ($data as $key => $row)
+                    $tmp[$key] = $row[$field];
+                $args[$n] = $tmp;
+                }
+        }
+        $args[] = &$data;
+        call_user_func_array('array_multisort', $args);
+        return array_pop($args);
+    }
+    protected function handleSubClasses($section){
+        $classes = [];
+        foreach($section->sections as $subSection){
+            $subSection->classes = [];
+            if($subSection->sections->count() > 0 || $subSection->lessons->count() > 0){
+                $subSection->classes = $this->classes($subSection);
+            }
+
+            $classes[]= [
+                'index' => $subSection->index,
+                'type' => 'section',
+                'data' => $subSection
+            ];
+        }
+        foreach($section->lessons as $lesson){
+            $classes[]= [
+                'index' => $lesson->index,
+                'type' => 'lesson',
+                'data' => $lesson
+            ];
+        }
+        $classes = $this->array_orderby($classes, 'index');
+        return $classes;
     }
 }
