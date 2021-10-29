@@ -8,11 +8,16 @@ use App\Models\Course;
 class ClassController extends Controller
 {
     public function index($slug){
-        if(!$course = Course::whereSlug($slug)->first()) return redirect()->back()->with(
+        if(!$course = Course::with(['students' => function($query){
+            $query->where('user_id', auth()->user()->id);
+        }])->whereSlug($slug)->first()) return redirect()->back()->with(
             'message',
             'Curso não encontrado'
         );
-        dd($course->toArray());
+        
+        return view('class.index',[
+            'course' => $course
+        ]);
     }
     public function show($slug, $lesson_id = null){
         if(!$course = Course::with(['sections' => function($query){
@@ -45,6 +50,12 @@ class ClassController extends Controller
             'currentLesson' => $currentLesson,
             'classes' => $classes
         ]);
+    }
+    public function chat($slug){
+        dd('Aqui');
+    }
+    public function outhers($slug){
+        dd('Aqui');
     }
     protected function findFirstLesson($classes){
         foreach($classes as $class){

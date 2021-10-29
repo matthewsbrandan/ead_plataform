@@ -183,6 +183,23 @@
   }
 }
 
+#lesson-questions{
+  margin-top: 1.4rem;
+  .form-group{
+    label{
+      font-size: .8rem;
+      display: block;
+    }
+    textarea{
+      padding: .8rem;
+      width: 100%;
+
+      background: #eef5;
+      border-radius: 0.4rem;
+      border: 1px solid #eef;
+    }
+  }
+}
 @media (max-width: 900px){
   .container .content .container-lesson{
     grid-template-areas: 'lessonNav' 'lessonContent';

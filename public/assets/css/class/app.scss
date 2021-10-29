@@ -10,3 +10,11 @@
     grid-area: 'content';
   }
 }
+
+@media(max-width: 700px){
+  #root{
+    grid-template-columns: auto;
+    grid-template-rows: 3.5rem auto;
+    grid-template-areas: 'sidebar' 'content';
+  }
+}

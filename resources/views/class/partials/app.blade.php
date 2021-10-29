@@ -26,6 +26,7 @@
       @yield('content')
     </div>
     @include('utils.modalMessage')
+    @include('utils.loading')
   </main>
   <script>
     $(function(){

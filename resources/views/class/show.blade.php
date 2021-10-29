@@ -52,14 +52,18 @@
           <div class="toggle-option" id="lesson-questions">
             <form>
               <div class="form-group">
-                <label for="text-question">Perguntas</label>
                 <textarea
                   id="text-question"
                   class="form-control"
                   placeholder="Deixe aqui suas dúvidas..."
+                  rows="5"
                   required
                 ></textarea>
-                <button>Enviar Pergunta</button>
+                <button
+                  type="submit"
+                  class="btn-block btn-primary"
+                  style="height: 2rem"
+                >Enviar Pergunta</button>
               </div>
             </form>
             <div id="container-questions"></div>
@@ -126,7 +130,6 @@
         }
       });
     }
-
     function onPlayerReady(event) {
       event.target.playVideo();
       console.log(handleTime(event.target.getDuration()));

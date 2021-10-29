@@ -56,4 +56,36 @@
 #sidebar .wrapper .sidebar-list li:hover:not(.active) {
   opacity: .6;
 }
+
+@media (max-width: 700px) {
+  #sidebar .wrapper {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    background: #fff;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: inherit;
+    width: 100%;
+    padding: 0 1.4rem;
+  }
+  #sidebar .wrapper .sidebar-list {
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
+    max-width: 100%;
+  }
+  #sidebar .wrapper .sidebar-list li {
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    padding: .8rem;
+  }
+  #sidebar .wrapper .sidebar-list li.active, #sidebar .wrapper .sidebar-list li:hover {
+    border-right: none;
+    border-bottom: 2px solid #192A88;
+  }
+}
 /*# sourceMappingURL=sidebar.css.map */

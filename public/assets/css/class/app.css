@@ -13,4 +13,14 @@
 #root #main {
   grid-area: 'content';
 }
+
+@media (max-width: 700px) {
+  #root {
+    -ms-grid-columns: auto;
+        grid-template-columns: auto;
+    -ms-grid-rows: 3.5rem auto;
+        grid-template-rows: 3.5rem auto;
+        grid-template-areas: 'sidebar' 'content';
+  }
+}
 /*# sourceMappingURL=app.css.map */

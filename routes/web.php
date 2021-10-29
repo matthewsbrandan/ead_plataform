@@ -45,6 +45,8 @@ Route::middleware(['auth'])->group(function() {
   Route::name('class.')->group(function(){
     Route::get('/curso/apresentacao/{slug}', 'App\Http\Controllers\ClassController@index')->name('index');
     Route::get('/aulas/{slug}/{id?}','App\Http\Controllers\ClassController@show')->name('show');
+    Route::get('/aulas/chat/{slug}/{id?}','App\Http\Controllers\ClassController@chat')->name('chat');
+    Route::get('/aulas/outros/{slug}/{id?}','App\Http\Controllers\ClassController@outhers')->name('outhers');
   });
 
   Route::name('course.')->group(function(){
