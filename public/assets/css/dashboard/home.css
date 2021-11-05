@@ -1,0 +1,91 @@
+.card-courses {
+  margin-top: 1rem;
+}
+
+.card-courses ul {
+  max-width: 400px;
+}
+
+.card-courses ul li {
+  background: #eef6;
+  border: 1px solid #eef;
+  border-radius: 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: .6rem;
+  margin: .6rem 0;
+  gap: 1rem;
+}
+
+.card-courses ul li img {
+  width: 4rem;
+  max-width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: .4rem;
+}
+
+.card-courses ul li span {
+  font-weight: 600;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+
+.card-courses ul li time {
+  justify-self: flex-end;
+  text-align: right;
+  color: #99a;
+  font-size: .6rem;
+}
+
+.card-courses-completed {
+  margin-top: 2rem;
+}
+
+.card-courses-completed .container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 1rem;
+  margin-top: .4rem;
+  overflow-x: auto;
+}
+
+.card-courses-completed .container .card {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: .4rem;
+  padding: 1rem;
+  background: #fff;
+  -webkit-box-shadow: 0 0 20px #0002;
+          box-shadow: 0 0 20px #0002;
+  border: 1px solid #eef;
+  border-radius: .4rem;
+  min-width: 19rem;
+}
+
+.card-courses-completed .container .card img {
+  width: 18rem;
+  max-width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: .4rem;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+
+.card-courses-completed .container .card strong {
+  text-align: center;
+}
+/*# sourceMappingURL=home.css.map */

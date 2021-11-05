@@ -59,7 +59,12 @@
       .sidebar-list{
         width: fit-content;
         max-width: 100%;
+        
+        overflow-x: auto;
+        white-space: nowrap;
   
+        &::-webkit-scrollbar{ height: 2px;};
+
         li{
           display: inline-flex;
           padding: .8rem;

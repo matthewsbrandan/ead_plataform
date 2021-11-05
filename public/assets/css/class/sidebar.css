@@ -76,6 +76,11 @@
     width: -moz-fit-content;
     width: fit-content;
     max-width: 100%;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+  #sidebar .wrapper .sidebar-list::-webkit-scrollbar {
+    height: 2px;
   }
   #sidebar .wrapper .sidebar-list li {
     display: -webkit-inline-box;

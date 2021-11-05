@@ -11,7 +11,9 @@
     <div class="content-courses">
       @foreach($courses as $course)
         <div class="course">
-          <img class="course-image" src="{{ $course->wallpaper }}" alt="{{ $course->title }}"/>
+          <figure>
+            <img class="course-image" src="{{ $course->wallpaper }}" alt="{{ $course->title }}"/>
+          </figure>
           <div>
             <div class="title">
               <div>
