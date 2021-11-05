@@ -25,10 +25,23 @@ class LessonObserver
             $index+= $lesson->course->lessons->where('depth', 0)->count();
             $lesson->update(['index' => $index-1]);
         }
+        $newDuration = $lesson->course->duration->addSecond($lesson->getDurationInSeconds());
+        $lesson->course->update([
+            'duration' => $newDuration,
+            'num_classes' => $lesson->course->lessons->count()
+        ]);
+
+        $lesson->course->updateLessonRealIndex();
     }
 
     public function updated(Lesson $lesson){
-        //
+        $seconds = 0;
+        foreach($lesson->course->lessons as $target){
+            $seconds+= $target->getDurationInSeconds();
+        }
+        $lesson->course->update([
+            'duration' => $seconds,
+        ]);
     }
 
     public function deleted(Lesson $lesson){
@@ -52,5 +65,16 @@ class LessonObserver
         foreach($lessons as $row){
             $row->update(['index' => $row->index-1]);
         }
+
+        $seconds = 0;
+        foreach($lesson->course->lessons as $target){
+            $seconds+= $target->getDurationInSeconds();
+        }
+        $lesson->course->update([
+            'duration' => $seconds,
+            'num_classes' => $lesson->course->lessons->count()
+        ]);
+
+        $lesson->course->updateLessonRealIndex();
     }
 }

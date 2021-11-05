@@ -68,3 +68,20 @@
     }
   }
 }
+#table-course-data{
+  margin-bottom: .8rem;
+  border-spacing: 0;
+  min-width: 20rem;
+  th{
+    border-top: 1px solid #eef;
+    border-bottom: 1px solid #eef;
+    text-align: left !important;
+    padding: .4rem;
+  }
+  td{
+    border-top: 1px solid #eef;
+    border-bottom: 1px solid #eef;
+    text-align: right !important;
+    padding: .4rem;
+  }
+}

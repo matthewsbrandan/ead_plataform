@@ -11,7 +11,7 @@
     <div class="content-courses">
       @foreach($courses as $course)
         <div class="course">
-          <img src="{{ $course->wallpaper }}" alt="{{ $course->title }}"/>
+          <img class="course-image" src="{{ $course->wallpaper }}" alt="{{ $course->title }}"/>
           <div>
             <div class="title">
               <div>
@@ -50,11 +50,16 @@
                 @if($course->formatDuration())
                   <span>Duração {{ $course->formatDuration() }}</span>
                 @endif
+                @if($course->num_classes > 0)
+                  <span>{{ $course->num_classes }} Aula(s)</span>
+                @endif
                 @if($course->published_at)
                   <span>Publicado em {{ $course->published_at->format('d/m/Y') }}</span>
                 @endif
               </div>
-              <a class="btn-primary" href="{{ route('class.show',['slug' => $course->slug]) }}">Acessar</a>
+              @if($course->published_at)
+                <a class="btn-primary" href="{{ route('class.show',['slug' => $course->slug]) }}">Acessar</a>
+              @endif
             </div>
           </div>
         </div>

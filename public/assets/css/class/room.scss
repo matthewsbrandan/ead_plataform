@@ -137,6 +137,8 @@
       justify-content: space-between;
       padding: .5rem .6rem;
 
+      position: relative;
+
       transition: .2s;
 
       > div{
@@ -153,9 +155,22 @@
       &:hover{
         background: #eef9;
       }
+
       &.active{
         background: #eef9;
         font-weight: 600;
+      }
+
+      &.viewed::after{
+        content: '';
+        height: 6px;
+        width: 6px;
+        border-radius: 50%;
+        display: block;
+        background: #192A88;
+
+        position: absolute;
+        left: -.35rem;
       }
     }
   }

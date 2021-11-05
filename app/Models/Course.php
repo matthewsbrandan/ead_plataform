@@ -30,6 +30,7 @@ class Course extends Model
         'duration',
     ];
 
+    #region RELATIONSHIPS
     public function teacher(){
         return $this->belongsTo(User::class, 'user_id');
     }
@@ -73,7 +74,25 @@ class Course extends Model
         $classes = $this->array_orderby($classes, 'index');
         return $classes;
     }
+    public function student(){
+        return $this->studentsPivot->where('user_id', auth()->user()->id)->first();
+    }
+    #endregion RELATIONSHIPS
 
+    public function updateLessonRealIndex($classes = null, $real_index = 0){
+        if(!$classes) $classes = $this->classes();
+
+        foreach($classes as $class){
+            if($class['type'] == 'lesson'){
+                $class['data']->update(['real_index' => $real_index]);
+                $real_index++;
+            }
+            elseif(count($class['data']->classes) > 0){
+                $real_index = $this->updateLessonRealIndex($class['data']->classes, $real_index);
+            }
+        }
+        return $real_index;
+    }
     public function formatDuration(){
         $strDate = "";
         $hours = $this->duration->format('H');
@@ -88,6 +107,12 @@ class Course extends Model
         $hours = $this->duration->format('H');
         $minutes = $this->duration->format('i');
         return ($hours*60) + $minutes;
+    }
+    public function getDurationInSeconds(){
+        $hours = $this->duration->format('H');
+        $minutes = $this->duration->format('i');
+        $seconds = $this->duration->format('s');
+        return ($hours * 60 * 60) + ($minutes * 60) + $seconds;
     }
     public function fillQuality(){
         /** PONTUAÇÃO
@@ -122,6 +147,7 @@ class Course extends Model
         ];
     }
 
+    #region LOCAL FUNCTIONS
     protected function array_orderby(){
         $args = func_get_args();
         $data = array_shift($args);
@@ -161,4 +187,5 @@ class Course extends Model
         $classes = $this->array_orderby($classes, 'index');
         return $classes;
     }
+    #endregion LOCAL FUNCTIONS
 }

@@ -43,6 +43,9 @@
     >
       {{ csrf_field() }}
 
+      @if(isset($lesson))
+        <input type="hidden" name="id" id="lesson-id" value="{{ $lesson->id }}"/>
+      @endif
       <input type="hidden" name="type" id="lesson-type" value="{{ $type }}"/>
       <input type="hidden" name="course_id" id="lesson-course-id" value="{{ $course->id }}"/>
       @if($section)
@@ -56,6 +59,7 @@
             name="title"
             id="lesson-title"
             placeholder="Título da Aula..."
+            value="{{ $lesson->title ?? '' }}"
             required
           />          
         </div>
@@ -66,11 +70,11 @@
             id="lesson-description"
             placeholder="Descrição da Aula..."
             required
-          ></textarea>
+          >{{ $lesson->description ?? '' }}</textarea>
         </div>
         @if($type == 'video')
-          @include('utils.youtube-embed',[
-            'value' => '',
+          @include('utils.youtube-api',[
+            'value' => $lesson->url ?? '',
             'id' => 'lesson-url',
             'label' => 'Vídeo de Apresentação (opcional)',
             'name' => 'url',
@@ -85,7 +89,7 @@
               placeholder="Conteúdo da Aula..."
               class="custom-richtext"
               required
-            ></textarea>
+            >{{ $lesson->content ?? '' }}</textarea>
           </div>
         @elseif($type == 'archive')
           <button
@@ -100,6 +104,12 @@
             "
             onclick="haddleAddNewArchiveLink()"
           >@include('utils.icons.plus')</button>
+          <?php
+            $archives = [['link' => '', 'description' => '']];
+            if(isset($lesson)){
+              $archives = $lesson->getArchiveToArray();
+            }
+          ?>
           <div class="container-archives">
             <div class="wrapper-archive">
               <div class="content-archive">
@@ -109,6 +119,7 @@
                     type="text"
                     name="link_url[]"
                     placeholder="Link..."
+                    value="{{ $archives[0]['link'] }}"
                     required
                   />          
                 </div>
@@ -118,14 +129,60 @@
                     type="text"
                     name="link_description[]"
                     placeholder="Descrição do Link..."
+                    value="{{ $archives[0]['description'] }}"
                     required
                   />          
                 </div>
               </div>
             </div>
+            @if(count($archives) > 1)
+              @foreach($archives as $index => $archive)
+                @if($index > 0)
+                  <div class="wrapper-archive">
+                    <div class="content-archive">
+                      <div class="form-group">
+                        <label>Link</label>
+                        <input
+                          type="text"
+                          name="link_url[]"
+                          placeholder="Link..."
+                          value="{{ $archive['link']}}"
+                          required
+                        />          
+                      </div>
+                      <div class="form-group">
+                        <label>Descrição do Link</label>
+                        <input
+                          type="text"
+                          name="link_description[]"
+                          placeholder="Descrição do Link..."
+                          value="{{ $archive['description']}}"
+                          required
+                        />          
+                      </div>
+                    </div>
+                    <button
+                      class="btn btn-secondary"
+                      onclick="$(this).parent().remove();"
+                    >@include('utils.icons.trash')</button>
+                  </div>
+                @endif
+              @endforeach
+            @endif
           </div>
         @endif
-        <button type="submit" class="btn btn-primary">Cadastrar</button>
+        @if(isset($lesson))  
+          <button type="submit" class="btn btn-primary">Atualizar</button>
+          <button
+            type="button"
+            onclick="confirmDelete('{{ route('lesson.class.delete', [
+              'slug'=> $course->slug, 'id' => $lesson->id
+            ]) }}')"
+            class="btn btn-secondary"
+          >Excluir</button>
+        @else
+          <button type="submit" class="btn btn-primary">Cadastrar</button>
+        @endif
       </div>
     </form>
   </div>
@@ -133,24 +190,13 @@
 @endsection
 @section('script')
   <script>
+    function confirmDelete(url){
+      if(window.confirm('Tem certeza que deseja excluir essa aula?')) runLoad(url);
+    }
     function handleRichText(){
       $('.custom-richtext').each(function(){
         CKEDITOR.replace($(this).attr('id'));
       });
-    }
-    function handleYoutubeEmbed(elem){
-      const target = elem.next();
-      let url = elem.val();
-      if(url.indexOf('/embed/') === -1){
-        url = url.replace('watch?v=','');
-        url = url.replace('youtube.com/','youtube.com/embed/',url);
-        url = url.replace('youtu.be/','youtube.com/embed/',url);
-
-        let time = url.indexOf('&t=');
-        if(time !== -1) url = url.substr(0,time);
-      }
-      target.val(url);
-      target.parent().next().attr('src',url+"?autoplay=1&mute=1");
     }
     function haddleAddNewArchiveLink(){
       let html = `

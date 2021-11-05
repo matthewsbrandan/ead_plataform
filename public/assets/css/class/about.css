@@ -73,4 +73,24 @@
     height: 20rem;
   }
 }
+
+#table-course-data {
+  margin-bottom: .8rem;
+  border-spacing: 0;
+  min-width: 20rem;
+}
+
+#table-course-data th {
+  border-top: 1px solid #eef;
+  border-bottom: 1px solid #eef;
+  text-align: left !important;
+  padding: .4rem;
+}
+
+#table-course-data td {
+  border-top: 1px solid #eef;
+  border-bottom: 1px solid #eef;
+  text-align: right !important;
+  padding: .4rem;
+}
 /*# sourceMappingURL=about.css.map */

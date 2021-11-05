@@ -17,8 +17,9 @@ class CreateUserLessonsTable extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained('users');
             $table->foreignId('lesson_id')->constrained('lessons')->onDelete('cascade');
+            $table->foreignId('course_id')->constrained('courses')->onDelete('cascade');
             $table->integer('rating')->nullable();
-            $table->boolean('view')->default(false);
+            $table->boolean('viewed')->default(false);
             $table->timestamps();
         });
     }

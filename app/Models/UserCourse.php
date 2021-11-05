@@ -13,6 +13,7 @@ class UserCourse extends Model
         'user_id',
         'course_id',
         'current_lesson_id',
+        'progress',
         'completed',
         'rating',
     ];

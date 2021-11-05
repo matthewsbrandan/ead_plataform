@@ -13,6 +13,8 @@ use App\Models\Lesson;
 use App\Observers\LessonObserver;
 use App\Models\Section;
 use App\Observers\SectionObserver;
+use App\Models\UserCourse;
+use App\Observers\UserCourseObserver;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -36,5 +38,6 @@ class EventServiceProvider extends ServiceProvider
         Course::observe(CourseObserver::class);
         Lesson::observe(LessonObserver::class);
         Section::observe(SectionObserver::class);
+        UserCourse::observe(UserCourseObserver::class);
     }
 }

@@ -47,6 +47,8 @@ Route::middleware(['auth'])->group(function() {
     Route::get('/aulas/{slug}/{id?}','App\Http\Controllers\ClassController@show')->name('show');
     Route::get('/aulas/chat/{slug}/{id?}','App\Http\Controllers\ClassController@chat')->name('chat');
     Route::get('/aulas/outros/{slug}/{id?}','App\Http\Controllers\ClassController@outhers')->name('outhers');
+    Route::get('/matricular-se/{slug}', 'App\Http\Controllers\ClassController@subscribe')->name('subscribe');
+    Route::post('/aulas/{slug}/assistida', 'App\Http\Controllers\UserLessonController@toView')->name('toView');
   });
 
   Route::name('course.')->group(function(){
@@ -73,6 +75,12 @@ Route::middleware(['auth'])->group(function() {
       Route::get('/nova-aula/{slug}/aula/{section_id?}/{type?}',
         'App\Http\Controllers\LessonController@class'
       )->name('create');
+      Route::get('/editar-aula/{slug}/aula/{id}',
+        'App\Http\Controllers\LessonController@edit'
+      )->name('edit');
+      Route::get('/excluir-aula/{slug}/aula/{id}',
+        'App\Http\Controllers\LessonController@delete'
+      )->name('delete');
       Route::post('/nova-aula/{slug}/aula/salvar',
         'App\Http\Controllers\LessonController@store'
       )->name('store');
@@ -90,6 +98,7 @@ Route::middleware(['auth'])->group(function() {
       Route::post('/perfil/atualizar', 'App\Http\Controllers\UserController@update')->name('update');
       Route::post('/perfil/atualizar-senha', 'App\Http\Controllers\UserController@changePassword')->name('change_password');
     });
+
     Route::get('/notificacoes', 'App\Http\Controllers\UserController@notification')->name('notification');
   });
 

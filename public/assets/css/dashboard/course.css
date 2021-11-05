@@ -107,12 +107,41 @@
   border-radius: .4rem;
 }
 
-.content-courses .course > img {
+.content-courses .course figure {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+}
+
+.content-courses .course figure .course-progress {
+  height: .4rem;
+  background: #dde9;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-bottom-left-radius: 2rem;
+  border-bottom-right-radius: 2rem;
+}
+
+.content-courses .course figure .course-progress .course-progress-value {
+  display: block;
+  background: #192A88;
+  height: 100%;
+  border-bottom-left-radius: 2rem;
+  border-bottom-right-radius: 2rem;
+}
+
+.content-courses .course .course-image {
   width: 18rem;
   max-width: 100%;
   -o-object-fit: cover;
      object-fit: cover;
   border-radius: .4rem;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
 }
 
 .content-courses .course > div {
@@ -273,7 +302,7 @@
         -ms-flex-align: center;
             align-items: center;
   }
-  .content-courses .course img {
+  .content-courses .course .course-image {
     width: 100%;
   }
 }

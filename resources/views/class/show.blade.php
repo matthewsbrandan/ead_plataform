@@ -2,6 +2,7 @@
 @section('head')
   <title>{{ $course->title }} | {{ config('app.name') }}</title>
   <link rel="stylesheet" href="{{ asset('assets/css/class/room.css') }}">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   @php  $sidebarActive = 'book' @endphp
 @endsection
 @section('content')
@@ -15,13 +16,13 @@
         <div class="actions">
           <button type="button" class="btn-clean">Avaliar</button>
           <button type="button" class="btn-clean btn-svg">@include('utils.icons.share')</button>
-          <span class="porcentage">100<small>%</small></span>
+          <span class="porcentage">{{ $student->progress }}<small>%</small></span>
         </div>
       </div>
       <div class="container-lesson">
         <div class="current-lesson">
           <div id="lesson-container">
-          {!! $currentLesson->content !!}
+            {!! $currentLesson->type == 'article' ? $currentLesson->content : '' !!}
           </div>
           <ul class="lesson-options">
             <li
@@ -86,6 +87,17 @@
 @endsection
 @section('script')
   <script>
+    var selectedLesson = {
+      ...{!! $currentLesson->toJson() !!},
+      student: {!! $currentLesson->student(true) ?? 'null' !!}
+    };
+
+    $.ajaxSetup({
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      }
+    });
+
     function handleSelectLessonOption(elem, target){
       $('.lesson-option-item').removeClass('active');
       elem.addClass('active');
@@ -93,25 +105,54 @@
       $('.toggle-option').hide();
       $(target).show('slow');
     }
-    function handleSelectLesson(elem, lesson, duration){
+    function handleSelectLesson(elem, lesson, duration, student = null){
+      selectedLesson = {
+        ...lesson,
+        student
+      };
       $('.lesson-item').removeClass('active');
       elem.addClass('active');
-      console.log(lesson);
+
       $('#about-title').html(lesson.title);
       $('#about-time .value').html(duration);
       $('#about-views .value').html(lesson.num_views);
       $('#about-rating .value').html(lesson.rating ?? '-');
       $('#about-description').html(lesson.description);
 
-      if(lesson.type === 'video'){
-        let html = `<div id="player"></div>`;
-        let youtube_id = lesson.url.replace('https://youtube.com/embed/','');
-        $('#lesson-container').html(html);
-        onYouTubeIframeAPIReady(youtube_id);
-      }
+      if(lesson.type === 'video') handleRenderYoutube(lesson);
+      else if(lesson.type === 'archive') $('#lesson-container').html(
+        handleArchiveToHtml(JSON.parse(lesson.content))
+      );
       else $('#lesson-container').html(lesson.content);
+      if(lesson.type !== 'video') setTimeout(
+        () => markAsWatched(false), 3000
+      );
+    }
+    function handleArchiveToHtml(archives){
+      let html = [
+        `<div class="list-archive">`,
+        ...archives.map(archive => {
+          return `
+            <div class="archive-item">
+              <a href="${archive.link}" target="_blank">Link Externo</a>
+              <p>${archive.description}</p>
+            </div>
+          `;
+        }),
+        "</div>"
+      ];
+
+      return html.join('');
+    }
+    function handleRenderYoutube(lesson){
+      let html = `<div id="player"></div>`;
+      let youtube_id = lesson.url.replace('https://youtube.com/embed/','');
+      
+      $('#lesson-container').html(html);
+      onYouTubeIframeAPIReady(youtube_id);
     }
 
+    // BEGIN:: HANDLE YOUTUBE
     var tag = document.createElement('script');
 
     tag.src = "https://www.youtube.com/iframe_api";
@@ -119,7 +160,13 @@
     firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
     var player;
-    function onYouTubeIframeAPIReady(id) {
+    function onYouTubeIframeAPIReady(id){
+      if(!id){
+        @if($currentLesson->type == 'video')
+          handleRenderYoutube({!! $currentLesson->toJson() !!});
+        @endif
+        return;
+      }
       player = new YT.Player('player', {
         height: '100%',
         width: '100%',
@@ -130,26 +177,37 @@
         }
       });
     }
-    function onPlayerReady(event) {
-      event.target.playVideo();
-      console.log(handleTime(event.target.getDuration()));
+    function onPlayerReady(event){ event.target.playVideo(); }
+    function onPlayerStateChange(event){
+      if (event.data == YT.PlayerState.ENDED) markAsWatched();
     }
-    function onPlayerStateChange(event) {
-      if (event.data == YT.PlayerState.ENDED) {
-        alert('Acabou');
-      }
-    }
-    function handleTime(totalSeconds){
-      hours = Math.floor(totalSeconds / 3600);
-      totalSeconds %= 3600;
-      minutes = Math.floor(totalSeconds / 60);
-      seconds = totalSeconds % 60;
+    // END:: HANDLE YOUTUBE
+    async function markAsWatched(next = true){
+      if(!selectedLesson) return;
+      if(selectedLesson.student && selectedLesson.student.viewed === 1) return;
 
-      let final = "";
-      if(hours > 0) final = `${hours}h `;
-      if(minutes > 0) final+= `${minutes}min `;
-      if(seconds > 0) final+= `${seconds}s`;
-      return final;
+      $.post('{{ route('class.toView',['slug' => $course->slug]) }}', {
+        course_id: {{ $course->id }},
+        lesson_id: selectedLesson.id,
+      }).done(data => {
+        if(!data.result) return;
+        
+        if(data.isCompleted) showMessage(
+          "<h2 style='margin: -1rem 0 1rem;'>Parabéns por chegar até aqui!!<br/>🎉👏</h2>Você alcançou o final deste curso!",
+          '{{ $course->title }}'
+        );
+
+        if(!next) return;
+
+        const nextLesson = $(`#lesson-${selectedLesson.real_index + 1}`);
+        console.log(nextLesson);
+        if(nextLesson) nextLesson.click();
+      })
     }
+    $(function(){
+      @if($currentLesson->type == 'archive')
+        $('#lesson-container').html(handleArchiveToHtml({!! $currentLesson->content !!}));
+      @endif
+    });
   </script>
 @endsection

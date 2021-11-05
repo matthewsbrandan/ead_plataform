@@ -83,11 +83,36 @@
 
     border-radius: .4rem;
 
-    > img{
+    figure{
+      display: flex;
+      position: relative;
+
+      .course-progress{
+        height: .4rem;
+        background: #dde9;
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border-bottom-left-radius: 2rem;
+        border-bottom-right-radius: 2rem;
+
+        .course-progress-value{
+          display: block;
+          background: #192A88;
+          height: 100%;
+          border-bottom-left-radius: 2rem;
+          border-bottom-right-radius: 2rem;
+        }
+      }
+    }
+
+    .course-image{
       width: 18rem;
       max-width: 100%;
       object-fit: cover;
       border-radius: .4rem;
+      flex: 1;
     }
 
     > div{
@@ -223,7 +248,7 @@
       flex-direction: column;
       align-items: center;
 
-      img{
+      .course-image{
         width: 100%;
       }
     }

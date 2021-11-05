@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Course;
+use App\Models\UserCourse;
 
 class ClassController extends Controller
 {
@@ -44,11 +45,21 @@ class ClassController extends Controller
         if(!$currentLesson = $student->current_lesson){
             if(!$currentLesson = $this->findFirstLesson($classes)) return redirect()->back()->with('message','Este curso ainda não possui aulas!');
         }
+        if($currentLesson->type != 'video'){
+            $userLesson = new UserLessonController();
+            $request = new Request();
+            $request->merge([
+                'lesson_id' => $currentLesson->id,
+                'course_id' => $course->id
+            ]);
+            $userLesson->toView($request, $course->slug, false);
+        }
 
         return view('class.show',[
             'course' => $course,
             'currentLesson' => $currentLesson,
-            'classes' => $classes
+            'classes' => $classes,
+            'student' => $course->student()
         ]);
     }
     public function chat($slug){
@@ -56,6 +67,29 @@ class ClassController extends Controller
     }
     public function outhers($slug){
         dd('Aqui');
+    }
+    public function subscribe($slug){
+        if(!$course = Course::with(['students' => function($query){
+            $query->where('user_id', auth()->user()->id);
+        }])->whereSlug($slug)->first()) return redirect()->back()->with(
+            'message',
+            'Curso não encontrado'
+        );
+        
+        if($course->students->first()) return redirect()->back()->with(
+            'message',
+            'Você já está matriculado neste curso'
+        );
+
+        UserCourse::create([
+            'user_id' => auth()->user()->id,
+            'course_id' => $course->id,
+        ]);
+
+        return redirect()->route('class.show',['slug' => $course->slug])->with(
+            'message',
+            "Bem vindo ao curso ". $course->title
+        );
     }
     protected function findFirstLesson($classes){
         foreach($classes as $class){

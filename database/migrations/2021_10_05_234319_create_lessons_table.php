@@ -27,6 +27,7 @@ class CreateLessonsTable extends Migration
             $table->string('breadcrumbs')->nullable();
             $table->integer('depth')->default(0);
             $table->integer('index')->default(0);
+            $table->integer('real_index')->default(0);
             $table->foreignId('user_id')->constrained('users');
             $table->foreignId('course_id')->constrained('courses')->onDelete('cascade');
             $table->foreignId('section_id')->nullable()->constrained('sections')->onDelete('cascade');

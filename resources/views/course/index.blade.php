@@ -11,7 +11,12 @@
     <div class="content-courses">
       @foreach($courses as $course)
         <div class="course">
-          <img src="{{ $course->wallpaper }}" alt="{{ $course->title }}"/>
+          <figure class="">
+            <img class="course-image" src="{{ $course->wallpaper }}" alt="{{ $course->title }}"/>
+            <div class="course-progress">
+              <span class="course-progress-value" style="width: {{ $course->student()->progress}}%;"></span>
+            </div>
+          </figure>
           <div>
             <div class="title">
               <strong>{{ $course->title }}</strong>
@@ -30,7 +35,7 @@
                   <span>Publicado em {{ $course->published_at->format('d/m/Y') }}</span>
                 @endif
               </div>
-              <a class="btn-primary" href="{{ route('lesson.index',['slug' => $course->slug]) }}">Acessar</a>
+              <a class="btn-primary" href="{{ route('class.show',['slug' => $course->slug]) }}">Acessar</a>
             </div>
           </div>
         </div>

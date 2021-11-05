@@ -7,8 +7,35 @@
 @section('content')
   <div class="container">
     <h1 class="course-title">{{ $course->title }}</h1>
+    
     <div class="wrapper">
-      <div class="content">{!! $course->about !!}</div>
+      <div class="content">
+        <div class="table-responsive">
+          <table id="table-course-data">
+            <tbody>
+              <?php
+                $trs = [
+                  (object)['th' => 'Avaliações', 'td' => $course->raiting ?? '-'],
+                  (object)['th' => 'Núm. Aulas', 'td' => $course->num_classes],
+                  (object)['th' => 'Núm. Alunos', 'td' => $course->num_students],
+                  (object)['th' => 'Duração do Curso', 'td' => $course->durationInMinutes()]
+                ];
+                foreach($trs as $tr){
+              ?>
+                <tr>
+                  <th>{{ $tr->th }}</th>
+                  <td>{{ $tr->td }}</td>
+                </tr>
+              <?php } ?>
+            </tbody>
+          </table>
+        </div>
+        <hr style="
+          border-color: #eef6;
+          margin: 2rem 0 1.4rem;
+        "/>
+        {!! $course->about !!}
+      </div>
       <aside class="aside">
         <div class="content">
           @if($course->presentation_url)
@@ -27,7 +54,7 @@
               <div class="progress-line" style="width: {{ $course->students[0]->progress }}%; "></div>
             </div>
           @else
-            <a href="" class="btn-primary btn-block">Matricule-se</a>
+            <a href="{{ route('class.subscribe',['slug' => $course->slug]) }}" class="btn-primary btn-block">Matricule-se</a>
           @endif
         </div>
       </aside>

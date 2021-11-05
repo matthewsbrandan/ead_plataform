@@ -43,7 +43,7 @@ class CourseController extends Controller
         $courses = Course::with('category')->whereUserId(auth()->user()->id)
             ->take($this->take)
             ->skip($skip)
-            ->orderBy('id','DESC')
+            ->orderBy('updated_at','DESC')
             ->get();
 
         if($skip > 0) return response()->json([

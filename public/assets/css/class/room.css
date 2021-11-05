@@ -171,6 +171,7 @@
       -ms-flex-pack: justify;
           justify-content: space-between;
   padding: .5rem .6rem;
+  position: relative;
   -webkit-transition: .2s;
   transition: .2s;
 }
@@ -197,6 +198,17 @@
 .nav-lesson .lesson-list .lesson-item.active {
   background: #eef9;
   font-weight: 600;
+}
+
+.nav-lesson .lesson-list .lesson-item.viewed::after {
+  content: '';
+  height: 6px;
+  width: 6px;
+  border-radius: 50%;
+  display: block;
+  background: #192A88;
+  position: absolute;
+  left: -.35rem;
 }
 
 #lesson-about .about-details {
