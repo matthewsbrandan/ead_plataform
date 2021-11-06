@@ -14,7 +14,14 @@
           <span class="text-gray-500">Professor(a): {{ $course->teacher->name }}</span>
         </div>
         <div class="actions">
-          <button type="button" class="btn-clean">Avaliar</button>
+          <button
+            type="button"
+            class="btn-clean"
+            onclick="callRating({{ $student->rating ?? 3 }}, () => 
+              sendRating('{{ substr(route('course.rating',['id' => $course->id, 'rating' => 0]),0,-1) }}'),
+              '{{ $course->title }}'
+            );"
+          >Avaliar Curso</button>
           <button type="button" class="btn-clean btn-svg">@include('utils.icons.share')</button>
           <span class="porcentage">{{ $student->progress }}<small>%</small></span>
         </div>
@@ -30,6 +37,7 @@
               onclick="handleSelectLessonOption($(this),'#lesson-about')"
             >Sobre</li>
             <li class="lesson-option-item" onclick="handleSelectLessonOption($(this),'#lesson-questions')">Perguntas</li>
+            <li class="lesson-option-item" onclick="handleRatingLesson()">Avaliar Aula</li>
           </ul>
           <div class="toggle-option" id="lesson-about" style="display: block;">
             <h3 id="about-title">{{ $currentLesson->title }}</h3>
@@ -83,6 +91,7 @@
         </nav>
       </div>
     </div>
+    @include('utils.modalRating')
   </div>
 @endsection
 @section('script')
@@ -98,6 +107,9 @@
       }
     });
 
+    function sendRating(url){
+      runLoad(url+$('star-rater').attr('data-rating'));
+    }
     function handleSelectLessonOption(elem, target){
       $('.lesson-option-item').removeClass('active');
       elem.addClass('active');
@@ -151,7 +163,17 @@
       $('#lesson-container').html(html);
       onYouTubeIframeAPIReady(youtube_id);
     }
-
+    function handleRatingLesson(){
+      if(!selectedLesson) return;
+      let currentRating = 1;
+      if(selectedLesson.student &&
+         selectedLesson.student.rating
+      ) currentRating = selectedLesson.student.rating;
+      callRating(currentRating, () => 
+        sendRating(`{{ substr(route('class.rating',['course_id' => $course->id, 'id' => 0, 'rating' => 0]),0,-3) }}${selectedLesson.id}/`),
+        selectedLesson.title
+      );
+    }
     // BEGIN:: HANDLE YOUTUBE
     var tag = document.createElement('script');
 

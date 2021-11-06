@@ -194,6 +194,21 @@ class CourseController extends Controller
         );
     }
     #endregion STORE
+    public function rating($id, $rating){
+        if(!$course = Course::with(['studentsPivot' => function($query){
+            $query->where('user_id', auth()->user()->id);
+        }])->whereId($id)->first()) return redirect()->back()->with(
+            'message', 'Curso não encontrado'
+        );
+
+        $student = $course->studentsPivot->first();
+        if(!$student) return redirect()->back()->with(
+            'message', 'Você não ainda não é membro deste grupo'
+        );
+
+        $student->update(['rating' => $rating]);
+        return redirect()->back();
+    }
     #region LOCAL FUNCTIONS
     protected function handleCourseSlug($title){
         $slug = $this->generateSlug($title);

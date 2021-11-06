@@ -25,7 +25,7 @@ class CreateCoursesTable extends Migration
             $table->time('duration')->default('00:00:00.0000000');
             $table->integer('num_classes')->default(0);
             $table->integer('num_students')->default(0);
-            $table->integer('raiting')->nullable();
+            $table->integer('rating')->nullable();
             $table->foreignId('user_id')->constrained('users');
             $table->foreignId('category_id')->constrained('categories');
             $table->timestamp('published_at')->nullable();

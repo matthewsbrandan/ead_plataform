@@ -20,7 +20,7 @@ class Course extends Model
         'duration',
         'num_classes',
         'num_students',
-        'raiting',
+        'rating',
         'user_id',
         'category_id',
         'published_at'

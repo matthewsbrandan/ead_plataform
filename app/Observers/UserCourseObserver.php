@@ -25,7 +25,10 @@ class UserCourseObserver
      * @return void
      */
     public function updated(UserCourse $userCourse){
-        //
+        $rating = UserCourse::whereCourseId($userCourse->course_id)
+            ->groupBy('course_id')
+            ->avg('rating');
+        $userCourse->course->update(['rating' => $rating]);
     }
 
     /**

@@ -15,7 +15,7 @@
             <tbody>
               <?php
                 $trs = [
-                  (object)['th' => 'Avaliações', 'td' => $course->raiting ?? '-'],
+                  (object)['th' => 'Avaliações', 'td' => $course->rating ?? '-'],
                   (object)['th' => 'Núm. Aulas', 'td' => $course->num_classes],
                   (object)['th' => 'Núm. Alunos', 'td' => $course->num_students],
                   (object)['th' => 'Duração do Curso', 'td' => $course->durationInMinutes()]

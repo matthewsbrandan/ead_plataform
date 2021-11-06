@@ -49,6 +49,7 @@ Route::middleware(['auth'])->group(function() {
     Route::get('/aulas/outros/{slug}/{id?}','App\Http\Controllers\ClassController@outhers')->name('outhers');
     Route::get('/matricular-se/{slug}', 'App\Http\Controllers\ClassController@subscribe')->name('subscribe');
     Route::post('/aulas/{slug}/assistida', 'App\Http\Controllers\UserLessonController@toView')->name('toView');
+    Route::get('/aulas/avaliar/{course_id}/{id}/{rating}', 'App\Http\Controllers\UserLessonController@rating')->name('rating');
   });
 
   Route::name('course.')->group(function(){
@@ -66,6 +67,8 @@ Route::middleware(['auth'])->group(function() {
 
     Route::get('/novo-curso', 'App\Http\Controllers\CourseController@create')->name('create');
     Route::post('/novo-curso/salvar', 'App\Http\Controllers\CourseController@store')->name('store');
+
+    Route::get('/curso/avaliar/{id}/{rating}', 'App\Http\Controllers\CourseController@rating')->name('rating');
   });
 
   Route::name('lesson.')->group(function(){

@@ -124,4 +124,33 @@ class UserLessonController extends Controller
             ]
         ];
     }
+    public function rating($course_id, $id, $rating){
+        if(!$course = Course::with(['lessons' => function($query) use ($id){
+            $query->where('id', $id);
+        },'studentsPivot' => function($query){
+            $query->where('user_id', auth()->user()->id);
+        }])->whereId($course_id)->first()) return redirect()->back()->with(
+            'message', 'Curso não encontrado'
+        );
+
+        if(!$course->studentsPivot->first()) return redirect()->back()->with(
+            'message', 'Você não ainda não é membro deste grupo'
+        );
+
+        $lesson = $course->lessons->first();
+        if(!$lesson) return redirect()->back()->with(
+            'message', 'Aula não encontrada'
+        );
+        
+        $student = $lesson->student();
+        if(!$student) UserLesson::create([
+            'user_id' => auth()->user()->id,
+            'lesson_id' => $id,
+            'course_id' => $course_id,
+            'rating' => $rating
+        ]);
+        else $student->update(['rating' => $rating]);
+        
+        return redirect()->back();
+    }
 }
