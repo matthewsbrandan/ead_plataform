@@ -55,6 +55,11 @@ class ClassController extends Controller
             $userLesson->toView($request, $course->slug, false);
         }
 
+        $chatController = new ChatController();
+        $response = ($chatController->chatLesson($currentLesson->id))->content();
+        $chatResponse = json_decode($response);
+        $currentLesson->questions = $chatResponse->response;
+        
         return view('class.show',[
             'course' => $course,
             'currentLesson' => $currentLesson,

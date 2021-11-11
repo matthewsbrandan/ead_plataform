@@ -92,6 +92,7 @@ Route::middleware(['auth'])->group(function() {
   
   Route::name('chat.')->group(function(){
     Route::get('/chats', 'App\Http\Controllers\ChatController@index')->name('index');
+    Route::get('/chats/aula/{lesson_id}/{skip}', 'App\Http\Controllers\ChatController@chatLesson')->name('lesson');
     Route::post('/chats/enviar', 'App\Http\Controllers\ChatController@store')->name('store');
   });
 

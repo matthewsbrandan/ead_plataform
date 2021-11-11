@@ -29,6 +29,8 @@ class ChatController extends Controller
                 ->created_at
                 ->setTimezone('America/Sao_Paulo')
                 ->format('d M, Y');
+            $chat->author_thumbnail = $chat->author->thumbnail ?? asset('assets/images/user-default.jpeg');
+            $chat->author_name = $chat->author->name;
         }
         
         return response()->json([
@@ -59,6 +61,8 @@ class ChatController extends Controller
                 ->created_at
                 ->setTimezone('America/Sao_Paulo')
                 ->format('d M, Y');
+            $chat->author_thumbnail = $chat->author->thumbnail ?? asset('assets/images/user-default.jpeg');
+            $chat->author_name = $chat->author->name;
             return response()->json([
                 'result' => true,
                 'response' => $chat,
@@ -81,6 +85,8 @@ class ChatController extends Controller
                 ->created_at
                 ->setTimezone('America/Sao_Paulo')
                 ->format('d M, Y');
+            $chat->author_thumbnail = $chat->author->thumbnail ?? asset('assets/images/user-default.jpeg');
+            $chat->author_name = $chat->author->name;
         }
         
         return response()->json([

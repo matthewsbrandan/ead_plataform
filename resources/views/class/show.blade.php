@@ -69,6 +69,7 @@
                   rows="5"
                   required
                 ></textarea>
+                <span id="text-question-error-message"></span>
                 <button
                   type="submit"
                   class="btn-block btn-primary"
@@ -77,21 +78,17 @@
               </div>
             </form>
             <div id="container-questions">
-              @foreach($currentLesson->chat as $message)
+              @foreach($currentLesson->questions->chats as $message)
                 <div class="content-message" id="message-{{$message->id}}">
                   <div class="content-avatar">
                     <img
-                      src="{{ $message->author->thumbnail ?? asset('assets/images/user-default.jpeg') }}"
+                      src="{{ $message->author_thumbnail }}"
                     />
                   </div>
                   <div class="message-info">
-                    <strong class="message-author">{{ $message->author->name }}</strong>
+                    <strong class="message-author">{{ $message->author_name }}</strong>
                     <time class="message-timestamp">
-                      {{
-                        $message->created_at
-                          ->setTimezone('America/Sao_Paulo')
-                          ->format('d M, Y')
-                      }}
+                      {{ $message->date_formatted }}
                     </time>
                     <div class="message-body">
                       {{$message->content}}
@@ -101,6 +98,7 @@
                 </div>
               @endforeach
             </div>
+            <span id="more-messages" onClick="loadLessonMessages()">Carregar mais...</span>
           </div>
         </div>
         <nav class="nav-lesson">
@@ -164,6 +162,9 @@
       if(lesson.type !== 'video') setTimeout(
         () => markAsWatched(false), 3000
       );
+
+      $('#container-questions').html('');
+      loadLessonMessages();
     }
     function handleArchiveToHtml(archives){
       let html = [

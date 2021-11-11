@@ -1,6 +1,6 @@
 #badge-count-messages {
-  background: var(--dark-500);
-  color: var(--gray-100);
+  background: #212529;
+  color: #e2e8f0;
   border-radius: 99rem;
   padding: .2rem .6rem;
   font-size: .8rem;
@@ -28,8 +28,8 @@
           justify-content: space-between;
   gap: .5rem;
   border: 1px solid var(--gray-400);
-  background: var(--gray-100);
-  color: var(--gray-700);
+  background: #e2e8f0;
+  color: #747480;
   border-radius: 99rem;
   padding: .8rem;
   height: 2rem;
@@ -38,12 +38,28 @@
   transition: .3s;
 }
 
+#answer-to #hover-answer {
+  position: absolute;
+  display: none;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid #eef;
+  -webkit-box-shadow: 0 0 10px #0001;
+          box-shadow: 0 0 10px #0001;
+  background-color: #fff;
+  bottom: 2.7rem;
+}
+
 #answer-to:hover {
-  background: var(--dark-500);
+  background: #212529;
 }
 
 #answer-to:hover > span {
-  color: var(--gray-100);
+  color: #e2e8f0;
+}
+
+#answer-to:hover #hover-answer {
+  display: block;
 }
 
 #answer-to span:hover {
@@ -51,8 +67,8 @@
 }
 
 #answer-to button {
-  background: var(--dark-500);
-  color: var(--gray-100);
+  background: #212529;
+  color: #e2e8f0;
   border-radius: 99rem;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -68,99 +84,38 @@
 }
 
 #answer-to button:hover, .message-trash:hover {
-  background: var(--gray-200);
-  color: var(--dark-500);
+  background: #d1d7df;
+  color: #212529;
   font-weight: bold;
 }
 
-#answer-to #hover-answer {
-  position: absolute;
-  display: none;
-  padding: 1rem;
-  border-radius: 0.5rem;
-  border: 1px solid #eef;
-  -webkit-box-shadow: 0 0 10px #0001;
-          box-shadow: 0 0 10px #0001;
-  background-color: #fff;
-  bottom: 2.7rem;
-}
-
-#answer-to:hover #hover-answer {
-  display: block;
-}
-
-.form-group {
+#text-question {
   position: relative;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  border: 1px solid var(--gray-100);
-  border-radius: 4px;
-  padding-left: .6rem;
 }
 
-.form-group:focus-within {
-  outline: 2px solid var(--gray-200);
+#text-question:focus-within {
+  outline: 2px solid #d1d7df;
 }
 
-.form-group.has-error {
-  border: 2px solid #f347;
-  margin-bottom: 2rem;
+#text-question.has-error {
+  border: 2px solid #f347 !important;
 }
 
-.form-group.has-success {
-  border: 2px solid var(--green-100);
-  margin-bottom: 2rem;
+#text-question.has-success {
+  border: 2px solid #03a06260 !important;
 }
 
-.error-message, .success-message {
+#text-question-error-message {
   display: none;
-  position: absolute;
-  bottom: -1.3rem;
   font-size: .7rem;
-  color: var(--gray-500);
-}
-
-.form-group.has-error .error-message {
+  color: #99a;
   display: block;
-}
-
-.form-group.has-success .success-message {
-  display: block;
-}
-
-.custom-textarea .form-control {
-  min-width: 14rem;
-  -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
-  outline: none;
-  height: auto;
-  padding-top: .6rem;
-  padding-bottom: .6rem;
-  color: var(--gray-700);
-}
-
-.custom-textarea button {
-  position: absolute;
-  bottom: .5rem;
-  right: .5rem;
-  background: var(--dark-500);
-  color: var(--gray-200);
-  border-radius: 6px;
-  padding: .2rem .4rem;
-  -webkit-transition: .2s;
-  transition: .2s;
-}
-
-.custom-textarea button:hover {
-  background: var(--gray-200);
-  color: var(--dark-500);
-  font-weight: bold;
+  margin-top: -0.2rem;
+  margin-bottom: 0.6rem;
 }
 
 /* END:: FORM COMMENTS | BEGIN:: COMMENTS */
-.container-messages {
+#container-questions {
   margin-top: 1rem;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -172,7 +127,7 @@
   overflow-x: auto;
 }
 
-.content-message {
+#container-questions .content-message {
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 3.2rem auto;
@@ -183,29 +138,20 @@
   padding: .5rem;
 }
 
-.content-message:hover {
+#container-questions .content-message:hover {
   background: #00000005;
 }
 
-.content-message .message-tag-user {
+#container-questions .content-message .content-avatar img {
+  margin: auto;
   height: 2.4rem;
   width: 2.4rem;
-  padding: 0;
-  border-radius: 99rem;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  color: var(--gray-100);
-  background: var(--dark-500);
+  border-radius: 50%;
+  -webkit-box-shadow: 0 0 0 #0002;
+          box-shadow: 0 0 0 #0002;
 }
 
-.content-message .message-info {
+#container-questions .content-message .message-info {
   position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -216,32 +162,21 @@
           flex-direction: column;
 }
 
-.content-message .message-info .message-timestamp, #hover-answer .message-timestamp {
+#container-questions .content-message .message-info .message-body {
+  color: #747480;
+}
+
+#container-questions .content-message .message-info .message-timestamp, #container-questions #hover-answer .message-timestamp {
   font-size: .7rem;
-  color: var(--gray-500);
+  color: #99a;
   display: block;
 }
 
-.content-message .message-info .message-body {
-  color: var(--gray-700);
-}
-
-.content-message .message-info .message-actions {
-  margin: .6rem 0 0;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  gap: .6rem;
-  color: var(--gray-700);
-  font-weight: bold;
-  font-size: .85rem;
-}
-
-.message-answer:hover {
+#container-questions .message-answer:hover {
   text-decoration: underline;
 }
 
-.message-like {
+#container-questions .message-like {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -251,7 +186,7 @@
   gap: .2rem;
 }
 
-.message-unlike {
+#container-questions .message-unlike {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -261,13 +196,13 @@
   gap: .2rem;
 }
 
-.message-responses {
+#container-questions .message-responses {
   margin: .8rem 0;
   border-left: 1px dotted #dde;
   padding: 0 .4rem;
 }
 
-.message-trash {
+#container-questions .message-trash {
   position: absolute;
   top: 0;
   right: 0;
@@ -280,12 +215,12 @@
   display: block;
   text-align: center;
   font-size: .8rem;
-  color: var(--gray-700);
+  color: #747480;
 }
 
 #more-messages:hover, .more-answers:hover {
   text-decoration: underline;
-  color: var(--dark-500);
+  color: #212529;
 }
 
 /* END:: COMMENTS */
