@@ -50,6 +50,9 @@ class User extends Authenticatable
     public function coursesPivot(){
         return $this->hasMany(UserCourse::class, 'user_id');
     }
+    public function myCourses(){
+        return $this->hasMany(Course::class, 'user_id');
+    }
     public function isTeacher(){
         return in_array($this->type,['teacher', 'admin']);
     }

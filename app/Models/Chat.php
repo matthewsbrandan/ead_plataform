@@ -14,8 +14,9 @@ class Chat extends Model
         'num_answers',
         'depth',
         'breadcrumbs',
+        'is_course',
         'lesson_id', // EXISTIRÁ QUANDO FOR CHAT RELACIONADO A AULA
-        'teacher_id', // EXISTIRÁ QUANDO FOR CHAT DIRETO COM PROFESSOR
+        'course_id', // EXISTIRÁ QUANDO FOR CHAT DIRETO COM PROFESSOR
         'user_id',
         'answer_id',
     ];
@@ -29,8 +30,8 @@ class Chat extends Model
     public function lesson(){
         return $this->belongsTo(Lesson::class, 'lesson_id');
     }
-    public function teacher(){
-        return $this->belongsTo(User::class, 'user_id');
+    public function course(){
+        return $this->belongsTo(Course::class, 'course_id');
     }
     public function author(){
         return $this->belongsTo(User::class, 'user_id');

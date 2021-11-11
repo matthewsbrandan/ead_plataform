@@ -77,8 +77,16 @@ class Course extends Model
     public function student(){
         return $this->studentsPivot->where('user_id', auth()->user()->id)->first();
     }
+    public function chats(){
+        return $this->hasMany(Chat::class, 'course_id');
+    }
     #endregion RELATIONSHIPS
-
+    public function chat($user_id = null){
+        if($user_id == null) $user_id = auth()->user()->id;
+        return Chat::whereCourseId($this->id)
+            ->whereUserId($user_id)
+            ->orderBy('created_at', 'desc');
+    }
     public function updateLessonRealIndex($classes = null, $real_index = 0){
         if(!$classes) $classes = $this->classes();
 

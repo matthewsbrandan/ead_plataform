@@ -10,13 +10,16 @@
     <div class="card-courses">
       <strong>Últimos cursos que você ingressou</strong>
       <ul>
-        @foreach(auth()->user()->coursesPivot()->orderBy('created_at', 'desc')->take(10)->get() as $student)
-          <li>
+        @foreach($userCourse as $student)
+          <li onClick="runLoad('{{ route('class.show',['slug' => $student->course->slug]) }}')">
             <img src="{{$student->course->wallpaper}}" alt="{{$student->course->title}}"/>
             <span>{{$student->course->title}}</span>
             <time>{{$student->created_at->timezone('America/Sao_Paulo')->format('d/m/Y H:i')}}</time>
           </li>
         @endforeach
+        @if(count($userCourse) == 0)
+          <span style="color: #99a; font-size: .8rem;">Você ainda não ingressou em nenhum curso...</span>
+        @endif
       </ul>
     </div>
     <div class="card-courses-completed">
@@ -28,7 +31,11 @@
             <strong>{{ $course->course->title }}</strong>
           </div>
         @endforeach
+        @if(count($coursesCompleted) == 0)
+          <span style="color: #99a; font-size: .8rem;">Você ainda não completou nenhum curso...</span>
+        @endif
       </div>
     </div>
   </div>
+  @include('utils.loading')
 @endsection

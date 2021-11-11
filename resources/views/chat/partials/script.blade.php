@@ -5,10 +5,16 @@
 
     let data = { content: $('#text-question').val() };
 
-    if(selectedLesson) data = {
+    if(isChatTeacher) data = {
+      ...data,
+      course_id: {{ $course->id }},
+      user_id: {{ $user_id }}
+    };
+    else data = {
       ...data,
       lesson_id: selectedLesson.id
     };
+    
 
     if(timeClearTextQuestion) clearTimeout(timeClearTextQuestion);
     $('#text-question').removeClass('has-success has-error').next().html('').hide();
@@ -18,7 +24,8 @@
       ).show();
 
       if(data.result){
-        $('#container-questions').prepend(handleAddMensage(data.response));
+        if(isChatTeacher) $('#container-questions').append(handleAddMensage(data.response));
+        else $('#container-questions').prepend(handleAddMensage(data.response));
       }
     }).fail(() => {
       $('#text-question').addClass('has-error').next().html(
@@ -36,7 +43,6 @@
     
     let skip = $('#container-questions .content-message').length;
     $.get(`{{ substr(route('chat.lesson',['lesson_id' => 0, 'skip' => 0]),0,-3) }}${selectedLesson.id}/${skip}`).done(function(data){
-      console.log(data);
       if(data.result) data.response.chats.forEach(message => {
         $('#container-questions').append(
           handleAddMensage(message)
@@ -44,9 +50,26 @@
       });
     });
   }
+  function loadTeacherMessages(){
+    let skip = $('#container-questions .content-message').length;
+    $.get(`{{ substr(route('chat.course',['slug' => $course->slug, 'user_id' => $user_id, 'skip' => 0]),0,-1) }}${skip}`).done(function(data){
+      if(data.result) data.response.chats.forEach(message => {
+        $('#container-questions').prepend(
+          handleAddMensage(message)
+        );
+      });
+    });
+  }
   function handleAddMensage(message){
+    let isMe = false;
+
+    if(isChatTeacher){
+      isMe = (message.is_course && message.user_id !== {{ auth()->user()->id }}) ||
+             (!message.is_course && message.user_id === {{ auth()->user()->id }});
+    }
+    
     return `
-      <div class="content-message" id="message-${ message.id }">
+      <div class="content-message ${isMe ? 'is-me' : ''}" id="message-${ message.id }">
         <div class="content-avatar">
           <img
             src="${ message.author_thumbnail }"

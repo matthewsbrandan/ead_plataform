@@ -40,7 +40,7 @@
             <li class="lesson-option-item" onclick="handleSelectLessonOption($(this),'#lesson-questions')">Perguntas</li>
             <li class="lesson-option-item" onclick="handleRatingLesson()">Avaliar Aula</li>
           </ul>
-          <div class="toggle-option" id="lesson-about">
+          <div class="toggle-option" id="lesson-about" style="display: block;">
             <h3 id="about-title">{{ $currentLesson->title }}</h3>
             <div class="about-details">
               <span id="about-time">
@@ -59,7 +59,7 @@
               {{ $currentLesson->description }}
             </p>
           </div>
-          <div class="toggle-option" id="lesson-questions" style="display: block;">
+          <div class="toggle-option" id="lesson-questions">
             <form onsubmit="return sendMessage(event);">
               <div class="form-group">
                 <textarea
@@ -257,6 +257,7 @@
         $('#lesson-container').html(handleArchiveToHtml({!! $currentLesson->content !!}));
       @endif
     });
+    const isChatTeacher = false;
   </script>
   @include('chat.partials.script')
 @endsection

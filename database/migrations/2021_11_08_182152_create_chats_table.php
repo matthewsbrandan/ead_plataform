@@ -19,8 +19,9 @@ class CreateChatsTable extends Migration
             $table->integer('num_answers')->default(0);
             $table->integer('depth')->default(0);
             $table->text('breadcrumbs')->nullable();
+            $table->boolean('is_course')->default(false);
             $table->foreignId('lesson_id')->nullable()->constrained('lessons');
-            $table->foreignId('teacher_id')->nullable()->constrained('users');
+            $table->foreignId('course_id')->nullable()->constrained('courses');
             $table->foreignId('user_id')->constrained('users');
             $table->foreignId('answer_id')
                 ->nullable()

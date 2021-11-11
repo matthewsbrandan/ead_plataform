@@ -17,6 +17,7 @@
   <link rel="stylesheet" href="{{ asset('assets/css/layout/app.css') }}">
   <link rel="stylesheet" href="{{ asset('assets/css/layout/sidebar.css') }}">
   <script type="text/javascript" src="{{ asset('assets/js/jquery.min.js') }}"></script>
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   @yield('style')
 </head>
 <body>
@@ -36,7 +37,14 @@
       if(localStorage.getItem('sidebar-expanded') === 'expanded'){
         if(window.innerWidth > 500) toggleExpandSidebar($('#sidebar .logo').parent());
       }
-    })
+    });
+    
+    $.ajaxSetup({
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      }
+    });
+
     function toggleExpandSidebar(elem){
       localStorage.setItem('sidebar-expanded', elem.parent().hasClass('expanded') ? null:'expanded');
       elem.parent().toggleClass('expanded');

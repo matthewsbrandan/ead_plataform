@@ -8,7 +8,7 @@ use App\Models\UserCourse;
 
 class ClassController extends Controller
 {
-    public function index($slug){
+    public function index($slug){        
         if(!$course = Course::with(['students' => function($query){
             $query->where('user_id', auth()->user()->id);
         }])->whereSlug($slug)->first()) return redirect()->back()->with(
