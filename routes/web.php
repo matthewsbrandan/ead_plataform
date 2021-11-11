@@ -92,6 +92,7 @@ Route::middleware(['auth'])->group(function() {
   
   Route::name('chat.')->group(function(){
     Route::get('/chats', 'App\Http\Controllers\ChatController@index')->name('index');
+    Route::post('/chats/enviar', 'App\Http\Controllers\ChatController@store')->name('store');
   });
 
   Route::name('user.')->group(function(){
@@ -108,7 +109,7 @@ Route::middleware(['auth'])->group(function() {
   Route::name('category.')->group(function(){
     Route::get('/categorias', 'App\Http\Controllers\CategoryController@index')->name('index');
     Route::get('/categorias/editar/{id}', 'App\Http\Controllers\CategoryController@edit')->name('edit');
-    Route::post('/categorias/salvar/{id?}', 'App\Http\Controllers\CategoryController@store')->name('store');
+    Route::post('/categorias/salvar', 'App\Http\Controllers\CategoryController@store')->name('store');
   });
 
   Route::name('section.')->group(function(){

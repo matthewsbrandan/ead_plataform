@@ -2,6 +2,7 @@
 @section('head')
   <title>{{ $course->title }} | {{ config('app.name') }}</title>
   <link rel="stylesheet" href="{{ asset('assets/css/class/room.css') }}">
+  <link rel="stylesheet" href="{{ asset('assets/css/dashboard/chat.css') }}">
   <meta name="csrf-token" content="{{ csrf_token() }}">
   @php  $sidebarActive = 'book' @endphp
 @endsection
@@ -39,7 +40,7 @@
             <li class="lesson-option-item" onclick="handleSelectLessonOption($(this),'#lesson-questions')">Perguntas</li>
             <li class="lesson-option-item" onclick="handleRatingLesson()">Avaliar Aula</li>
           </ul>
-          <div class="toggle-option" id="lesson-about" style="display: block;">
+          <div class="toggle-option" id="lesson-about">
             <h3 id="about-title">{{ $currentLesson->title }}</h3>
             <div class="about-details">
               <span id="about-time">
@@ -58,8 +59,8 @@
               {{ $currentLesson->description }}
             </p>
           </div>
-          <div class="toggle-option" id="lesson-questions">
-            <form>
+          <div class="toggle-option" id="lesson-questions" style="display: block;">
+            <form onsubmit="return sendMessage(event);">
               <div class="form-group">
                 <textarea
                   id="text-question"
@@ -75,7 +76,31 @@
                 >Enviar Pergunta</button>
               </div>
             </form>
-            <div id="container-questions"></div>
+            <div id="container-questions">
+              @foreach($currentLesson->chat as $message)
+                <div class="content-message" id="message-{{$message->id}}">
+                  <div class="content-avatar">
+                    <img
+                      src="{{ $message->author->thumbnail ?? asset('assets/images/user-default.jpeg') }}"
+                    />
+                  </div>
+                  <div class="message-info">
+                    <strong class="message-author">{{ $message->author->name }}</strong>
+                    <time class="message-timestamp">
+                      {{
+                        $message->created_at
+                          ->setTimezone('America/Sao_Paulo')
+                          ->format('d M, Y')
+                      }}
+                    </time>
+                    <div class="message-body">
+                      {{$message->content}}
+                    </div>
+                    <div class="message-responses" id="responses-message-{{$message->breadcrumbs}}"></div>
+                  </div>
+                </div>
+              @endforeach
+            </div>
           </div>
         </div>
         <nav class="nav-lesson">
@@ -232,4 +257,5 @@
       @endif
     });
   </script>
+  @include('chat.partials.script')
 @endsection

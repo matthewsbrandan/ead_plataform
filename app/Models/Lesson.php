@@ -44,6 +44,9 @@ class Lesson extends Model
     public function studentsPivot(){
         return $this->hasMany(UserLesson::class, 'lesson_id');
     }
+    public function chat(){
+        return $this->hasMany(Chat::class, 'lesson_id');
+    }
     #endregion RELATIONSHIPS
     public function student($json = false){
         $student = $this->studentsPivot->where('user_id', auth()->user()->id)->first();

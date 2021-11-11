@@ -1,0 +1,200 @@
+#badge-count-messages{
+  background: var(--dark-500);
+  color: var(--gray-100);
+  border-radius: 99rem;
+  padding: .2rem .6rem;
+  font-size: .8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#answer-to{
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .5rem;
+  border: 1px solid var(--gray-400);
+  background: var(--gray-100);
+  color: var(--gray-700);
+  border-radius: 99rem;
+  padding: .8rem;
+  height: 2rem;
+
+  cursor: pointer;
+
+  transition: .3s;
+}
+#answer-to:hover{ background: var(--dark-500); }
+#answer-to:hover > span{ color: var(--gray-100); }
+#answer-to span:hover{
+  text-decoration: underline;
+}
+#answer-to button{
+  background: var(--dark-500);
+  color: var(--gray-100);
+  border-radius: 99rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition: .3s;
+}
+#answer-to button:hover, .message-trash:hover{
+  background: var(--gray-200);
+  color: var(--dark-500);
+  font-weight: bold;
+}
+#answer-to #hover-answer{
+  position: absolute;
+  display: none;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid #eef;
+  box-shadow: 0 0 10px #0001;
+  background-color: #fff;
+  bottom: 2.7rem;
+}
+#answer-to:hover #hover-answer{
+  display: block;
+}
+.form-group{
+  position: relative;
+  display: flex;
+  border: 1px solid var(--gray-100);
+  border-radius: 4px;
+  padding-left: .6rem;
+}
+.form-group:focus-within{
+  outline: 2px solid var(--gray-200);
+}
+.form-group.has-error{
+  border: 2px solid #f347;
+  margin-bottom: 2rem;
+}
+.form-group.has-success{
+  border: 2px solid var(--green-100);
+  margin-bottom: 2rem;
+}
+.error-message, .success-message{
+  display: none;
+  position: absolute;
+  bottom: -1.3rem;
+  font-size: .7rem;
+  color: var(--gray-500);
+}
+.form-group.has-error .error-message{ display: block; }
+.form-group.has-success .success-message{ display: block; }
+.custom-textarea .form-control{
+  min-width: 14rem;
+  flex: 1;
+  outline: none;
+  height: auto;
+  padding-top: .6rem;
+  padding-bottom: .6rem;
+  color: var(--gray-700);
+}
+.custom-textarea button{
+  position: absolute;
+  bottom: .5rem;
+  right: .5rem;
+  background: var(--dark-500);
+  color: var(--gray-200);
+  border-radius: 6px;
+  padding: .2rem .4rem;
+
+  transition: .2s;
+}
+.custom-textarea button:hover{
+  background: var(--gray-200);
+  color: var(--dark-500);
+  font-weight: bold;
+}
+/* END:: FORM COMMENTS | BEGIN:: COMMENTS */
+.container-messages{
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  overflow-x: auto;
+}
+.content-message{
+  display: grid;
+  grid-template-columns: 3.2rem auto;
+  border-radius: .5rem;
+  transition: .2s;
+  padding: .5rem;
+}
+.content-message:hover{ 
+  background: #00000005;
+  
+}
+.content-message .message-tag-user{
+  height: 2.4rem;
+  width: 2.4rem;
+  padding: 0;
+  border-radius: 99rem;
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  color: var(--gray-100);
+  background: var(--dark-500);
+}
+.content-message .message-info{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+.content-message .message-info .message-timestamp,#hover-answer .message-timestamp{
+  font-size: .7rem;
+  color: var(--gray-500);
+  display: block;
+}
+.content-message .message-info .message-body{
+  color: var(--gray-700);
+}
+.content-message .message-info .message-actions{
+  margin: .6rem 0 0;
+  display: flex;
+  gap: .6rem;
+
+  color: var(--gray-700);
+  font-weight: bold;
+  font-size: .85rem;
+}
+.message-answer:hover{ text-decoration: underline; }
+.message-like{
+  display: flex;
+  align-items: flex-top;
+  gap: .2rem;
+}
+.message-unlike{
+  display: flex;
+  align-items: flex-top;
+  gap: .2rem;
+}
+.message-responses{
+  margin: .8rem 0;
+  border-left: 1px dotted #dde;
+  padding: 0 .4rem;
+}
+.message-trash{
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-radius: 99rem;
+  font-size: 0;
+  padding: .3rem;
+}
+#more-messages, .more-answers{
+  display: block;
+  text-align: center;
+  font-size: .8rem;
+  color: var(--gray-700);
+}
+#more-messages:hover, .more-answers:hover{
+  text-decoration: underline;
+  color: var(--dark-500);
+}
+/* END:: COMMENTS */
