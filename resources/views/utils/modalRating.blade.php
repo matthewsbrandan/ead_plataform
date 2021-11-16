@@ -84,7 +84,6 @@
   function callRating(currentRating = 1, fn, subtitle=""){
     $('#modalRating h3').html(subtitle);
     $('#content-stars').html(`<star-rater data-rating="${currentRating}"></star-rater>`);
-    $('star-rater').attr('data-rating', currentRating);
     $('#modalRating .btn-primary').on('click', fn);
     $('#modalRating').show();
   }

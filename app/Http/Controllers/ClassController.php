@@ -71,7 +71,11 @@ class ClassController extends Controller
         dd('Aqui');
     }
     public function outhers($slug){
-        dd('Aqui');
+        $courses = Course::whereNotNull('published_at')
+            ->inRandomOrder()
+            ->take(5)
+            ->get();
+        return view('class.outhers',['courses' => $courses]);
     }
     public function subscribe($slug){
         if(!$course = Course::with(['students' => function($query){

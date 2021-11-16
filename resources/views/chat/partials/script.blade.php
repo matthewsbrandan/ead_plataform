@@ -8,7 +8,7 @@
     if(isChatTeacher) data = {
       ...data,
       course_id: {{ $course->id }},
-      user_id: {{ $user_id }}
+      user_id: {{ $user_id ?? auth()->user()->id }}
     };
     else data = {
       ...data,
@@ -52,7 +52,7 @@
   }
   function loadTeacherMessages(){
     let skip = $('#container-questions .content-message').length;
-    $.get(`{{ substr(route('chat.course',['slug' => $course->slug, 'user_id' => $user_id, 'skip' => 0]),0,-1) }}${skip}`).done(function(data){
+    $.get(`{{ substr(route('chat.course',['slug' => $course->slug, 'user_id' => $user_id ?? auth()->user()->id, 'skip' => 0]),0,-1) }}${skip}`).done(function(data){
       if(data.result) data.response.chats.forEach(message => {
         $('#container-questions').prepend(
           handleAddMensage(message)
