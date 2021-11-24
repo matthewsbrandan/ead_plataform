@@ -39,17 +39,18 @@ Route::post('/redefinindo-senha',
 )->name('store_password');
 // END:: FORGOT PASSWORD
 
+Route::get('/explorar/{search?}', 'App\Http\Controllers\ExplorerController@index')->name('explorer');
 Route::middleware(['auth'])->group(function() {
   Route::get('/home','App\Http\Controllers\HomeController@index')->name('home');
 
   Route::name('class.')->group(function(){
     Route::get('/curso/apresentacao/{slug}', 'App\Http\Controllers\ClassController@index')->name('index');
-    Route::get('/aulas/{slug}/{id?}','App\Http\Controllers\ClassController@show')->name('show');
     Route::get('/aulas/chat/{slug}/{id?}','App\Http\Controllers\ClassController@chat')->name('chat');
     Route::get('/aulas/outros/{slug}/{id?}','App\Http\Controllers\ClassController@outhers')->name('outhers');
     Route::get('/matricular-se/{slug}', 'App\Http\Controllers\ClassController@subscribe')->name('subscribe');
-    Route::post('/aulas/{slug}/assistida', 'App\Http\Controllers\UserLessonController@toView')->name('toView');
     Route::get('/aulas/avaliar/{course_id}/{id}/{rating}', 'App\Http\Controllers\UserLessonController@rating')->name('rating');
+    Route::post('/aulas/{slug}/assistida', 'App\Http\Controllers\UserLessonController@toView')->name('toView');
+    Route::get('/aulas/{slug}/{id?}','App\Http\Controllers\ClassController@show')->name('show');
   });
 
   Route::name('course.')->group(function(){
@@ -92,6 +93,9 @@ Route::middleware(['auth'])->group(function() {
   
   Route::name('chat.')->group(function(){
     Route::get('/chats', 'App\Http\Controllers\ChatController@index')->name('index');
+    Route::get('/chats/aula/{lesson_id}/{skip?}', 'App\Http\Controllers\ChatController@chatLesson')->name('lesson');
+    Route::get('/chats/curso/{slug}/{user_id}/{skip?}', 'App\Http\Controllers\ChatController@chatCourse')->name('course');
+    Route::post('/chats/enviar', 'App\Http\Controllers\ChatController@store')->name('store');
   });
 
   Route::name('user.')->group(function(){
@@ -108,7 +112,7 @@ Route::middleware(['auth'])->group(function() {
   Route::name('category.')->group(function(){
     Route::get('/categorias', 'App\Http\Controllers\CategoryController@index')->name('index');
     Route::get('/categorias/editar/{id}', 'App\Http\Controllers\CategoryController@edit')->name('edit');
-    Route::post('/categorias/salvar/{id?}', 'App\Http\Controllers\CategoryController@store')->name('store');
+    Route::post('/categorias/salvar', 'App\Http\Controllers\CategoryController@store')->name('store');
   });
 
   Route::name('section.')->group(function(){

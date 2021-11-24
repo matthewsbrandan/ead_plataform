@@ -34,30 +34,47 @@ class CategoryController extends Controller
         );
         return view('category.edit',['category' => $category]);
     }
-    public function store(Request $request, $id = null){
+    public function store(Request $request){
         $this->adminOnly();
 
-        $slug = $this->handleCategorySlug($request->title);
-
-        $path = "uploads/categories/";
-        ['names' => $names,'errors' => $errors] = $this->uploadImages([$request->file('wallpaper')],$path);
-
-        if(count($errors) > 0 || count($names) == 0) return redirect()->back()->with(
-            'error-new-category', 'Houve um erro ao fazer o upload da imagem'
+        $category = null;
+        if(isset($request->id) && $request->id) if(
+            !$category = Category::whereId($request->id)->first()
+        ) return redirect()->back()->with(
+            'message', 'Categoria não encontrada'
         );
 
-        $wallpaper = $names[0];
-
+        
         $data = [
             'title' => $request->title,
-            'slug' => $slug,
             'description' => $request->description,
-            'wallpaper' => $wallpaper
         ];
+        
+        if($category == null){
+            $slug = $this->handleCategorySlug($request->title);
+            $data+=['slug' => $slug];
+        }
 
-        Category::create($data);
+        if($request->file('wallpaper')){
+            $path = "uploads/categories/";
+            ['names' => $names,'errors' => $errors] = $this->uploadImages([$request->file('wallpaper')],$path);
+    
+            if(count($errors) > 0 || count($names) == 0) return redirect()->back()->with(
+                'error-new-category', 'Houve um erro ao fazer o upload da imagem'
+            );
 
-        return redirect()->route('category.index')->with('message','Categoria cadastrada com sucesso!');
+            $wallpaper = $names[0];
+            $data+= ['wallpaper' => $wallpaper];
+        }
+        
+
+        if($category == null) Category::create($data);
+        else $category->update($data);
+
+        return redirect()->route('category.index')->with(
+            'message',$category == null ?
+            'Categoria cadastrada com sucesso!':'Categoria editada com sucesso'
+        );
     }
     #region LOCAL FUNCTIONS
     protected function handleCategorySlug($title){

@@ -63,10 +63,12 @@
           method="POST"
           action="{{ route('category.store') }}"
           class="form-custom"
+          id="form-category"
           onsubmit="return submitLoad()"
           enctype="multipart/form-data"
         >
           {{ csrf_field() }}
+          <input type="hidden" name="id" id="category-id"/>
           <div class="form-group @if(session()->has('error-title')) have-error @endif">
             <input
               type="text"
@@ -138,5 +140,25 @@
         file.readAsDataURL(files[index]);
       }
     }
+  }
+
+  function handleNewCategory(){
+    $('#modalNewCategory header').html('Nova Categoria');
+    $('#form-category').trigger("reset");
+    $('#category-wallpaper').attr('required', 'required');
+    $('#modalNewCategory .image-mirror').attr('src', "{{ asset('assets/images/no-image.png') }}");
+    $('#modalNewCategory .btn-primary').html('Cadastrar');
+    $('#modalNewCategory').show();
+  }
+
+  function handleEditCategory(category){
+    $('#modalNewCategory header').html(`Editar ${category.title}`);
+    $('#category-id').val(category.id);
+    $('#category-title').val(category.title);
+    $('#category-description').val(category.description);
+    $('#category-wallpaper').attr('required', null);
+    $('#modalNewCategory .image-mirror').attr('src',category.wallpaper);
+    $('#modalNewCategory .btn-primary').html('Salvar');
+    $('#modalNewCategory').show();
   }
 </script>

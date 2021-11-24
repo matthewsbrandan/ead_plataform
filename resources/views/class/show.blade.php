@@ -2,6 +2,7 @@
 @section('head')
   <title>{{ $course->title }} | {{ config('app.name') }}</title>
   <link rel="stylesheet" href="{{ asset('assets/css/class/room.css') }}">
+  <link rel="stylesheet" href="{{ asset('assets/css/dashboard/chat.css') }}">
   <meta name="csrf-token" content="{{ csrf_token() }}">
   @php  $sidebarActive = 'book' @endphp
 @endsection
@@ -59,7 +60,7 @@
             </p>
           </div>
           <div class="toggle-option" id="lesson-questions">
-            <form>
+            <form onsubmit="return sendMessage(event);">
               <div class="form-group">
                 <textarea
                   id="text-question"
@@ -68,6 +69,7 @@
                   rows="5"
                   required
                 ></textarea>
+                <span id="text-question-error-message"></span>
                 <button
                   type="submit"
                   class="btn-block btn-primary"
@@ -75,7 +77,28 @@
                 >Enviar Pergunta</button>
               </div>
             </form>
-            <div id="container-questions"></div>
+            <div id="container-questions">
+              @foreach($currentLesson->questions->chats as $message)
+                <div class="content-message" id="message-{{$message->id}}">
+                  <div class="content-avatar">
+                    <img
+                      src="{{ $message->author_thumbnail }}"
+                    />
+                  </div>
+                  <div class="message-info">
+                    <strong class="message-author">{{ $message->author_name }}</strong>
+                    <time class="message-timestamp">
+                      {{ $message->date_formatted }}
+                    </time>
+                    <div class="message-body">
+                      {{$message->content}}
+                    </div>
+                    <div class="message-responses" id="responses-message-{{$message->breadcrumbs}}"></div>
+                  </div>
+                </div>
+              @endforeach
+            </div>
+            <span id="more-messages" onClick="loadLessonMessages()">Carregar mais...</span>
           </div>
         </div>
         <nav class="nav-lesson">
@@ -139,6 +162,9 @@
       if(lesson.type !== 'video') setTimeout(
         () => markAsWatched(false), 3000
       );
+
+      $('#container-questions').html('');
+      loadLessonMessages();
     }
     function handleArchiveToHtml(archives){
       let html = [
@@ -231,5 +257,7 @@
         $('#lesson-container').html(handleArchiveToHtml({!! $currentLesson->content !!}));
       @endif
     });
+    const isChatTeacher = false;
   </script>
+  @include('chat.partials.script')
 @endsection

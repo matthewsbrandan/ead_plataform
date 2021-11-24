@@ -8,7 +8,7 @@ use App\Models\UserCourse;
 
 class ClassController extends Controller
 {
-    public function index($slug){
+    public function index($slug){        
         if(!$course = Course::with(['students' => function($query){
             $query->where('user_id', auth()->user()->id);
         }])->whereSlug($slug)->first()) return redirect()->back()->with(
@@ -55,6 +55,11 @@ class ClassController extends Controller
             $userLesson->toView($request, $course->slug, false);
         }
 
+        $chatController = new ChatController();
+        $response = ($chatController->chatLesson($currentLesson->id))->content();
+        $chatResponse = json_decode($response);
+        $currentLesson->questions = $chatResponse->response;
+        
         return view('class.show',[
             'course' => $course,
             'currentLesson' => $currentLesson,
@@ -66,7 +71,11 @@ class ClassController extends Controller
         dd('Aqui');
     }
     public function outhers($slug){
-        dd('Aqui');
+        $courses = Course::whereNotNull('published_at')
+            ->inRandomOrder()
+            ->take(5)
+            ->get();
+        return view('class.outhers',['courses' => $courses]);
     }
     public function subscribe($slug){
         if(!$course = Course::with(['students' => function($query){
