@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -25,15 +25,18 @@
         </section>
         <section class="section-main">
             <div class="content">
-                <h2>Private Lessons Online</h2>
-                <p class="paragraph">Don't Miss out While You Are Away From School</p>
+                <h2>Aulas Particulares a distância</h2>
+                <p class="paragraph">Esta com dúvida em alguma disciplina?</p>
                 <a href="{{ route('login') }}" class="btn-primary">Acessar a Plataforma</a>
             </div>
         </section>
         <section class="section-what-teach">
             <div class="question">
-                <h2>What Do I Teach?</h2>
-                <p class="paragraph">I'm a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me to add your own content and make changes to the font. </p>
+                <h2>O que aprender?</h2>
+                <p class="paragraph">
+                    Aqui você aprende as diversas disciplinas do Ensino Fundamental, com professores
+                    altamente qualificados, através de vídeos e materiais didáticos.
+                </p>
                 <a href="#" class="btn-primary">About</a>
             </div>
             <div class="content-matters">
