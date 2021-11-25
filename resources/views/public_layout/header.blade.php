@@ -19,11 +19,9 @@
             <li><a href="{{ $option['href'] }}">{{ $option['name'] }}</a></li>
           @endforeach
         @else
-          <li>About</li>
-          <li>Book a Lesson</li>
-          <li>Packages</li>
-          <li>Learning Tools</li>
-          <li>Contact</li>
+          <li><a href="#matters">Matérias</a></li>
+          <li><a href="#about">Sobre</a></li>
+          <li><a href="#contact">Entre em Contato</a></li>
         @endif
       </ul>
     </nav>

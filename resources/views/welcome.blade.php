@@ -25,19 +25,19 @@
         </section>
         <section class="section-main">
             <div class="content">
-                <h2>Aulas Particulares a distância</h2>
+                <h2>Aulas Particulares a Distância</h2>
                 <p class="paragraph">Esta com dúvida em alguma disciplina?</p>
                 <a href="{{ route('login') }}" class="btn-primary">Acessar a Plataforma</a>
             </div>
         </section>
-        <section class="section-what-teach">
+        <section class="section-what-teach" id="matters">
             <div class="question">
                 <h2>O que aprender?</h2>
                 <p class="paragraph">
                     Aqui você aprende as diversas disciplinas do Ensino Fundamental, com professores
                     altamente qualificados, através de vídeos e materiais didáticos.
                 </p>
-                <a href="#" class="btn-primary">About</a>
+                <a href="#about" class="btn-primary">Sobre</a>
             </div>
             <div class="content-matters">
                 @foreach($categories as $category)
@@ -58,11 +58,13 @@
                 @endforeach
             </div>
         </section>
-        <section class="section-testimonial">
+        <section class="section-testimonial" id="about">
             <div class="container">
                 <div class="content">
-                    <p>“I'm a testimonial. Click to edit me and add text that says something nice about you and your services. Let your customers review you and tell their friends how great you are.”</p>
-                    <strong>Lisa, Dina's mom</strong>
+                    <p>
+                        Aplicação web de ensino a distância voltado ao público fundamental, desenvolvida por alunos do eixo de computação do polo de Hortolândia.
+                    </p>
+                    <strong>Projeto Integrador - Univesp</strong>
                 </div>
             </div>
         </section>
