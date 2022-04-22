@@ -148,7 +148,8 @@
               'id' => 'course-presentation-url',
               'label' => 'Vídeo de Apresentação (opcional)',
               'name' => 'presentation_url',
-              'placeholder' => 'URL do Vídeo de Apresentação...'
+              'placeholder' => 'URL do Vídeo de Apresentação...',
+              'required' => false
             ])
           </div>
           <div class="form-group">

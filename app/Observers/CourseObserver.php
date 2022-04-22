@@ -7,12 +7,6 @@ use App\Models\UserCourse;
 
 class CourseObserver
 {
-    /**
-     * Handle the Course "created" event.
-     *
-     * @param  \App\Models\Course  $course
-     * @return void
-     */
     public function created(Course $course){
         $course->category->update([
             'num_courses' => $course->category->courses->count()
@@ -24,26 +18,9 @@ class CourseObserver
         ]);
     }
 
-    /**
-     * Handle the Course "updated" event.
-     *
-     * @param  \App\Models\Course  $course
-     * @return void
-     */
-    public function updated(Course $course)
-    {
-        //
+    public function updated(Course $course){
     }
 
-    /**
-     * Handle the Course "deleted" event.
-     *
-     * @param  \App\Models\Course  $course
-     * @return void
-     */
-    public function deleted(Course $course)
-    {
-        //
+    public function deleted(Course $course){
     }
-
 }

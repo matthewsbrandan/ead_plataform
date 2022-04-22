@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+use Exception;
+
 class Lesson extends Model
 {
     use HasFactory;
@@ -63,22 +65,30 @@ class Lesson extends Model
         return $types[$this->type] ?? null;
     }
     public function formatDuration(){
-        if($this->type == 'archive') return "-";
+        if($this->type == 'archive' || !$this->duration) return "-";
         $strDate = "";
-        $hours = $this->duration->format('H');
-        $minutes = $this->duration->format('i');
-        if($hours > 0) $strDate = $hours."h ";
-        if($minutes > 0) $strDate.= $minutes."min";
-        if(strlen($strDate) == 0) $strDate = "0min";
+        try{
+            $hours = $this->duration->format('H');
+            $minutes = $this->duration->format('i');
+            if($hours > 0) $strDate = $hours."h ";
+            if($minutes > 0) $strDate.= $minutes."min";
+            if(strlen($strDate) == 0) $strDate = "0min";
 
-        return $strDate;
+            return $strDate;
+        }catch(Exception $e){
+            return "-";
+        }
     }
     public function getDurationInSeconds(){
-        if($this->type == 'archive') return 0;
-        $hours = $this->duration->format('H');
-        $minutes = $this->duration->format('i');
-        $seconds = $this->duration->format('s');
-        return ($hours * 60 * 60) + ($minutes * 60) + $seconds;
+        if($this->type == 'archive' || !$this->duration) return 0;
+        try{
+            $hours = $this->duration->format('H');
+            $minutes = $this->duration->format('i');
+            $seconds = $this->duration->format('s');
+            return ($hours * 60 * 60) + ($minutes * 60) + $seconds;
+        }catch(Exception $e){
+            return 0;
+        }
     }
     public function getArchiveToArray(){
         return json_decode($this->content, true);

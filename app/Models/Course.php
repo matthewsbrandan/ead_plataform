@@ -49,9 +49,11 @@ class Course extends Model
     public function lessons(){
         return $this->hasMany(Lesson::class, 'course_id');
     }
-    public function classes(){
+    public function classes($object = null){
+        if(!$object) $object = $this;
+
         $classes = [];
-        foreach($this->sections as $section){
+        foreach($object->sections as $section){
             $section->classes = [];
             if($section->sections->count() > 0 || $section->lessons->count() > 0){
                 $section->classes = $this->handleSubClasses($section);
@@ -63,7 +65,7 @@ class Course extends Model
                 'data' => $section
             ];
         }
-        foreach($this->lessons as $lesson){
+        foreach($object->lessons as $lesson){
             $classes[]= [
                 'index' => $lesson->index,
                 'type' => 'lesson',
@@ -92,7 +94,9 @@ class Course extends Model
 
         foreach($classes as $class){
             if($class['type'] == 'lesson'){
-                $class['data']->update(['real_index' => $real_index]);
+                if($class['data']->real_index != $real_index) $class['data']->update([
+                    'real_index' => $real_index
+                ]);
                 $real_index++;
             }
             elseif(count($class['data']->classes) > 0){

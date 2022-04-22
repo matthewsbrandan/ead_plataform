@@ -5,6 +5,18 @@
   <link rel="stylesheet" href="{{ asset('assets/css/dashboard/chat.css') }}">
   <meta name="csrf-token" content="{{ csrf_token() }}">
   @php  $sidebarActive = 'book' @endphp
+  <style>
+    .current-lesson ul{
+      list-style: inherit;
+      padding-left: 1.5rem;
+    }
+    .current-lesson ol{
+      padding-left: 1.5rem;
+    }
+    .current-lesson h1, .current-lesson h2{
+      margin: .5rem 0 .8rem;
+    }
+  </style>
 @endsection
 @section('content')
   <div class="container">

@@ -9,10 +9,14 @@
 @endsection
 @section('content')
   <div class="container create-class">
-    <h1>
-      Aulas - <span style="color: #99a;">{{ $course->title }}</span> 
-      {{ $section ? '| '.$section->title : '' }}
-    </h1>
+    <a href="{{ route('lesson.create',[
+      'slug' => $course->slug
+    ]) }}">
+      <h1>
+        @include('utils.icons.back') Aulas - <span style="color: #99a;">{{ $course->title }}</span> 
+        {{ $section ? '| '.$section->title : '' }}
+      </h1>
+    </a>
     <ul class="navbar">
       <li class="{{ $type == 'video' ? 'active': '' }}">
         <a href="{{ route('lesson.class.create',[

@@ -28,7 +28,7 @@ class SectionObserver
     }
 
     public function updated(Section $section){
-        //
+        
     }
 
     public function deleted(Section $section){

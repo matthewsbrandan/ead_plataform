@@ -19,7 +19,6 @@ class LessonController extends Controller
             'message',
             'Curso não encontrado'
         );
-
         $classes = $course->classes();
 
         return view('lesson.create.index', ['course' => $course, 'classes' => $classes]);
@@ -72,7 +71,7 @@ class LessonController extends Controller
             'message',
             'Curso não encontrado, ou sem permissão para adicionar aulas'
         );
-
+        
         $id = $request->id ?? null;
 
         $type = $request->type;
@@ -108,7 +107,7 @@ class LessonController extends Controller
         if(isset($request->section_id) && $request->section_id) $data+= [
             'section_id' => $request->section_id
         ];
-
+        
         Lesson::updateOrCreate(['id' => $id], $data);
         return redirect()->route('lesson.create',['slug' => $course->slug]);
     }

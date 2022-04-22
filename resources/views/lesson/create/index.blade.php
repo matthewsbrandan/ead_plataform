@@ -8,7 +8,9 @@
 @endsection
 @section('content')
   <div class="container">
-    <h1>Aulas - {{ $course->title }}</h1>
+    <a href="{{ route('course.mine') }}">
+      <h1>@include('utils.icons.back') Aulas - {{ $course->title }}</h1>
+    </a>
     <div class="button-group-add">
       <button
         type="button"
