@@ -31,10 +31,13 @@ class HomeController extends Controller
         ]);
     }
     public function welcome(){
+        $beta = config('app.beta');
         $categories = Category::where('slug','!=','outros')
             ->orderBy('num_courses','desc')
             ->take(4)
             ->get();
+
+        if($beta) return view('beta',['categories' => $categories]);
         return view('welcome',['categories' => $categories]);
     }
 }

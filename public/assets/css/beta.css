@@ -1,0 +1,109 @@
+.header-main {
+  z-index: 3;
+}
+
+main {
+  margin-top: 7rem;
+  min-height: calc(100vh - 7rem);
+  padding: 0;
+  background: #223;
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+main .overlay, main .wallpaper {
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+main .wallpaper {
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 100%;
+  height: 100%;
+  -webkit-filter: blur(2px);
+          filter: blur(2px);
+}
+
+main .overlay {
+  background: #0025;
+}
+
+main .container {
+  padding: 2rem;
+  margin: auto;
+  position: relative;
+  z-index: 2;
+}
+
+main .container .card {
+  border-radius: .4rem;
+  -webkit-box-shadow: 0 0 20px #0011;
+          box-shadow: 0 0 20px #0011;
+  padding: 1.2rem;
+  background: #0016;
+}
+
+main .container .card strong {
+  font-size: 1.1rem;
+  display: block;
+  margin: auto;
+  margin-bottom: .6rem;
+  text-align: center;
+  color: #fff;
+}
+
+main .container .card p {
+  color: #dded;
+}
+
+main .container .card.card-50 {
+  width: calc(50% - .5rem);
+  min-width: 20rem;
+  max-width: 30rem;
+}
+
+main .container .how-make-tester {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  color: #dded;
+}
+
+main .container .how-make-tester h1, main .container .how-make-tester h2, main .container .how-make-tester h3, main .container .how-make-tester h4, main .container .how-make-tester h5, main .container .how-make-tester h6, main .container .how-make-tester strong, main .container .how-make-tester b {
+  color: #fff;
+}
+
+main .container .how-make-tester ol {
+  margin: .5rem 0 1rem .5rem;
+}
+
+main .container .how-make-tester ol li {
+  margin: .5rem .2rem;
+}
+
+main .container .how-make-tester a {
+  font-style: italic;
+}
+
+main .container .how-make-tester a:hover {
+  text-decoration: underline;
+}
+
+#matters {
+  margin: auto;
+  width: 1000px;
+}
+/*# sourceMappingURL=beta.css.map */

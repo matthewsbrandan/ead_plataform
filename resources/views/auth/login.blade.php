@@ -27,6 +27,9 @@
   <main>
     <form method="POST" action="{{ route('login') }}" onSubmit="return submitLoad();">
       {{ csrf_field() }}
+      @isset($goback)
+        <input type="hidden" name="redirect_to" value="{{ $goback }}"/>
+      @endisset
       <h1>Login</h1>
       <div class="form-group {{ session()->has('auth-error-type') &&  session()->get('auth-error-type') == 'email' ? 'have-error':''}}">
         <input

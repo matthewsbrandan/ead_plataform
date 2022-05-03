@@ -7,6 +7,32 @@
 @section('content')
   <div class="container">
     <h1>Home</h1>
+    @if(config('app.beta') && config('app.feedback'))
+      <div style="
+        background: #aad2;
+        padding: 1.2rem;
+        margin: 1rem 0;
+        border-radius: 1rem;
+        color: #667;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        width: max-content;
+        max-width: 100%;
+      ">
+        <p>Responda a pesquisa e deixe sua opinião sobre a nossa plataforma.</p>
+        <a
+          href="{{ config('app.feedback') }}"
+          class="btn-primary"
+          style="
+            height: 2.2rem;
+            padding: 1.2rem;
+            border-radius: 1rem;
+            margin: .8rem 0 0;
+          "
+        >Deixar Feedback</a>
+      </div>
+    @endif
     <div class="card-courses">
       <strong>Últimos cursos que você ingressou</strong>
       <ul>

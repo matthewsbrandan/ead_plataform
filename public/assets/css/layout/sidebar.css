@@ -104,12 +104,16 @@
           box-shadow: 0 0 15px #0012;
 }
 
-#sidebar:not(.expanded) {
+#sidebar:not(.expanded):not(:hover) {
   width: 5rem;
 }
 
-#sidebar:not(.expanded) .show-if-expanded {
+#sidebar:not(.expanded):not(:hover) .show-if-expanded {
   display: none;
+}
+
+#sidebar:hover {
+  background: #fff;
 }
 
 #close-sidebar {

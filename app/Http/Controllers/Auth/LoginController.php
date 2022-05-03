@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+
+use Redirect;
+
+use App\Http\Controllers\Controller;
 use App\Models\User;
 
 class LoginController extends Controller
@@ -29,6 +32,7 @@ class LoginController extends Controller
             ->back()
             ->with('auth-error-type','password');
 
+        if($request->has('redirect_to')) return Redirect::to($request->redirect_to);
         return redirect()->route('home');
     }
 

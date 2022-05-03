@@ -23,6 +23,10 @@ Route::get('/login', function(){
   if (Auth::check()) return redirect()->route('home');
   return view('auth.login');
 })->name('login');
+Route::get('/logar-e-retornar', function(){
+  $url = \URL::previous();
+  return view('auth.login',['goback' => $url]);
+})->name('login_goback');
 Route::get('/logout', 'App\Http\Controllers\Auth\LoginController@logout')->name('logout');
 // END:: LOGIN | BEGIN:: FORGOT PASSWORD
 Route::get('/esqueci-minha-senha',
@@ -39,7 +43,7 @@ Route::post('/redefinindo-senha',
 )->name('store_password');
 // END:: FORGOT PASSWORD
 
-Route::get('/explorar/{search?}', 'App\Http\Controllers\ExplorerController@index')->name('explorer');
+Route::get('/explorar-cursos/{search?}', 'App\Http\Controllers\ExplorerController@index')->name('explorer');
 Route::middleware(['auth'])->group(function() {
   Route::get('/home','App\Http\Controllers\HomeController@index')->name('home');
 

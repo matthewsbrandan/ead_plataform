@@ -1,0 +1,91 @@
+.header-main{ z-index: 3; }
+main{
+  margin-top: 7rem;
+  min-height: calc(100vh - 7rem);
+  padding: 0;
+  background: #223;
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+
+  .overlay,.wallpaper{
+    position: absolute;
+    z-index: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+  .wallpaper{
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    filter: blur(2px);
+  }
+  .overlay{
+    background: #0025;
+  }
+  
+  .container{
+    padding: 2rem;
+    margin: auto;
+    position: relative;
+    z-index: 2;
+
+    .card{
+      border-radius: .4rem;
+      box-shadow: 0 0 20px #0011;
+      padding: 1.2rem;
+      background: #0016;
+      
+      strong{
+        font-size: 1.1rem;
+
+        display: block;
+        margin: auto;
+        margin-bottom: .6rem;
+        text-align: center;
+        color: #fff;
+      }
+
+      p{
+        color: #dded;
+      }
+      
+      &.card-50{
+        width: calc(50% - .5rem);
+        min-width: 20rem;
+        max-width: 30rem;
+      }
+    }
+
+    .how-make-tester{
+      margin-top: 1.5rem;
+      padding: 1rem;
+
+      color: #dded;
+
+      h1, h2, h3, h4, h5, h6, strong, b{ color: #fff; }
+
+      ol{
+        margin: .5rem 0 1rem .5rem; 
+
+        li{
+          margin: .5rem .2rem;
+        }
+      }
+
+      a{
+        font-style: italic;
+
+        &:hover{ text-decoration: underline; }
+      }
+    }
+  }
+}
+#matters{
+  margin: auto;
+  width: 1000px;
+}
