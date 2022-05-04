@@ -3,6 +3,18 @@
   <title>{{ $course->title }} | {{ config('app.name') }}</title>
   <link rel="stylesheet" href="{{ asset('assets/css/class/about.css') }}">
   @php  $sidebarActive = 'details' @endphp
+  <style>
+    .container-about ul{
+      list-style: inherit;
+      padding-left: 1.5rem;
+    }
+    .container-about ol{
+      padding-left: 1.5rem;
+    }
+    .container-about h1, .container-about h2{
+      margin: .5rem 0 .8rem;
+    }
+  </style>
 @endsection
 @section('content')
   <div class="container">
@@ -34,7 +46,7 @@
           border-color: #eef6;
           margin: 2rem 0 1.4rem;
         "/>
-        {!! $course->about !!}
+        <div class="container-about">{!! $course->about !!}</div>
       </div>
       <aside class="aside">
         <div class="content">

@@ -32,7 +32,6 @@ class ClassController extends Controller
             'Curso não encontrado'
         );
 
-
         $student = $course->studentsPivot->first();
         if(!$student) return redirect()->route('class.index',[
             'slug' => $slug
@@ -59,7 +58,8 @@ class ClassController extends Controller
         $response = ($chatController->chatLesson($currentLesson->id))->content();
         $chatResponse = json_decode($response);
         $currentLesson->questions = $chatResponse->response;
-        
+        $currentLesson->breadcrumbs_formatted = explode(',',$currentLesson->breadcrumbs);
+
         return view('class.show',[
             'course' => $course,
             'currentLesson' => $currentLesson,

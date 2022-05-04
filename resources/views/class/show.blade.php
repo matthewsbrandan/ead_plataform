@@ -53,7 +53,7 @@
             <li class="lesson-option-item" onclick="handleRatingLesson()">Avaliar Aula</li>
           </ul>
           <div class="toggle-option" id="lesson-about" style="display: block;">
-            <h3 id="about-title">{{ $currentLesson->title }}</h3>
+            <h3 id="about-title" style="padding-top: .5rem;">{{ $currentLesson->title }}</h3>
             <div class="about-details">
               <span id="about-time">
                 <span class="value">{{ $currentLesson->formatDuration() }}</span>

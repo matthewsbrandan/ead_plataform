@@ -104,6 +104,6 @@ main .container .how-make-tester a:hover {
 
 #matters {
   margin: auto;
-  width: 1000px;
+  max-width: 1000px;
 }
 /*# sourceMappingURL=beta.css.map */
