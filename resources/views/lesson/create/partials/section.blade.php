@@ -1,5 +1,5 @@
 <div class="section">
-  <div class="header">
+  <div class="header" onclick="$(this).next().toggle('slow');">
     <strong style="color: #000;">{{ $class['data']->title }}</strong>
     <div class="button-group">
       <button
