@@ -1,8 +1,42 @@
 <div class="container">
-  <h1>Explorar Cursos</h1>
+  <div style="
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  ">
+    <h1>Explorar Cursos</h1>
+    <button
+      type="button"
+      class="btn-clean btn-svg"
+      onclick="handleToggleFilter()"
+    >@include('utils.icons.search')</button>
+  </div>
+  <div
+    class="form-custom"
+    id="container-filters"
+    style="
+      padding-top: 1rem;
+      width: 100%;
+      display: none;
+    "
+  >
+    <div class="form-group">
+      <input
+        type="text"
+        name="search"
+        id="search-input"
+        placeholder="Pesquise o nome do Curso..."
+        onkeyup="handleFilter()"
+        required
+      />
+    </div>
+  </div>
   <div class="content-courses">
     @foreach($courses as $course)
-      <div class="course">
+      <div
+        class="course"
+        data-title="{{ $course->title }}"
+      >
         <img src="{{ $course->wallpaper }}" alt="{{ $course->title }}"/>
         <div class="course-info">
           <div class="title">
