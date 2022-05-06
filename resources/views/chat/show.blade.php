@@ -42,8 +42,10 @@
 @section('content')
   <div class="container" style="overflow: hidden; height: calc(100vh - 1.8rem);">
     <div style="height: calc(100vh - 150px); overflow-x: auto;">
-      <h1>Chat | {{ $course->title }}</h1>
-      <span id="more-messages" onClick="loadTeacherMessages()">Carregar mais...</span>
+      <h1 class="text-ellipsis">Chat | {{ $course->title }}</h1>
+      @if($chats->count() > 0)
+        <span id="more-messages" onClick="loadTeacherMessages()">Carregar mais...</span>
+      @endif
       <div id="container-questions">
         @foreach($chats as $message)
           <div

@@ -14,6 +14,10 @@
     .container-about h1, .container-about h2{
       margin: .5rem 0 .8rem;
     }
+    .container-about img{
+      max-width: 100% !important;
+      object-fit: cover;
+    }
   </style>
 @endsection
 @section('content')
