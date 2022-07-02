@@ -39,7 +39,18 @@
   <main>
     <form method="POST" action="{{ route('user.store') }}" onSubmit="return submitLoad();">
       {{ csrf_field() }}
-      <h1>Cadastre-se</h1>
+      <div style="
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      ">
+        <h1>Cadastre-se</h1>
+        <button
+          class="btn-clean"
+          type="button"
+          onclick="help()"
+        >@include('utils.icons.help')</button>
+      </div>
       <div class="form-group">
         <input
           type="text"
@@ -127,6 +138,30 @@
         elem.hide().prev().prev().attr('type', 'password');
         elem.prev().show();
       }
+    }
+    function help(){
+      showMessage(`
+        <article style="text-align: left;">
+          <div style="margin-bottom: .8rem;">
+            <strong>Página:</strong> Cadastro de usuário.
+          </div>
+          <div style="margin-bottom: .8rem;">
+            <strong>Descrição:</strong> Nesta página você pode fazer seu cadastro na plataforma, selecionando o seu tipo de usuário (professor ou aluno).
+          </div>
+          <div style="margin-bottom: .8rem;">
+            <strong>Instruções:</strong>
+            <p style="margin: .2rem 0 .6rem;">
+              - A diferença entre aluno e professor, é que os professores podem criar conteúdo na plataforma, enquanto alunos podem apenas assistir.
+            </p>
+            <p style="margin-bottom: .6rem;">
+              - Para alternar o tipo de conta basta clicar no botão ao lado do nome aluno.
+            </p>
+            <p style="margin-bottom: .6rem;">
+              - Caso você já seja cadastrado, embaixo do botão de cadastrar existe um link <em>"Já sou cadastrado"</em> que te redirecionará para a página de login.
+            </p>
+          </div>
+        </article>
+      `, 'Auto - Ajuda');
     }
   </script>
 </body>

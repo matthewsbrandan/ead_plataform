@@ -54,7 +54,7 @@
         <ol>
           <li><b>Primeiro passo</b>, <a href="{{ route('register') }}" target="_blank">clique aqui</a> para se cadastrar na plataforma como aluno ou professor.<br/>Caso você já seja cadastrado, faça o <a href="{{ route('login') }}" target="_blank">login</a>.</li>
           <li><b>Segundo passo</b>, já estando cadastrado, clique em <a href="{{ route('explorer') }}" target="_blank">explorar</a> para conhecer os cursos disponíveis.</li>
-          <li><b>Terceiro passo</b>, após conhecer a plataforma, responda a pesquisa para deixar seu feedback.<br/>Você encontrará o <a href="{{ config('app.feedback') }}" target="_blank">link da pesquisa</a> na página <a href="{{ route('home') }}">Home</a> ou no final dos cursos.
+          <li><b>Terceiro passo</b>, após conhecer a plataforma, responda a pesquisa para deixar seu feedback.<br/>Você encontrará o <a href="{{ route('feedback.index') }}" target="_blank">link da pesquisa</a> na página <a href="{{ route('home') }}">Home</a> ou no final dos cursos.
         </ol>
       </div>
     </div>

@@ -58,8 +58,6 @@ return [
 
     'beta' => env('APP_BETA', false),
 
-    'feedback' => env('FEEDBACK', '#'),
-
     /*
     |--------------------------------------------------------------------------
     | Application Timezone

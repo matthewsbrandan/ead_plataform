@@ -62,4 +62,9 @@
       </div>
     @endforeach
   </div>
+  @if($courses->count() == 0)
+    <p style="text-align: center; width: 100%; display: block; margin: auto;">
+      Não há nenhum curso disponível
+    </p>
+  @endif
 </div>

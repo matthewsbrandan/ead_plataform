@@ -6,8 +6,19 @@
 @endsection
 @section('content')
   <div class="container">
-    <h1>Home</h1>
-    @if(config('app.beta') && config('app.feedback'))
+    <div style="
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    ">
+      <h1>Home</h1>
+      <button
+        class="btn-clean"
+        type="button"
+        onclick="help()"
+      >@include('utils.icons.help')</button>
+    </div>
+    @if(config('app.beta'))
       <div style="
         background: #aad2;
         padding: 1.2rem;
@@ -22,7 +33,7 @@
       ">
         <p>Responda a pesquisa e deixe sua opinião sobre a nossa plataforma.</p>
         <a
-          href="{{ config('app.feedback') }}"
+          href="{{ route('feedback.index') }}"
           class="btn-primary"
           style="
             height: 2.2rem;
@@ -64,4 +75,29 @@
     </div>
   </div>
   @include('utils.loading')
+@endsection
+@section('script')
+  <script>
+    function help(){
+      showMessage(`
+        <article style="text-align: left;">
+          <div style="margin-bottom: .8rem;">
+            <strong>Página:</strong> Home.
+          </div>
+          <div style="margin-bottom: .8rem;">
+            <strong>Descrição:</strong> Essa página mostra algumas informações gerais, como últimos cursos que você ingressou, e quais cursos você completou, e a opção de deixar um feedback sobre a plataforma.
+          </div>
+          <div style="margin-bottom: .8rem;">
+            <strong>Instruções:</strong>
+            <p style="margin: .2rem 0 .6rem;">
+              - Na área de "cursos que você ingressou", caso haja cursos listados, você pode clicar encima deles para ser redirecionado para a sala de aula. 
+            </p>
+            <p style="margin-bottom: .6rem;">
+              - Na lateral(ou na parte superior caso esteja no celular) há alguns icones que compoem o menu, você pode clicar neles para ser redirecionado para outras páginas. E clicando sobre o icone do seu perfil terá opções de acessar suas notificações, seu dados de perfil, ou sair da plataforma.
+            </p>
+          </div>
+        </article>
+      `, 'Auto - Ajuda');
+    }
+  </script>
 @endsection

@@ -6,7 +6,18 @@
 @endsection
 @section('content')
   <div class="container">
-    <h1>Cursos</h1>
+    <div style="
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    ">
+      <h1>Cursos</h1>
+      <button
+        class="btn-clean"
+        type="button"
+        onclick="help()"
+      >@include('utils.icons.help')</button>
+    </div>
     @include('course.partials.nav',['active' => 'index'])
     <div class="content-courses">
       @foreach($courses as $course)
@@ -45,4 +56,26 @@
       @endif
     </div>
   </div>
+@endsection
+@section('script')
+  <script>
+    function help(){
+      showMessage(`
+        <article style="text-align: left;">
+          <div style="margin-bottom: .8rem;">
+            <strong>Página:</strong> Cursos.
+          </div>
+          <div style="margin-bottom: .8rem;">
+            <strong>Descrição:</strong> Nessa página você vê todos os cursos em que você está matriculado, e caso seja usuário do tipo 'Professor', terá opções para ver seus cursos criados e um botão para criar novos cursos.
+          </div>
+          <div style="margin-bottom: .8rem;">
+            <strong>Instruções:</strong>
+            <p style="margin: .2rem 0 .6rem;">
+              - Duas informações importantes no card do curso é o botão de acessar, que te redirecionará para aula, e bem no final da imagem do curso terá uma barra de progresso azul mostrando o percentual do curso que você já completou.
+            </p>
+          </div>
+        </article>
+      `, 'Auto - Ajuda');
+    }
+  </script>
 @endsection

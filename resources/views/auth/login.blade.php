@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -30,7 +30,18 @@
       @isset($goback)
         <input type="hidden" name="redirect_to" value="{{ $goback }}"/>
       @endisset
-      <h1>Login</h1>
+      <div style="
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      ">
+        <h1>Login</h1>
+        <button
+          class="btn-clean"
+          type="button"
+          onclick="help()"
+        >@include('utils.icons.help')</button>
+      </div>
       <div class="form-group {{ session()->has('auth-error-type') &&  session()->get('auth-error-type') == 'email' ? 'have-error':''}}">
         <input
           type="email"
@@ -60,6 +71,38 @@
     </form>
   </main>
   @include('public_layout.footer')
+  @include('utils.modalMessage')
   @include('utils.loading')
+  <script>
+    $(function(){
+      @if(session()->has('message'))
+        showMessage("{{ session()->get('message') }}");
+      @endif
+    });
+    function help(){
+      showMessage(`
+        <article style="text-align: left;">
+          <div style="margin-bottom: .8rem;">
+            <strong>Página:</strong> Login.
+          </div>
+          <div style="margin-bottom: .8rem;">
+            <strong>Descrição:</strong> Nesta página você faz o login para acessar a plataforma.
+          </div>
+          <div style="margin-bottom: .8rem;">
+            <strong>Instruções:</strong>
+            <p style="margin: .2rem 0 .6rem;">
+              - Se você já é cadastrado, basta preencher seu email, senha e depois clicar no botão <em>"Entrar"</em> para acessar a plataforma.
+            </p>
+            <p style="margin-bottom: .6rem;">
+              - Se você esqueceu sua senha basta clicar no link <em>"Esqueci a senha"</em> abaixo do botão <em>"Entrar"</em>.
+            </p>
+            <p style="margin-bottom: .6rem;">
+              - Caso você ainda não tenha cadastro, abaixo do botão <em>"Entrar"</em> há um link para a página de cadastro(<em>"Cadastre-se"</em>).
+            </p>
+          </div>
+        </article>
+      `, 'Auto - Ajuda');
+    }
+  </script>
 </body>
 </html>

@@ -8,7 +8,18 @@
 @endsection
 @section('content')
   <div class="container">
-    <h1>Novo Curso</h1>
+    <div style="
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    ">
+      <h1>Novo Curso</h1>
+      <button
+        class="btn-clean"
+        type="button"
+        onclick="help()"
+      >@include('utils.icons.help')</button>
+    </div>
     @include('course.partials.nav',['active' => 'create'])
     <form
       method="POST"
@@ -172,6 +183,34 @@
       let jump = $('.content-matters').children().width();
       let currentPosition = $('.content-matters').scrollLeft();
       $('.content-matters').scrollLeft(next ? currentPosition + jump : currentPosition - jump);
+    }
+    function help(){
+      $('#modalMessage .container').css('max-width','55rem');
+      showMessage(`
+        <article style="text-align: left;">
+          <div style="margin-bottom: .8rem;">
+            <strong>Página:</strong> Novo Curso.
+          </div>
+          <div style="margin-bottom: .8rem;">
+            <strong>Descrição:</strong> Nessa página você consegue criar novos cursos.
+          </div>
+          <div style="margin-bottom: .8rem;">
+            <strong>Instruções:</strong>
+            <p style="margin: .2rem 0 .6rem;">
+              - Preencha todos os campos para criar um curso (título, descrição, imagem de capa e categoria/matéria
+            </p>
+            <p style="margin-bottom: .6rem;">
+              - Para selecionar a imagem no seu dispositivo você deve clicar encima do card da imagem, que ele abrirá o explorador de arquivos.
+            </p>
+            <p style="margin-bottom: .6rem;">
+              - Para selecionar a matéria basta clicar sobre o card da matéria escolhida, você verá que ele ficará com um fundo mais escuro(em um tom azulado) e um pouco abaixo terá o nome da categoria que você selecionou.
+            </p>
+            <p style="margin-bottom: .6rem;">
+              - Para ver mais matérias você pode deslizar os cards para o lado, ou clicar em uma seta que aparece bem no final e no começo da tela. Caso não encontre sua matéria selecione outros, ou solicite ao suporte o cadastro da matéria que deseja.
+            </p>
+          </div>
+        </article>
+      `, 'Auto - Ajuda');
     }
   </script>
 @endsection

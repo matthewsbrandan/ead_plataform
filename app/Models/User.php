@@ -45,7 +45,7 @@ class User extends Authenticatable
     ];
 
     public function courses(){
-        return $this->belongsToMany(User::class, 'user_courses', 'user_id', 'course_id');
+        return $this->belongsToMany(Course::class, 'user_courses', 'user_id', 'course_id');
     }
     public function coursesPivot(){
         return $this->hasMany(UserCourse::class, 'user_id');

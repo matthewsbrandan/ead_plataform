@@ -123,4 +123,13 @@ Route::middleware(['auth'])->group(function() {
     Route::post('/secao/salvar','App\Http\Controllers\SectionController@store')->name('store');
     Route::get('/secao/excluir/{id}','App\Http\Controllers\SectionController@delete')->name('delete');
   });
+
+  Route::name('feedback.')->group(function(){
+    Route::get('/feedback', 'App\Http\Controllers\FeedbackController@index')->name('index');
+    Route::post('/feedback/salvar', 'App\Http\Controllers\FeedbackController@store')->name('store');
+    Route::get('/feedback/excluir/{id}', 'App\Http\Controllers\FeedbackController@delete')->name('delete');
+
+    Route::get('/feedback/ver', 'App\Http\Controllers\FeedbackController@show')->name('show');
+    Route::get('/feedback/ver/mais/{skip?}', 'App\Http\Controllers\FeedbackController@show')->name('show');
+  });
 });

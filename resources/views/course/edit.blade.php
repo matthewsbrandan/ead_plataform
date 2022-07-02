@@ -9,7 +9,18 @@
 @endsection
 @section('content')
   <div class="container">
-    <h1>Novo Curso</h1>
+    <div style="
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    ">
+      <h1>Editar Curso | {{ $course->title }}</h1>
+      <button
+        class="btn-clean"
+        type="button"
+        onclick="help()"
+      >@include('utils.icons.help')</button>
+    </div>
     @include('course.partials.nav',['active' => 'mine'])
     <form
       method="POST"
@@ -241,5 +252,37 @@
     $(function(){
       handleRichText();
     });
+
+    function help(){
+      $('#modalMessage .container').css('max-width','55rem');
+      showMessage(`
+        <article style="text-align: left;">
+          <div style="margin-bottom: .8rem;">
+            <strong>Página:</strong> Editar Curso.
+          </div>
+          <div style="margin-bottom: .8rem;">
+            <strong>Descrição:</strong> Nessa página você consegue editar as informações dos seus cursos existentes.
+          </div>
+          <div style="margin-bottom: .8rem;">
+            <strong>Instruções:</strong>
+            <p style="margin: .2rem 0 .6rem;">
+              - Para editar a foto do curso, basta clicar sobre a foto atual que abrirá o explorador de arquivos.
+            </p>
+            <p style="margin-bottom: .6rem;">
+              - Uma diferença que essa página tem da página 'Novo Grupo' é que ela possui alguns campos opcionais a mais para você estar melhorando seu grupo: 'Sobre','Vídeo de Apresentação' e 'Palavras chaves'.
+            </p>
+            <p style="margin-bottom: .6rem;">
+              > <em>Sobre:</em> É um lugar onde você pode colocar um texto formatado falando sobre o curso e dando mais detalhes sobre ele.
+            </p>
+            <p style="margin-bottom: .6rem;">
+              > <em>Vídeo de Apresentação:</em> Aqui você pode deixar um link de um vídeo do youtube onde você divulga o seu curso para atrair novos alunos.
+            </p>
+            <p style="margin-bottom: .6rem;">
+              > <em>Palavras Chaves:</em> Ajuda nas pesquisa para que seu curso seja encontrado mais facilmente.
+            </p>
+          </div>
+        </article>
+      `, 'Auto - Ajuda');
+    }
   </script>
 @endsection

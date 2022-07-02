@@ -158,7 +158,18 @@ class Course extends Model
             'missions' => $missions
         ];
     }
-
+    public function getKeywordsFormatted(){
+        if(!$this->keywords) return [];
+        $keywords = array_filter(
+            array_map(function($item){
+                return trim($item);
+            },explode(',', $this->keywords)),
+            function($item){
+                return !!$item;
+            }
+        );
+        return $keywords;
+    }
     #region LOCAL FUNCTIONS
     protected function array_orderby(){
         $args = func_get_args();
